@@ -1,0 +1,38 @@
+---
+/**
+ * Logo Component
+ * SVG placeholder for SKF logo.
+ * Replace with actual logo SVG when available.
+ */
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<!--
+  Placeholder logo - Replace with actual SKF logo SVG
+  The logo should follow brand guidelines:
+  - Use primary colors (blue, yellow)
+  - Maintain proper proportions
+  - Include adequate whitespace (frizon)
+-->
+<svg
+  viewBox="0 0 120 40"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+  aria-label="Svenska Kickboxningsförbundet logotyp"
+  role="img"
+>
+  <!-- Placeholder: Blue circle with yellow accent -->
+  <circle cx="20" cy="20" r="18" fill="#0F2454" />
+  <circle cx="20" cy="20" r="12" fill="#F5DC32" />
+  <circle cx="20" cy="20" r="6" fill="#0F2454" />
+
+  <!-- Text placeholder -->
+  <text x="45" y="25" fill="#0F2454" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700">
+    SKF
+  </text>
+</svg>

@@ -1,0 +1,113 @@
+/**
+ * SKF Global Styles
+ * Based on Svenska Kickboxningsförbundet Grafisk Profil
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =============================================================================
+   BASE STYLES
+   ============================================================================= */
+
+@layer base {
+  /**
+   * Typography defaults
+   * Left-aligned text, generous line-height for readability
+   */
+  html {
+    @apply antialiased;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-skf-black font-sans text-body;
+  }
+
+  /**
+   * Heading hierarchy
+   * Following SKF typography guidelines
+   */
+  h1 {
+    @apply text-h1 font-heading text-skf-blue;
+  }
+
+  h2 {
+    @apply text-h2 font-heading text-skf-blue;
+  }
+
+  h3 {
+    @apply text-h3 font-heading text-skf-blue;
+  }
+
+  h4 {
+    @apply text-h4 font-heading text-skf-blue;
+  }
+
+  /**
+   * Links
+   */
+  a {
+    @apply text-skf-blue underline-offset-2 transition-colors duration-200;
+  }
+
+  a:hover {
+    @apply text-skf-blue-600;
+  }
+
+  /**
+   * Focus styles for accessibility
+   */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-skf-yellow;
+  }
+}
+
+/* =============================================================================
+   COMPONENT STYLES
+   ============================================================================= */
+
+@layer components {
+  /**
+   * Container with max-width and padding
+   */
+  .container-narrow {
+    @apply mx-auto max-w-4xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-wide {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /**
+   * Section spacing
+   */
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  .section-sm {
+    @apply py-8 md:py-12;
+  }
+}
+
+/* =============================================================================
+   UTILITY CLASSES
+   ============================================================================= */
+
+@layer utilities {
+  /**
+   * Text balance for better typography
+   */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /**
+   * SKF brand gradient (subtle use only)
+   */
+  .bg-skf-gradient {
+    background: linear-gradient(135deg, theme('colors.skf.blue.DEFAULT') 0%, theme('colors.skf.blue.800') 100%);
+  }
+}
