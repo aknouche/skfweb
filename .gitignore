@@ -29,6 +29,7 @@ npm-debug.log*
 
 # Misc
 .cache/
+.astro/
 
 # Vercel
 .vercel
