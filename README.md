@@ -4,10 +4,12 @@ Official website for Svenska Kickboxningsförbundet (Swedish Kickboxing Federati
 
 ## Tech Stack
 
-- **Framework**: [Astro](https://astro.build/) - Static site generator
+- **Framework**: [Next.js 15](https://nextjs.org/) - React framework
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS
 - **TypeScript**: For type safety
+- **Hosting**: [Vercel](https://vercel.com/)
 - **CMS**: Sanity/Contentful (planned)
+- **Backend**: Supabase (planned)
 
 ## Design System
 
@@ -32,28 +34,28 @@ npm run dev
 # Build for production
 npm run build
 
-# Preview production build
-npm run preview
+# Start production server
+npm run start
 ```
 
 ## Project Structure
 
 ```
 src/
+├── app/            # Next.js App Router
+│   ├── layout.tsx  # Root layout
+│   ├── page.tsx    # Homepage
+│   └── globals.css # Global styles
 ├── components/
 │   ├── ui/         # Button, Card, Logo
 │   ├── layout/     # Header, Footer
 │   └── sections/   # Hero, NewsGrid (future)
-├── layouts/        # BaseLayout
-├── pages/          # Route pages
-├── lib/            # Constants, utilities
-├── styles/         # Global CSS
-└── content/        # Markdown content (future)
+└── lib/            # Constants, utilities
 ```
 
 ## Development Phases
 
 - **Phase 1 (Current)**: Foundation, basic pages
 - **Phase 2**: CMS integration, content pages
-- **Phase 3**: Advanced features
+- **Phase 3**: Supabase backend, advanced features
 - **Phase 4**: Multilingual support
