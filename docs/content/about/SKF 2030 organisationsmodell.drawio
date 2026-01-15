@@ -1,0 +1,432 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.0 Safari/537.36" version="29.0.3" pages="2">
+  <diagram name="Struktur" id="jiDwE1nZkotWsf3uAclv">
+    <mxGraphModel dx="4570" dy="3825" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-46" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;dashed=1;" parent="1" source="XLNdNBZ7zpMw0CIvY_kF-45" target="XLNdNBZ7zpMw0CIvY_kF-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-460" y="-710" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-1" value="" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-600" y="-710" width="280" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-2" value="Förbundsstyrelse" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Georgia;fontSize=16;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="-490" y="-740" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-3" value="Ordförande&lt;div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;(Vice Ordf.)&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="-510" y="-690" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-4" value="Sekreterare" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-570" y="-620" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="XLNdNBZ7zpMw0CIvY_kF-4" target="XLNdNBZ7zpMw0CIvY_kF-6" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-560" y="-595" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-5" value="Kassör" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-450" y="-620" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-6" value="" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-770" y="-630" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-12" value="" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-80" y="-440" width="280" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-13" value="Tävlingskommitté" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Georgia;fontSize=16;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="40" y="-470" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-14" value="Tävlings-ansvarig" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="10" y="-420" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-15" value="Tävling" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-50" y="-360" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-16" value="Regelverk" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="70" y="-360" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-17" value="Domare" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-50" y="-320" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-18" value="Medicin" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="70" y="-320" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-19" value="" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-420" y="-440" width="280" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-20" value="Landslagskommitté" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Georgia;fontSize=16;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="-300" y="-470" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-21" value="Förbunds-kapten" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="-330" y="-420" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-22" value="Senior" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-390" y="-360" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-23" value="Scouting/talang" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-270" y="-360" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-24" value="Junior" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-390" y="-320" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-25" value="Sjukvård" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-270" y="-320" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-26" value="" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="270" y="-440" width="280" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-27" value="Graderingskommitté" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Georgia;fontSize=16;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="390" y="-470" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-28" value="Graderings-ansvarig" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="360" y="-420" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-29" value="Mästargrad" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="300" y="-320" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-30" value="Graderingssystem" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="360" y="-360" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-31" value="Graderare" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="420" y="-320" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-33" value="" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-760" y="-440" width="280" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-34" value="Utbildningskommitté" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Georgia;fontSize=16;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="-640" y="-470" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-35" value="Utbildnings-ansvarig" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="-670" y="-420" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-36" value="Kunskaps-hantering" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-730" y="-360" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-37" value="Utbildningar" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-730" y="-320" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-38" value="Certifieringar" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-610" y="-320" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="XLNdNBZ7zpMw0CIvY_kF-1" target="XLNdNBZ7zpMw0CIvY_kF-33" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-460" y="-480" />
+              <mxPoint x="-510" y="-480" />
+            </Array>
+            <mxPoint x="-508" y="-440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-460" y="-510" as="sourcePoint" />
+            <mxPoint x="-390" y="-440" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-460" y="-480" />
+              <mxPoint x="-390" y="-480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.102;entryY=-0.003;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="XLNdNBZ7zpMw0CIvY_kF-1" target="XLNdNBZ7zpMw0CIvY_kF-12" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-450" y="-500" as="sourcePoint" />
+            <mxPoint x="-512" y="-434" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-460" y="-480" />
+              <mxPoint x="-51" y="-480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="XLNdNBZ7zpMw0CIvY_kF-1" target="XLNdNBZ7zpMw0CIvY_kF-26" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-450" y="-500" as="sourcePoint" />
+            <mxPoint x="120" y="-439" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-460" y="-480" />
+              <mxPoint x="300" y="-480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-48" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" parent="1" source="XLNdNBZ7zpMw0CIvY_kF-45" target="XLNdNBZ7zpMw0CIvY_kF-47" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GT6Xt86N0K6MLM7YjfW1-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;dashed=1;" parent="1" source="XLNdNBZ7zpMw0CIvY_kF-45" target="GT6Xt86N0K6MLM7YjfW1-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-45" value="Förbundsstämma" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-520" y="-830" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XLNdNBZ7zpMw0CIvY_kF-47" value="Valberedning" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-290" y="-825" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="GT6Xt86N0K6MLM7YjfW1-1" value="SB&amp;amp;K" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-520" y="-920" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="RyVUIEsBQX7LrIH2wkOn-1" value="" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-1100" y="-440" width="280" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="RyVUIEsBQX7LrIH2wkOn-2" value="Forsknings- och utvecklingskommitté" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Georgia;fontSize=16;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="-1100" y="-475" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RyVUIEsBQX7LrIH2wkOn-3" value="FoU-ansvarig" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="-1010" y="-420" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RyVUIEsBQX7LrIH2wkOn-4" value="Samverkan" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-1070" y="-360" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RyVUIEsBQX7LrIH2wkOn-5" value="Idrottsutveckling" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-1070" y="-320" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RyVUIEsBQX7LrIH2wkOn-6" value="Digitalisering" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-950" y="-320" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RyVUIEsBQX7LrIH2wkOn-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.893;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="XLNdNBZ7zpMw0CIvY_kF-1" target="RyVUIEsBQX7LrIH2wkOn-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-460" y="-480" />
+              <mxPoint x="-850" y="-480" />
+            </Array>
+            <mxPoint x="-450" y="-500" as="sourcePoint" />
+            <mxPoint x="-1030" y="-450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RyVUIEsBQX7LrIH2wkOn-8" value="Kunskaps-utveckling" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-950" y="-360" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PbKnb_5IXTgNTjGZLgUT-1" value="&lt;b&gt;Förbunds-koordinator&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-290" y="-540" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="PbKnb_5IXTgNTjGZLgUT-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="PbKnb_5IXTgNTjGZLgUT-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-320" y="-515.71" as="sourcePoint" />
+            <mxPoint x="-460" y="-516" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E3V5m2NmHZ75M5WnEKHf-1" value="" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-1440" y="-440" width="280" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="E3V5m2NmHZ75M5WnEKHf-2" value="Marknadskommitté" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Georgia;fontSize=16;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="-1440" y="-475" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="E3V5m2NmHZ75M5WnEKHf-3" value="Marknads-ansvarig" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="-1350" y="-420" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="E3V5m2NmHZ75M5WnEKHf-4" value="Marknad" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-1410" y="-360" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="E3V5m2NmHZ75M5WnEKHf-5" value="Intäkter" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-1410" y="-320" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="E3V5m2NmHZ75M5WnEKHf-6" value="Etik" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-1290" y="-320" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="E3V5m2NmHZ75M5WnEKHf-7" value="Hållbarhet" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-1290" y="-360" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="E3V5m2NmHZ75M5WnEKHf-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="XLNdNBZ7zpMw0CIvY_kF-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-460" y="-480" />
+              <mxPoint x="-1180" y="-480" />
+            </Array>
+            <mxPoint x="-450" y="-530" as="sourcePoint" />
+            <mxPoint x="-1180" y="-440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vxE07mxca6zJU2Y27yhU-1" value="Utbildnings-innehåll" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-610" y="-360" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="r-X5o63b35qfZVXxkgk6-1" value="Kommunikations-kommitté" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Georgia;fontSize=16;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="-730" y="-670" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="r-X5o63b35qfZVXxkgk6-3" value="Kommunikations-ansvarig" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="-760" y="-620" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="r-X5o63b35qfZVXxkgk6-4" value="Kommunikatörer" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-750" y="-586" width="100" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="r-X5o63b35qfZVXxkgk6-6" value="RF" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-520" y="-1010" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r-X5o63b35qfZVXxkgk6-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;dashed=1;" parent="1" source="GT6Xt86N0K6MLM7YjfW1-1" target="r-X5o63b35qfZVXxkgk6-6" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-460.36" y="-920" as="sourcePoint" />
+            <mxPoint x="-460.36" y="-950" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iWxLSMgVqrSNK7sv4-Kb-2" value="Pro" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="-50" y="-280" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="iWxLSMgVqrSNK7sv4-Kb-3" value="Ranking (SM)" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Georgia;" parent="1" vertex="1">
+          <mxGeometry x="70" y="-280" width="100" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="HNq0_QvlDYoAHj1vFw6e" name="Utvecklingsområden">
+    <mxGraphModel dx="819" dy="674" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="S0xfAg2BiTLANCwCt5GE-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="30tymcW3Bw1XX164nMTx-2" target="30tymcW3Bw1XX164nMTx-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="30tymcW3Bw1XX164nMTx-2" value="Kravprofil" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontFamily=Georgia;gradientColor=#FFFFFF;shadow=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="300" y="250" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="S0xfAg2BiTLANCwCt5GE-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="30tymcW3Bw1XX164nMTx-3" target="30tymcW3Bw1XX164nMTx-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="S0xfAg2BiTLANCwCt5GE-5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;curved=0;" edge="1" parent="1" source="30tymcW3Bw1XX164nMTx-3" target="30tymcW3Bw1XX164nMTx-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="30tymcW3Bw1XX164nMTx-3" value="Utvecklings-&lt;br&gt;trappa" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontFamily=Georgia;gradientColor=#FFFFFF;shadow=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="470" y="250" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="S0xfAg2BiTLANCwCt5GE-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="30tymcW3Bw1XX164nMTx-4" target="30tymcW3Bw1XX164nMTx-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="30tymcW3Bw1XX164nMTx-4" value="Graderings-&lt;br&gt;modell" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontFamily=Georgia;gradientColor=#FFFFFF;shadow=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="640" y="250" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="30tymcW3Bw1XX164nMTx-5" value="Landslagsmodell" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontFamily=Georgia;gradientColor=#FFFFFF;shadow=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="640" y="360" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="30tymcW3Bw1XX164nMTx-6" value="X" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontFamily=Georgia;gradientColor=#FFFFFF;shadow=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="140" y="90" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="S0xfAg2BiTLANCwCt5GE-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="30tymcW3Bw1XX164nMTx-7" target="30tymcW3Bw1XX164nMTx-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="30tymcW3Bw1XX164nMTx-7" value="Body of Knowledge" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontFamily=Georgia;gradientColor=#FFFFFF;shadow=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="130" y="250" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="S0xfAg2BiTLANCwCt5GE-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="30tymcW3Bw1XX164nMTx-8" target="30tymcW3Bw1XX164nMTx-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="30tymcW3Bw1XX164nMTx-8" value="Utbildnings-struktur" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontFamily=Georgia;gradientColor=#FFFFFF;shadow=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="640" y="140" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="30tymcW3Bw1XX164nMTx-9" value="Graderings-&lt;br&gt;system" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontFamily=Georgia;gradientColor=#FFFFFF;shadow=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="810" y="250" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="30tymcW3Bw1XX164nMTx-10" value="Utbildnings-plattform" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontFamily=Georgia;gradientColor=#FFFFFF;shadow=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="810" y="140" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="S0xfAg2BiTLANCwCt5GE-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="30tymcW3Bw1XX164nMTx-11" target="30tymcW3Bw1XX164nMTx-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="30tymcW3Bw1XX164nMTx-11" value="Forsknings- och utvecklings-kommitté" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontFamily=Georgia;gradientColor=#FFFFFF;shadow=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="130" y="360" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="S0xfAg2BiTLANCwCt5GE-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="30tymcW3Bw1XX164nMTx-12" target="U-DlVlWBDDsCFPqfoLmx-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="30tymcW3Bw1XX164nMTx-12" value="Affärsutvecklings-kommitté" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontFamily=Georgia;gradientColor=#FFFFFF;shadow=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="130" y="800" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="S0xfAg2BiTLANCwCt5GE-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="U-DlVlWBDDsCFPqfoLmx-1" target="30tymcW3Bw1XX164nMTx-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U-DlVlWBDDsCFPqfoLmx-1" value="Förenings-certifiering" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontFamily=Georgia;gradientColor=#FFFFFF;shadow=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="470" y="140" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="woQdXaBhr7Azwd0eOdIf-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="U-DlVlWBDDsCFPqfoLmx-2" target="woQdXaBhr7Azwd0eOdIf-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U-DlVlWBDDsCFPqfoLmx-2" value="Operativ modell" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontFamily=Georgia;gradientColor=#FFFFFF;shadow=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="300" y="470" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="S0xfAg2BiTLANCwCt5GE-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="U-DlVlWBDDsCFPqfoLmx-3" target="U-DlVlWBDDsCFPqfoLmx-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U-DlVlWBDDsCFPqfoLmx-3" value="Kommunikations-struktur" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontFamily=Georgia;gradientColor=#FFFFFF;shadow=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="130" y="470" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="S0xfAg2BiTLANCwCt5GE-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="U-DlVlWBDDsCFPqfoLmx-4" target="U-DlVlWBDDsCFPqfoLmx-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U-DlVlWBDDsCFPqfoLmx-4" value="Ungdoms-&lt;br&gt;satsning" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontFamily=Georgia;gradientColor=#FFFFFF;shadow=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="300" y="580" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="U-DlVlWBDDsCFPqfoLmx-5" value="Parasport-&lt;br&gt;satsning" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontFamily=Georgia;gradientColor=#FFFFFF;shadow=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="470" y="580" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="S0xfAg2BiTLANCwCt5GE-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="U-DlVlWBDDsCFPqfoLmx-6" target="U-DlVlWBDDsCFPqfoLmx-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U-DlVlWBDDsCFPqfoLmx-6" value="Nyetablerings-satsning" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontFamily=Georgia;gradientColor=#FFFFFF;shadow=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="300" y="690" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="U-DlVlWBDDsCFPqfoLmx-7" value="Värderings-satsning" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontFamily=Georgia;gradientColor=#FFFFFF;shadow=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="470" y="690" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="S0xfAg2BiTLANCwCt5GE-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="U-DlVlWBDDsCFPqfoLmx-8" target="U-DlVlWBDDsCFPqfoLmx-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U-DlVlWBDDsCFPqfoLmx-8" value="Kickboxercise (gym)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontFamily=Georgia;gradientColor=#FFFFFF;shadow=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="300" y="800" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="S0xfAg2BiTLANCwCt5GE-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="U-DlVlWBDDsCFPqfoLmx-9" target="U-DlVlWBDDsCFPqfoLmx-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U-DlVlWBDDsCFPqfoLmx-9" value="KickPlay &lt;br&gt;(skolor)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontFamily=Georgia;gradientColor=#FFFFFF;shadow=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="470" y="800" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="U-DlVlWBDDsCFPqfoLmx-10" value="KickWork&lt;br&gt;(arbetsplatser)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontFamily=Georgia;gradientColor=#FFFFFF;shadow=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="640" y="800" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="S0xfAg2BiTLANCwCt5GE-8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;curved=0;" edge="1" parent="1" source="30tymcW3Bw1XX164nMTx-3" target="30tymcW3Bw1XX164nMTx-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="600" y="290" as="sourcePoint" />
+            <mxPoint x="650" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="S0xfAg2BiTLANCwCt5GE-10" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;curved=0;" edge="1" parent="1" source="30tymcW3Bw1XX164nMTx-11" target="U-DlVlWBDDsCFPqfoLmx-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="600" y="290" as="sourcePoint" />
+            <mxPoint x="650" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="S0xfAg2BiTLANCwCt5GE-12" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;curved=0;" edge="1" parent="1" source="U-DlVlWBDDsCFPqfoLmx-3" target="U-DlVlWBDDsCFPqfoLmx-4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="260" y="400" as="sourcePoint" />
+            <mxPoint x="370" y="480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="S0xfAg2BiTLANCwCt5GE-14" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;curved=0;" edge="1" parent="1" source="U-DlVlWBDDsCFPqfoLmx-3" target="U-DlVlWBDDsCFPqfoLmx-6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200" y="540" as="sourcePoint" />
+            <mxPoint x="310" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="woQdXaBhr7Azwd0eOdIf-1" value="Medlemskap i SOK" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontFamily=Georgia;gradientColor=#FFFFFF;shadow=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="470" y="470" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="woQdXaBhr7Azwd0eOdIf-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="woQdXaBhr7Azwd0eOdIf-3" target="woQdXaBhr7Azwd0eOdIf-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="woQdXaBhr7Azwd0eOdIf-3" value="Sponsrings-rekrytering" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontFamily=Georgia;gradientColor=#FFFFFF;shadow=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="300" y="910" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="woQdXaBhr7Azwd0eOdIf-4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;curved=0;" edge="1" parent="1" source="30tymcW3Bw1XX164nMTx-12" target="woQdXaBhr7Azwd0eOdIf-3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200" y="540" as="sourcePoint" />
+            <mxPoint x="310" y="730" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="woQdXaBhr7Azwd0eOdIf-5" value="Produktshop" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#000000;fontFamily=Georgia;gradientColor=#FFFFFF;shadow=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="300" y="1020" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="woQdXaBhr7Azwd0eOdIf-6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;curved=0;" edge="1" parent="1" source="30tymcW3Bw1XX164nMTx-12" target="woQdXaBhr7Azwd0eOdIf-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="260" y="840" as="sourcePoint" />
+            <mxPoint x="310" y="950" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
