@@ -22,13 +22,10 @@ export function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-3 no-underline"
+            className="flex items-center"
             aria-label={BRAND.name}
           >
             <Logo className="h-12 w-auto" />
-            <span className="hidden text-lg font-bold text-skf-blue sm:block">
-              {BRAND.shortName}
-            </span>
           </Link>
 
           {/* Desktop Navigation */}
