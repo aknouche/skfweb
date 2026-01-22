@@ -5,6 +5,7 @@
 
 import Link from 'next/link';
 import { BRAND, CONTACT, SOCIAL, NAVIGATION } from '@/lib/constants';
+import { Logo } from '@/components/ui/Logo';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -16,7 +17,10 @@ export function Footer() {
         <div className="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <h2 className="mb-4 text-lg font-bold text-white">{BRAND.name}</h2>
+            <div className="mb-4 flex items-center gap-3">
+              <Logo size="sm" className="rounded-full bg-white p-1" />
+              <h2 className="text-lg font-bold text-white">{BRAND.name}</h2>
+            </div>
             <p className="text-sm text-gray-300">{BRAND.tagline}</p>
           </div>
 

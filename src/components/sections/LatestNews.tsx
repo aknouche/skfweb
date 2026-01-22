@@ -5,9 +5,12 @@
 
 import Link from 'next/link';
 import { getLatestNews } from '@/lib/data/news';
+import { SectionHeader } from '@/components/ui/SectionHeader';
+import { Button } from '@/components/ui/Button';
 
 export function LatestNews() {
-  const news = getLatestNews(3);
+  // Show only 2 latest news items on homepage for reduced content density
+  const news = getLatestNews(2);
 
   if (news.length === 0) {
     return null;
@@ -16,16 +19,10 @@ export function LatestNews() {
   return (
     <section className="bg-gray-50 py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="mb-12 text-center">
-          <h2 className="mb-4 text-3xl font-bold text-skf-blue sm:text-4xl">
-            Senaste Nyheter
-          </h2>
-          <div className="mx-auto h-1 w-16 bg-skf-yellow"></div>
-        </div>
+        <SectionHeader title="Senaste Nyheter" />
 
-        {/* News Grid */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {/* News Grid - 2 items for cleaner homepage */}
+        <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
           {news.map((article) => {
             const date = new Date(article.publishedAt);
             const dateStr = date.toLocaleDateString('sv-SE', {
@@ -34,13 +31,9 @@ export function LatestNews() {
               year: 'numeric',
             });
 
-            // Category color mapping
-            const categoryColors: Record<string, string> = {
-              Förbund: 'bg-blue-100 text-blue-800',
-              Tävling: 'bg-green-100 text-green-800',
-              Landslag: 'bg-purple-100 text-purple-800',
-              Kommittéer: 'bg-orange-100 text-orange-800',
-            };
+            // Category styling - using SKF brand colors only
+            // All categories use subtle blue variations for brand consistency
+            const categoryStyle = 'bg-skf-blue/10 text-skf-blue';
 
             return (
               <article
@@ -51,9 +44,7 @@ export function LatestNews() {
                   {/* Category Badge */}
                   <div className="mb-3 flex items-center justify-between">
                     <span
-                      className={`rounded-full px-3 py-1 text-xs font-medium ${
-                        categoryColors[article.category] || 'bg-gray-100 text-gray-800'
-                      }`}
+                      className={`rounded-full px-3 py-1 text-xs font-medium ${categoryStyle}`}
                     >
                       {article.category}
                     </span>
@@ -85,12 +76,7 @@ export function LatestNews() {
 
         {/* View All Link */}
         <div className="mt-12 text-center">
-          <Link
-            href="/nyheter"
-            className="inline-flex items-center rounded-lg bg-skf-blue px-6 py-3 font-medium text-white transition-colors hover:bg-skf-blue/90"
-          >
-            Se alla nyheter
-          </Link>
+          <Button href="/nyheter">Se alla nyheter</Button>
         </div>
       </div>
     </section>

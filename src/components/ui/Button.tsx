@@ -20,11 +20,11 @@ const baseStyles =
 
 const variantStyles = {
   primary:
-    'bg-skf-blue text-white hover:bg-skf-blue-700 focus-visible:outline-skf-yellow',
+    'bg-skf-blue text-white hover:bg-skf-blue/90 focus-visible:outline-skf-yellow',
   secondary:
-    'bg-white text-skf-blue border-2 border-skf-blue hover:bg-skf-blue-50 focus-visible:outline-skf-blue',
+    'bg-white text-skf-blue border-2 border-skf-blue hover:bg-gray-50 focus-visible:outline-skf-blue',
   accent:
-    'bg-skf-yellow text-skf-blue hover:bg-skf-yellow-400 focus-visible:outline-skf-blue',
+    'bg-skf-yellow text-skf-blue hover:bg-skf-yellow/90 focus-visible:outline-skf-blue',
 };
 
 const sizeStyles = {

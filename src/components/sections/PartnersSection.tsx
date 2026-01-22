@@ -4,6 +4,8 @@
  * In P1: Placeholder, ready for real logos in P2
  */
 
+import { SectionHeader } from '@/components/ui/SectionHeader';
+
 export function PartnersSection() {
   // Placeholder - will be populated with real partner data in P2
   const partners = [
@@ -16,13 +18,7 @@ export function PartnersSection() {
   return (
     <section className="bg-white py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="mb-12 text-center">
-          <h2 className="mb-4 text-2xl font-bold text-gray-900 sm:text-3xl">
-            Våra Partners & Samarbeten
-          </h2>
-          <div className="mx-auto h-1 w-16 bg-skf-yellow"></div>
-        </div>
+        <SectionHeader title="Våra Partners & Samarbeten" variant="light" />
 
         {/* Partner Grid - Placeholder */}
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">

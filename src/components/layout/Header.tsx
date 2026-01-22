@@ -25,7 +25,7 @@ export function Header() {
             className="flex items-center"
             aria-label={BRAND.name}
           >
-            <Logo className="h-12 w-auto" />
+            <Logo size="md" />
           </Link>
 
           {/* Desktop Navigation */}

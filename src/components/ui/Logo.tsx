@@ -1,39 +1,32 @@
 /**
  * Logo Component
- * SVG placeholder for SKF logo.
- * Replace with actual logo SVG when available.
+ * Official SKF logo using Next.js Image for optimization.
  */
+
+import Image from 'next/image';
 
 interface LogoProps {
   className?: string;
+  size?: 'sm' | 'md' | 'lg';
 }
 
-export function Logo({ className = '' }: LogoProps) {
-  return (
-    <svg
-      viewBox="0 0 120 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      aria-label="Svenska Kickboxningsförbundet logotyp"
-      role="img"
-    >
-      {/* Placeholder: Blue circle with yellow accent */}
-      <circle cx="20" cy="20" r="18" fill="#0F2454" />
-      <circle cx="20" cy="20" r="12" fill="#F5DC32" />
-      <circle cx="20" cy="20" r="6" fill="#0F2454" />
+const SIZES = {
+  sm: { width: 40, height: 40 },
+  md: { width: 48, height: 48 },
+  lg: { width: 64, height: 64 },
+} as const;
 
-      {/* Text placeholder */}
-      <text
-        x="45"
-        y="25"
-        fill="#0F2454"
-        fontFamily="Inter, Arial, sans-serif"
-        fontSize="14"
-        fontWeight="700"
-      >
-        SKF
-      </text>
-    </svg>
+export function Logo({ className = '', size = 'md' }: LogoProps) {
+  const dimensions = SIZES[size];
+
+  return (
+    <Image
+      src="/images/logos/Logotype_transparent.png"
+      alt="Svenska Kickboxningsförbundet"
+      width={dimensions.width}
+      height={dimensions.height}
+      className={className}
+      priority
+    />
   );
 }

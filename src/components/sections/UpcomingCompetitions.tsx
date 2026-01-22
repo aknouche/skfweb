@@ -5,9 +5,12 @@
 
 import Link from 'next/link';
 import { getUpcomingCompetitions } from '@/lib/data/competitions';
+import { SectionHeader } from '@/components/ui/SectionHeader';
+import { Button } from '@/components/ui/Button';
 
 export function UpcomingCompetitions() {
-  const competitions = getUpcomingCompetitions().slice(0, 3);
+  // Show only 2 featured competitions on homepage for reduced content density
+  const competitions = getUpcomingCompetitions().slice(0, 2);
 
   if (competitions.length === 0) {
     return null;
@@ -16,16 +19,10 @@ export function UpcomingCompetitions() {
   return (
     <section className="bg-white py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="mb-12 text-center">
-          <h2 className="mb-4 text-3xl font-bold text-skf-blue sm:text-4xl">
-            Kommande Tävlingar
-          </h2>
-          <div className="mx-auto h-1 w-16 bg-skf-yellow"></div>
-        </div>
+        <SectionHeader title="Kommande Tävlingar" />
 
-        {/* Competitions Grid */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {/* Competitions Grid - 2 items for cleaner homepage */}
+        <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
           {competitions.map((competition) => {
             const date = new Date(competition.date);
             const dateStr = date.toLocaleDateString('sv-SE', {
@@ -87,12 +84,7 @@ export function UpcomingCompetitions() {
 
         {/* View All Link */}
         <div className="mt-12 text-center">
-          <Link
-            href="/tavlingar"
-            className="inline-flex items-center rounded-lg bg-skf-blue px-6 py-3 font-medium text-white transition-colors hover:bg-skf-blue/90"
-          >
-            Se alla tävlingar
-          </Link>
+          <Button href="/tavlingar">Se alla tävlingar</Button>
         </div>
       </div>
     </section>
