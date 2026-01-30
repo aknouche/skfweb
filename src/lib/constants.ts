@@ -74,16 +74,40 @@ export const TYPOGRAPHY = {
 // NAVIGATION
 // =============================================================================
 
-export const NAVIGATION = {
+export interface NavItem {
+  label: string;
+  href: string;
+  children?: NavItem[];
+  external?: boolean;
+  badge?: string;
+}
+
+export const NAVIGATION: { main: NavItem[] } = {
   main: [
     { label: 'Start', href: '/' },
+    { label: 'Om kickboxning', href: '/om-kickboxning' },
     { label: 'Tävlingar', href: '/tavlingar' },
     { label: 'Landslaget', href: '/landslaget' },
     { label: 'Om förbundet', href: '/om-forbundet' },
-    { label: 'Kommittéer', href: '/kommitteer' },
+    {
+      label: 'Kommittéer',
+      href: '/kommitteer',
+      children: [
+        { label: 'Organisation', href: '/kommitteer/organisation' },
+        { label: 'Forsknings- och utvecklingskommittén', href: '/kommitteer/forskning-utveckling' },
+        { label: 'Kommunikationskommittén', href: '/kommitteer/kommunikation' },
+        { label: 'Tävlingskommittén', href: '/kommitteer/tavling' },
+        { label: 'Domarkommittén', href: '/kommitteer/domare' },
+        { label: 'Graderingskommittén', href: '/kommitteer/gradering' },
+        { label: 'Landslagskommittén', href: '/kommitteer/landslag' },
+        { label: 'Marknadskommittén', href: '/kommitteer/marknad' },
+      ],
+    },
+    { label: 'Strategi 2030', href: '/strategi-2030' },
     { label: 'Nyheter', href: '/nyheter' },
+    { label: 'Webshop', href: '#', external: true, badge: 'Inom kort' },
   ],
-} as const;
+};
 
 // =============================================================================
 // SOCIAL MEDIA
