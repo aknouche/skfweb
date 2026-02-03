@@ -7,23 +7,6 @@
 
 import type { NavItem } from '../constants';
 import { fetchAllCommittees } from './committees';
-import { fetchUpcomingCompetitions } from './competitions';
-import { fetchLatestNews } from './news';
-
-/**
- * Static base navigation items that don't need dynamic content
- */
-const STATIC_NAV_ITEMS: NavItem[] = [
-  { label: 'Start', href: '/' },
-  { label: 'Om kickboxning', href: '/om-kickboxning' },
-];
-
-const STATIC_NAV_SUFFIX: NavItem[] = [
-  { label: 'Om förbundet', href: '/om-forbundet' },
-  { label: 'Landslaget', href: '/landslaget' },
-  { label: 'Strategi 2030', href: '/strategi-2030' },
-  { label: 'Webshop', href: '#', external: true, badge: 'Inom kort' },
-];
 
 /**
  * Build committees navigation item with dynamic children from Sanity
@@ -44,76 +27,23 @@ async function buildCommitteesNav(): Promise<NavItem> {
 }
 
 /**
- * Build competitions navigation item with dynamic children from Sanity
- */
-async function buildCompetitionsNav(): Promise<NavItem> {
-  const competitions = await fetchUpcomingCompetitions();
-
-  // Only show up to 5 upcoming competitions in dropdown
-  const upcomingChildren: NavItem[] = competitions.slice(0, 5).map((comp) => ({
-    label: comp.title,
-    href: `/tavlingar/${comp.slug}`,
-  }));
-
-  // Always include "Alla tävlingar" link
-  const children: NavItem[] = [
-    ...upcomingChildren,
-    ...(upcomingChildren.length > 0
-      ? [{ label: 'Visa alla tävlingar', href: '/tavlingar' }]
-      : []),
-  ];
-
-  return {
-    label: 'Tävlingar',
-    href: '/tavlingar',
-    children: children.length > 1 ? children : undefined,
-  };
-}
-
-/**
- * Build news navigation item with dynamic children from Sanity
- */
-async function buildNewsNav(): Promise<NavItem> {
-  const news = await fetchLatestNews(4);
-
-  // Only show up to 4 latest news in dropdown
-  const newsChildren: NavItem[] = news.map((article) => ({
-    label: article.title.length > 40 ? article.title.slice(0, 40) + '...' : article.title,
-    href: `/nyheter/${article.slug}`,
-  }));
-
-  // Always include "Alla nyheter" link
-  const children: NavItem[] = [
-    ...newsChildren,
-    ...(newsChildren.length > 0 ? [{ label: 'Visa alla nyheter', href: '/nyheter' }] : []),
-  ];
-
-  return {
-    label: 'Nyheter',
-    href: '/nyheter',
-    children: children.length > 1 ? children : undefined,
-  };
-}
-
-/**
  * Fetch complete dynamic navigation structure
- * Fetches committees, competitions, and news from Sanity in parallel
+ * Only Kommittéer has a dropdown with dynamic content from Sanity.
+ * Nyheter and Tävlingar are direct links (no dropdowns).
  */
 export async function fetchDynamicNavigation(): Promise<NavItem[]> {
-  // Fetch all dynamic content in parallel
-  const [committeesNav, competitionsNav, newsNav] = await Promise.all([
-    buildCommitteesNav(),
-    buildCompetitionsNav(),
-    buildNewsNav(),
-  ]);
+  const committeesNav = await buildCommitteesNav();
 
   return [
-    ...STATIC_NAV_ITEMS,
-    competitionsNav,
+    { label: 'Start', href: '/' },
+    { label: 'Om kickboxning', href: '/om-kickboxning' },
+    { label: 'Tävlingar', href: '/tavlingar' },
     committeesNav,
-    ...STATIC_NAV_SUFFIX.slice(0, 2), // Om förbundet, Landslaget
-    newsNav,
-    ...STATIC_NAV_SUFFIX.slice(2), // Strategi 2030, Webshop
+    { label: 'Om förbundet', href: '/om-forbundet' },
+    { label: 'Landslaget', href: '/landslaget' },
+    { label: 'Nyheter', href: '/nyheter' },
+    { label: 'Strategi 2030', href: '/strategi-2030' },
+    { label: 'Webshop', href: '#', external: true, badge: 'Inom kort' },
   ];
 }
 
