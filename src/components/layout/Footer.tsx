@@ -18,7 +18,7 @@ export function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <div className="mb-4 flex items-center gap-3">
-              <Logo size="sm" className="rounded-full bg-white p-1" />
+              <Logo size="sm" className="rounded-full bg-white p-1.5 shadow-sm" />
               <h2 className="text-lg font-bold text-white">{BRAND.name}</h2>
             </div>
             <p className="text-sm text-gray-300">{BRAND.tagline}</p>

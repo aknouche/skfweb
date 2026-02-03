@@ -15,6 +15,7 @@ import { Logo } from '@/components/ui/Logo';
 function DesktopNavItem({ item, pathname }: { item: NavItem; pathname: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const hasChildren = item.children && item.children.length > 0;
   const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
@@ -26,6 +27,36 @@ function DesktopNavItem({ item, pathname }: { item: NavItem; pathname: string })
 
   const handleMouseLeave = () => {
     timeoutRef.current = setTimeout(() => setIsOpen(false), 150);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setIsOpen(!isOpen);
+    } else if (e.key === 'Escape') {
+      setIsOpen(false);
+    } else if (e.key === 'ArrowDown' && isOpen && dropdownRef.current) {
+      e.preventDefault();
+      const firstLink = dropdownRef.current.querySelector('a');
+      firstLink?.focus();
+    }
+  };
+
+  const handleDropdownKeyDown = (e: React.KeyboardEvent, index: number) => {
+    const links = dropdownRef.current?.querySelectorAll('a');
+    if (!links) return;
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      const nextIndex = (index + 1) % links.length;
+      (links[nextIndex] as HTMLElement).focus();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      const prevIndex = index === 0 ? links.length - 1 : index - 1;
+      (links[prevIndex] as HTMLElement).focus();
+    } else if (e.key === 'Escape') {
+      setIsOpen(false);
+    }
   };
 
   useEffect(() => {
@@ -43,16 +74,17 @@ function DesktopNavItem({ item, pathname }: { item: NavItem; pathname: string })
       >
         <Link
           href={item.href}
-          className={`flex items-center gap-1 text-sm font-medium no-underline transition-colors ${
-            isActive ? 'text-skf-blue' : 'text-gray-600 hover:text-skf-blue'
+          className={`flex items-center gap-1 text-sm font-medium no-underline transition-colors duration-200 ${
+            isActive ? 'text-skf-blue' : 'text-gray-700 hover:text-skf-blue'
           }`}
           aria-current={pathname === item.href ? 'page' : undefined}
           aria-expanded={isOpen}
           aria-haspopup="true"
+          onKeyDown={handleKeyDown}
         >
           {item.label}
           <svg
-            className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+            className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -62,24 +94,29 @@ function DesktopNavItem({ item, pathname }: { item: NavItem; pathname: string })
           </svg>
         </Link>
 
-        {isOpen && (
-          <div className="absolute left-0 top-full z-50 mt-2 w-72 rounded-lg border border-gray-100 bg-white py-2 shadow-lg">
-            {item.children!.map((child) => (
-              <Link
-                key={child.href}
-                href={child.href}
-                className={`block px-4 py-2 text-sm no-underline transition-colors ${
-                  pathname === child.href
-                    ? 'bg-skf-blue-50 text-skf-blue'
-                    : 'text-gray-600 hover:bg-gray-50 hover:text-skf-blue'
-                }`}
-                aria-current={pathname === child.href ? 'page' : undefined}
-              >
-                {child.label}
-              </Link>
-            ))}
-          </div>
-        )}
+        <div
+          ref={dropdownRef}
+          className={`absolute left-0 top-full z-50 mt-2 w-72 rounded-lg border border-gray-100 bg-white py-2 shadow-lg transition-all duration-200 ${
+            isOpen ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 -translate-y-2'
+          }`}
+        >
+          {item.children!.map((child, index) => (
+            <Link
+              key={child.href}
+              href={child.href}
+              className={`block px-4 py-2 text-sm no-underline transition-colors duration-200 ${
+                pathname === child.href
+                  ? 'bg-skf-blue-50 text-skf-blue'
+                  : 'text-gray-700 hover:bg-gray-50 hover:text-skf-blue'
+              }`}
+              aria-current={pathname === child.href ? 'page' : undefined}
+              onKeyDown={(e) => handleDropdownKeyDown(e, index)}
+              tabIndex={isOpen ? 0 : -1}
+            >
+              {child.label}
+            </Link>
+          ))}
+        </div>
       </div>
     );
   }
@@ -100,8 +137,8 @@ function DesktopNavItem({ item, pathname }: { item: NavItem; pathname: string })
   return (
     <Link
       href={item.href}
-      className={`text-sm font-medium no-underline transition-colors ${
-        isActive ? 'text-skf-blue' : 'text-gray-600 hover:text-skf-blue'
+      className={`text-sm font-medium no-underline transition-colors duration-200 ${
+        isActive ? 'text-skf-blue' : 'text-gray-700 hover:text-skf-blue'
       }`}
       aria-current={pathname === item.href ? 'page' : undefined}
     >
@@ -129,10 +166,10 @@ function MobileNavItem({
         <div className="flex items-center justify-between">
           <Link
             href={item.href}
-            className={`flex-1 rounded-md px-4 py-2 text-base font-medium no-underline transition-colors ${
+            className={`flex-1 rounded-md px-4 py-2 text-base font-medium no-underline transition-colors duration-200 ${
               pathname === item.href
                 ? 'bg-skf-blue-50 text-skf-blue'
-                : 'text-gray-600 hover:bg-gray-50 hover:text-skf-blue'
+                : 'text-gray-700 hover:bg-gray-50 hover:text-skf-blue'
             }`}
             aria-current={pathname === item.href ? 'page' : undefined}
             onClick={onNavigate}
@@ -141,13 +178,13 @@ function MobileNavItem({
           </Link>
           <button
             type="button"
-            className="rounded-md p-2 text-gray-600 hover:bg-gray-100"
+            className="rounded-md p-2 text-gray-700 hover:bg-gray-100 transition-colors duration-200"
             onClick={() => setIsExpanded(!isExpanded)}
             aria-expanded={isExpanded}
             aria-label={isExpanded ? 'Dölj undermeny' : 'Visa undermeny'}
           >
             <svg
-              className={`h-5 w-5 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+              className={`h-5 w-5 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -157,16 +194,20 @@ function MobileNavItem({
             </svg>
           </button>
         </div>
-        {isExpanded && (
+        <div
+          className={`overflow-hidden transition-all duration-200 ease-in-out ${
+            isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
           <ul className="ml-4 mt-1 space-y-1 border-l-2 border-gray-100 pl-4">
             {item.children!.map((child) => (
               <li key={child.href}>
                 <Link
                   href={child.href}
-                  className={`block rounded-md px-4 py-2 text-sm no-underline transition-colors ${
+                  className={`block rounded-md px-4 py-2 text-sm no-underline transition-colors duration-200 ${
                     pathname === child.href
                       ? 'bg-skf-blue-50 text-skf-blue'
-                      : 'text-gray-600 hover:bg-gray-50 hover:text-skf-blue'
+                      : 'text-gray-700 hover:bg-gray-50 hover:text-skf-blue'
                   }`}
                   aria-current={pathname === child.href ? 'page' : undefined}
                   onClick={onNavigate}
@@ -176,7 +217,7 @@ function MobileNavItem({
               </li>
             ))}
           </ul>
-        )}
+        </div>
       </li>
     );
   }
@@ -200,10 +241,10 @@ function MobileNavItem({
     <li>
       <Link
         href={item.href}
-        className={`block rounded-md px-4 py-2 text-base font-medium no-underline transition-colors ${
+        className={`block rounded-md px-4 py-2 text-base font-medium no-underline transition-colors duration-200 ${
           isActive
             ? 'bg-skf-blue-50 text-skf-blue'
-            : 'text-gray-600 hover:bg-gray-50 hover:text-skf-blue'
+            : 'text-gray-700 hover:bg-gray-50 hover:text-skf-blue'
         }`}
         aria-current={pathname === item.href ? 'page' : undefined}
         onClick={onNavigate}
@@ -244,13 +285,14 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             type="button"
-            className="rounded-md p-2 text-gray-600 hover:bg-gray-100 hover:text-skf-blue lg:hidden"
+            className="rounded-md p-2 text-gray-700 hover:bg-gray-100 hover:text-skf-blue transition-colors duration-200 lg:hidden"
             aria-label={mobileMenuOpen ? 'Stäng meny' : 'Öppna meny'}
             aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             <svg
-              className="h-6 w-6"
+              className="h-6 w-6 transition-transform duration-200"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -277,22 +319,25 @@ export function Header() {
       </div>
 
       {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="border-t border-gray-100 lg:hidden">
-          <nav className="container-wide py-4" aria-label="Mobilnavigering">
-            <ul className="space-y-1">
-              {NAVIGATION.main.map((item) => (
-                <MobileNavItem
-                  key={item.href}
-                  item={item}
-                  pathname={pathname}
-                  onNavigate={() => setMobileMenuOpen(false)}
-                />
-              ))}
-            </ul>
-          </nav>
-        </div>
-      )}
+      <div
+        id="mobile-menu"
+        className={`overflow-hidden border-t border-gray-100 transition-all duration-300 ease-in-out lg:hidden ${
+          mobileMenuOpen ? 'max-h-[80vh] opacity-100' : 'max-h-0 opacity-0 border-t-0'
+        }`}
+      >
+        <nav className="container-wide py-4" aria-label="Mobilnavigering">
+          <ul className="space-y-1">
+            {NAVIGATION.main.map((item) => (
+              <MobileNavItem
+                key={item.href}
+                item={item}
+                pathname={pathname}
+                onNavigate={() => setMobileMenuOpen(false)}
+              />
+            ))}
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 }

@@ -1,19 +1,26 @@
 /**
  * Logo Component
  * Official SKF logo using Next.js Image for optimization.
+ *
+ * Size guide:
+ * - sm: 48px - Compact spaces (footer with background)
+ * - md: 56px - Standard header usage
+ * - lg: 72px - Larger displays
+ * - xl: 96px - Hero/standalone usage
  */
 
 import Image from 'next/image';
 
 interface LogoProps {
   className?: string;
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
 const SIZES = {
-  sm: { width: 80, height: 80 },
-  md: { width: 96, height: 96 },
-  lg: { width: 128, height: 128 },
+  sm: { width: 48, height: 48 },
+  md: { width: 56, height: 56 },
+  lg: { width: 72, height: 72 },
+  xl: { width: 96, height: 96 },
 } as const;
 
 export function Logo({ className = '', size = 'md' }: LogoProps) {
@@ -25,7 +32,7 @@ export function Logo({ className = '', size = 'md' }: LogoProps) {
       alt="Svenska Kickboxningsförbundet"
       width={dimensions.width}
       height={dimensions.height}
-      className={className}
+      className={`transition-transform duration-200 ${className}`}
       priority
     />
   );
