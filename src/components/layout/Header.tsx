@@ -4,13 +4,18 @@
  * Header Component
  * Main site header with logo and navigation.
  * Supports dropdown menus for items with children.
+ * Accepts dynamic navigation data from Sanity CMS.
  */
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { NAVIGATION, BRAND, type NavItem } from '@/lib/constants';
+import { BRAND, type NavItem } from '@/lib/constants';
 import { Logo } from '@/components/ui/Logo';
+
+interface HeaderProps {
+  navigation?: NavItem[];
+}
 
 function DesktopNavItem({ item, pathname }: { item: NavItem; pathname: string }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -255,7 +260,7 @@ function MobileNavItem({
   );
 }
 
-export function Header() {
+export function Header({ navigation = [] }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -277,7 +282,7 @@ export function Header() {
             className="hidden items-center gap-6 lg:flex"
             aria-label="Huvudnavigering"
           >
-            {NAVIGATION.main.map((item) => (
+            {navigation.map((item) => (
               <DesktopNavItem key={item.href} item={item} pathname={pathname} />
             ))}
           </nav>
@@ -327,7 +332,7 @@ export function Header() {
       >
         <nav className="container-wide py-4" aria-label="Mobilnavigering">
           <ul className="space-y-1">
-            {NAVIGATION.main.map((item) => (
+            {navigation.map((item) => (
               <MobileNavItem
                 key={item.href}
                 item={item}

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Header } from '@/components/layout/Header';
+import { HeaderWrapper } from '@/components/layout/HeaderWrapper';
 import { Footer } from '@/components/layout/Footer';
 import './globals.css';
 
@@ -45,7 +45,7 @@ export default function RootLayout({
         >
           Hoppa till innehåll
         </a>
-        <Header />
+        <HeaderWrapper />
         <main id="main-content" className="flex-1">{children}</main>
         <Footer />
       </body>
