@@ -4,13 +4,14 @@
  */
 
 import Link from 'next/link';
-import { getUpcomingCompetitions } from '@/lib/data/competitions';
+import { fetchUpcomingCompetitions } from '@/lib/data/competitions';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { Button } from '@/components/ui/Button';
 
-export function UpcomingCompetitions() {
+export async function UpcomingCompetitions() {
   // Show only 2 featured competitions on homepage for reduced content density
-  const competitions = getUpcomingCompetitions().slice(0, 2);
+  const allCompetitions = await fetchUpcomingCompetitions();
+  const competitions = allCompetitions.slice(0, 2);
 
   if (competitions.length === 0) {
     return null;

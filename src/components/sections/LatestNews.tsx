@@ -4,13 +4,13 @@
  */
 
 import Link from 'next/link';
-import { getLatestNews } from '@/lib/data/news';
+import { fetchLatestNews } from '@/lib/data/news';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { Button } from '@/components/ui/Button';
 
-export function LatestNews() {
+export async function LatestNews() {
   // Show only 2 latest news items on homepage for reduced content density
-  const news = getLatestNews(2);
+  const news = await fetchLatestNews(2);
 
   if (news.length === 0) {
     return null;
