@@ -1,11 +1,17 @@
-import type { Committee } from '../types';
+import type { Committee, CommitteeType } from '../types';
+import { sanityFetch, isSanityConfigured } from '../sanity';
+import { committeeQueries } from '../sanity/queries';
 
 /**
- * Committees - Static Data (P1)
+ * Committees - Static Data with Sanity Integration
  *
+ * Uses Sanity CMS if configured, otherwise falls back to static data.
  * Extracted from Word documents in docs/content/committees/
- * In P2: Replace with CMS queries
  */
+
+// =============================================================================
+// STATIC FALLBACK DATA
+// =============================================================================
 
 export const COMMITTEES: Committee[] = [
   {
@@ -34,7 +40,6 @@ Styrelsen fastställer strategisk inriktning, budget och verksamhetsplan.
         name: 'Vice ordförande',
         role: 'Vice ordförande',
       },
-      // Add actual members from Word doc
     ],
     contact: {
       email: 'styrelsen@svenskakickboxning.se',
@@ -61,7 +66,6 @@ Kommunikationskommittén ska säkerställa tydlig, konsekvent och professionell 
         name: 'Kommunikationsansvarig',
         role: 'Ordförande',
       },
-      // Extract from docs/content/committees/Verksamhetsbeskrivning_Kommunikationskommittén_SKF.docx
     ],
     contact: {
       email: 'kommunikation@svenskakickboxning.se',
@@ -85,7 +89,6 @@ Kommunikationskommittén ska säkerställa tydlig, konsekvent och professionell 
         name: 'FoU-ansvarig',
         role: 'Ordförande',
       },
-      // Extract from Verksamhetsbeskrivning_FOU-kommitten_SKF.docx
     ],
     contact: {
       email: 'fou@svenskakickboxning.se',
@@ -109,7 +112,6 @@ Kommunikationskommittén ska säkerställa tydlig, konsekvent och professionell 
         name: 'Utbildningsansvarig',
         role: 'Ordförande',
       },
-      // Extract from Verksamhetsbeskrivning_utbildningskommitte_SKF 1.0.docx
     ],
     contact: {
       email: 'utbildning@svenskakickboxning.se',
@@ -132,7 +134,6 @@ Kommunikationskommittén ska säkerställa tydlig, konsekvent och professionell 
         name: 'Förbundskapten Senior',
         role: 'Förbundskapten Senior',
       },
-      // Extract from Verksamhetsbeskrivning_Landslagskommittén_SKF.pdf
     ],
     contact: {
       email: 'landslag@svenskakickboxning.se',
@@ -156,7 +157,6 @@ Kommunikationskommittén ska säkerställa tydlig, konsekvent och professionell 
         name: 'Tävlingsansvarig',
         role: 'Ordförande',
       },
-      // Extract from Verksamhetsbeskrivning_Tavlingskommitten_SKF.docx
     ],
     contact: {
       email: 'tavling@svenskakickboxning.se',
@@ -179,7 +179,6 @@ Kommunikationskommittén ska säkerställa tydlig, konsekvent och professionell 
         name: 'Graderingsansvarig',
         role: 'Ordförande',
       },
-      // Extract from Verksamhetsbeskrivning_graderingskommitten_SKF 1.0.docx
     ],
     contact: {
       email: 'gradering@svenskakickboxning.se',
@@ -202,7 +201,6 @@ Kommunikationskommittén ska säkerställa tydlig, konsekvent och professionell 
         name: 'Marknadsansvarig',
         role: 'Ordförande',
       },
-      // Extract from Verksamhetsbeskrivning_Marknadskommitten_SKF.docx
     ],
     contact: {
       email: 'marknad@svenskakickboxning.se',
@@ -210,14 +208,81 @@ Kommunikationskommittén ska säkerställa tydlig, konsekvent och professionell 
   },
 ];
 
-/**
- * Helper functions
- */
+// =============================================================================
+// HELPER FUNCTIONS (Sync - use static data)
+// =============================================================================
 
 export function getCommitteeBySlug(slug: string): Committee | undefined {
   return COMMITTEES.find((committee) => committee.slug === slug);
 }
 
-export function getCommitteeById(id: Committee['id']): Committee | undefined {
+export function getCommitteeById(id: CommitteeType): Committee | undefined {
   return COMMITTEES.find((committee) => committee.id === id);
+}
+
+export function getAllCommittees(): Committee[] {
+  return COMMITTEES;
+}
+
+// =============================================================================
+// ASYNC FUNCTIONS (Try Sanity first, fallback to static)
+// =============================================================================
+
+/**
+ * Transform Sanity response to match Committee interface
+ */
+function transformSanityCommittee(item: Record<string, unknown>): Committee {
+  const contact = item.contact as Record<string, string> | undefined;
+  return {
+    id: (item.id as CommitteeType) || 'styrelsen',
+    name: (item.name as string) || '',
+    slug: (item.slug as string) || '',
+    description: (item.description as string) || '',
+    mandate: (item.mandate as string) || '',
+    responsibilities: (item.responsibilities as string[]) || [],
+    members: (item.members as Committee['members']) || [],
+    contact: {
+      email: contact?.email,
+      phone: contact?.phone,
+    },
+  };
+}
+
+/**
+ * Fetch all committees - tries Sanity first, falls back to static
+ */
+export async function fetchAllCommittees(): Promise<Committee[]> {
+  if (isSanityConfigured) {
+    const sanityData = await sanityFetch<Record<string, unknown>[]>(committeeQueries.all);
+    if (sanityData && sanityData.length > 0) {
+      return sanityData.map(transformSanityCommittee);
+    }
+  }
+  return getAllCommittees();
+}
+
+/**
+ * Fetch committee by slug - tries Sanity first, falls back to static
+ */
+export async function fetchCommitteeBySlug(slug: string): Promise<Committee | undefined> {
+  if (isSanityConfigured) {
+    const sanityData = await sanityFetch<Record<string, unknown>>(committeeQueries.bySlug(slug));
+    if (sanityData) {
+      return transformSanityCommittee(sanityData);
+    }
+  }
+  return getCommitteeBySlug(slug);
+}
+
+/**
+ * Fetch committee by ID - tries Sanity first, falls back to static
+ */
+export async function fetchCommitteeById(id: CommitteeType): Promise<Committee | undefined> {
+  if (isSanityConfigured) {
+    const sanityData = await sanityFetch<Record<string, unknown>>(committeeQueries.byId(id));
+    if (sanityData) {
+      return transformSanityCommittee(sanityData);
+    }
+  }
+  return getCommitteeById(id);
 }

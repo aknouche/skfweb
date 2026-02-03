@@ -1,10 +1,16 @@
 import type { Competition } from '../types';
+import { sanityFetch, isSanityConfigured } from '../sanity';
+import { competitionQueries } from '../sanity/queries';
 
 /**
- * Competitions - Static Data (P1)
+ * Competitions - Static Data with Sanity Integration
  *
- * In P2: Replace with CMS queries
+ * Uses Sanity CMS if configured, otherwise falls back to static data.
  */
+
+// =============================================================================
+// STATIC FALLBACK DATA
+// =============================================================================
 
 export const COMPETITIONS: Competition[] = [
   {
@@ -55,9 +61,9 @@ export const COMPETITIONS: Competition[] = [
   },
 ];
 
-/**
- * Helper functions
- */
+// =============================================================================
+// HELPER FUNCTIONS (Sync - use static data)
+// =============================================================================
 
 export function getUpcomingCompetitions(): Competition[] {
   return COMPETITIONS.filter((comp) => comp.status === 'upcoming').sort(
@@ -67,4 +73,73 @@ export function getUpcomingCompetitions(): Competition[] {
 
 export function getCompetitionBySlug(slug: string): Competition | undefined {
   return COMPETITIONS.find((comp) => comp.slug === slug);
+}
+
+// =============================================================================
+// ASYNC FUNCTIONS (Try Sanity first, fallback to static)
+// =============================================================================
+
+/**
+ * Transform Sanity response to match Competition interface
+ */
+function transformSanityCompetition(item: Record<string, unknown>): Competition {
+  return {
+    id: (item._id as string) || '',
+    title: (item.title as string) || '',
+    slug: (item.slug as string) || '',
+    description: (item.description as string) || '',
+    status: (item.status as Competition['status']) || 'upcoming',
+    date: (item.date as string) || '',
+    endDate: item.endDate as string | undefined,
+    location: (item.location as Competition['location']) || { venue: '', city: '' },
+    disciplines: (item.disciplines as Competition['disciplines']) || [],
+    organizer: (item.organizer as string) || '',
+    registrationUrl: item.registrationUrl as string | undefined,
+    registrationDeadline: item.registrationDeadline as string | undefined,
+    image: item.image
+      ? {
+          url: ((item.image as Record<string, unknown>).asset as Record<string, string>)?.url || '',
+          alt: ((item.image as Record<string, unknown>).alt as string) || '',
+        }
+      : undefined,
+  };
+}
+
+/**
+ * Fetch upcoming competitions - tries Sanity first, falls back to static
+ */
+export async function fetchUpcomingCompetitions(): Promise<Competition[]> {
+  if (isSanityConfigured) {
+    const sanityData = await sanityFetch<Record<string, unknown>[]>(competitionQueries.upcoming);
+    if (sanityData && sanityData.length > 0) {
+      return sanityData.map(transformSanityCompetition);
+    }
+  }
+  return getUpcomingCompetitions();
+}
+
+/**
+ * Fetch competition by slug - tries Sanity first, falls back to static
+ */
+export async function fetchCompetitionBySlug(slug: string): Promise<Competition | undefined> {
+  if (isSanityConfigured) {
+    const sanityData = await sanityFetch<Record<string, unknown>>(competitionQueries.bySlug(slug));
+    if (sanityData) {
+      return transformSanityCompetition(sanityData);
+    }
+  }
+  return getCompetitionBySlug(slug);
+}
+
+/**
+ * Fetch all competitions - tries Sanity first, falls back to static
+ */
+export async function fetchAllCompetitions(): Promise<Competition[]> {
+  if (isSanityConfigured) {
+    const sanityData = await sanityFetch<Record<string, unknown>[]>(competitionQueries.all);
+    if (sanityData && sanityData.length > 0) {
+      return sanityData.map(transformSanityCompetition);
+    }
+  }
+  return COMPETITIONS;
 }

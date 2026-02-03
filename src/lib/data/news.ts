@@ -1,11 +1,17 @@
 import type { NewsArticle } from '../types';
+import { sanityFetch, isSanityConfigured } from '../sanity';
+import { newsQueries } from '../sanity/queries';
 
 /**
- * News Articles - Static Data (P1)
+ * News Articles - Static Data with Sanity Integration
  *
- * In P2: Replace with CMS queries (Sanity/Contentful)
- * Data structure remains the same for seamless migration
+ * Uses Sanity CMS if configured, otherwise falls back to static data.
+ * This ensures the site works even without Sanity credentials.
  */
+
+// =============================================================================
+// STATIC FALLBACK DATA
+// =============================================================================
 
 export const NEWS_ARTICLES: NewsArticle[] = [
   {
@@ -55,10 +61,9 @@ Mer innehåll här...
   },
 ];
 
-/**
- * Helper functions for filtering/sorting
- * These work the same whether data is static or from CMS
- */
+// =============================================================================
+// HELPER FUNCTIONS (Sync - use static data)
+// =============================================================================
 
 export function getFeaturedNews(): NewsArticle[] {
   return NEWS_ARTICLES.filter((article) => article.featured).slice(0, 3);
@@ -76,4 +81,89 @@ export function getLatestNews(limit = 5): NewsArticle[] {
 
 export function getNewsBySlug(slug: string): NewsArticle | undefined {
   return NEWS_ARTICLES.find((article) => article.slug === slug);
+}
+
+// =============================================================================
+// ASYNC FUNCTIONS (Try Sanity first, fallback to static)
+// =============================================================================
+
+/**
+ * Transform Sanity response to match NewsArticle interface
+ */
+function transformSanityNews(item: Record<string, unknown>): NewsArticle {
+  return {
+    id: (item._id as string) || '',
+    title: (item.title as string) || '',
+    slug: (item.slug as string) || '',
+    excerpt: (item.excerpt as string) || '',
+    content: (item.content as string) || '',
+    category: (item.category as NewsArticle['category']) || 'Förbund',
+    publishedAt: (item.publishedAt as string) || '',
+    author: item.author as string | undefined,
+    coverImage: item.coverImage
+      ? {
+          url: ((item.coverImage as Record<string, unknown>).asset as Record<string, string>)?.url || '',
+          alt: ((item.coverImage as Record<string, unknown>).alt as string) || '',
+          width: 1200,
+          height: 630,
+        }
+      : undefined,
+    tags: item.tags as string[] | undefined,
+    featured: (item.featured as boolean) || false,
+  };
+}
+
+/**
+ * Fetch latest news - tries Sanity first, falls back to static
+ */
+export async function fetchLatestNews(limit = 5): Promise<NewsArticle[]> {
+  if (isSanityConfigured) {
+    const sanityData = await sanityFetch<Record<string, unknown>[]>(newsQueries.latest(limit));
+    if (sanityData && sanityData.length > 0) {
+      return sanityData.map(transformSanityNews);
+    }
+  }
+  // Fallback to static data
+  return getLatestNews(limit);
+}
+
+/**
+ * Fetch featured news - tries Sanity first, falls back to static
+ */
+export async function fetchFeaturedNews(): Promise<NewsArticle[]> {
+  if (isSanityConfigured) {
+    const sanityData = await sanityFetch<Record<string, unknown>[]>(newsQueries.featured);
+    if (sanityData && sanityData.length > 0) {
+      return sanityData.map(transformSanityNews);
+    }
+  }
+  return getFeaturedNews();
+}
+
+/**
+ * Fetch news by slug - tries Sanity first, falls back to static
+ */
+export async function fetchNewsBySlug(slug: string): Promise<NewsArticle | undefined> {
+  if (isSanityConfigured) {
+    const sanityData = await sanityFetch<Record<string, unknown>>(newsQueries.bySlug(slug));
+    if (sanityData) {
+      return transformSanityNews(sanityData);
+    }
+  }
+  return getNewsBySlug(slug);
+}
+
+/**
+ * Fetch news by category - tries Sanity first, falls back to static
+ */
+export async function fetchNewsByCategory(
+  category: NewsArticle['category']
+): Promise<NewsArticle[]> {
+  if (isSanityConfigured) {
+    const sanityData = await sanityFetch<Record<string, unknown>[]>(newsQueries.byCategory(category));
+    if (sanityData && sanityData.length > 0) {
+      return sanityData.map(transformSanityNews);
+    }
+  }
+  return getNewsByCategory(category);
 }
