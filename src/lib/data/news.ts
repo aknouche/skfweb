@@ -96,7 +96,7 @@ function transformSanityNews(item: Record<string, unknown>): NewsArticle {
     title: (item.title as string) || '',
     slug: (item.slug as string) || '',
     excerpt: (item.excerpt as string) || '',
-    content: (item.content as string) || '',
+    content: item.content as NewsArticle['content'] || '', // Keep as Portable Text array or string
     category: (item.category as NewsArticle['category']) || 'Förbund',
     publishedAt: (item.publishedAt as string) || '',
     author: item.author as string | undefined,

@@ -12,12 +12,21 @@
 
 export type NewsCategory = 'Förbund' | 'Tävling' | 'Landslag' | 'Kommittéer';
 
+// Portable Text block type from Sanity
+export type PortableTextBlock = {
+  _type: 'block';
+  _key: string;
+  style?: string;
+  children: { _type: string; text: string; marks?: string[] }[];
+  markDefs?: { _type: string; _key: string }[];
+};
+
 export interface NewsArticle {
   id: string;
   title: string;
   slug: string;
   excerpt: string;
-  content: string;
+  content: string | PortableTextBlock[]; // String for static, Portable Text for Sanity
   category: NewsCategory;
   publishedAt: string; // ISO date string
   updatedAt?: string;

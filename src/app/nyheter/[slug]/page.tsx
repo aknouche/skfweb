@@ -6,7 +6,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { PortableText } from '@portabletext/react';
 import { fetchNewsBySlug, fetchLatestNews } from '@/lib/data/news';
+import type { PortableTextBlock } from '@/lib/types';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -35,6 +37,88 @@ export async function generateStaticParams() {
   }));
 }
 
+// Portable Text components for styling
+const portableTextComponents = {
+  block: {
+    h2: ({ children }: { children?: React.ReactNode }) => (
+      <h2 className="mt-8 mb-4 text-2xl font-bold text-gray-900">{children}</h2>
+    ),
+    h3: ({ children }: { children?: React.ReactNode }) => (
+      <h3 className="mt-6 mb-3 text-xl font-bold text-gray-900">{children}</h3>
+    ),
+    normal: ({ children }: { children?: React.ReactNode }) => (
+      <p className="mt-4 text-gray-700 leading-relaxed">{children}</p>
+    ),
+  },
+  list: {
+    bullet: ({ children }: { children?: React.ReactNode }) => (
+      <ul className="mt-4 ml-6 list-disc space-y-2 text-gray-700">{children}</ul>
+    ),
+    number: ({ children }: { children?: React.ReactNode }) => (
+      <ol className="mt-4 ml-6 list-decimal space-y-2 text-gray-700">{children}</ol>
+    ),
+  },
+  listItem: {
+    bullet: ({ children }: { children?: React.ReactNode }) => <li>{children}</li>,
+    number: ({ children }: { children?: React.ReactNode }) => <li>{children}</li>,
+  },
+  marks: {
+    strong: ({ children }: { children?: React.ReactNode }) => (
+      <strong className="font-bold">{children}</strong>
+    ),
+    em: ({ children }: { children?: React.ReactNode }) => <em className="italic">{children}</em>,
+    link: ({ value, children }: { value?: { href: string }; children?: React.ReactNode }) => (
+      <a
+        href={value?.href}
+        className="text-skf-blue underline hover:no-underline"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {children}
+      </a>
+    ),
+  },
+};
+
+// Render string content (for static fallback data)
+function StringContent({ content }: { content: string }) {
+  return (
+    <>
+      {content.split('\n').map((paragraph, index) => {
+        if (paragraph.startsWith('# ')) {
+          return (
+            <h2 key={index} className="mt-8 mb-4 text-2xl font-bold text-gray-900">
+              {paragraph.replace('# ', '')}
+            </h2>
+          );
+        }
+        if (paragraph.startsWith('## ')) {
+          return (
+            <h3 key={index} className="mt-6 mb-3 text-xl font-bold text-gray-900">
+              {paragraph.replace('## ', '')}
+            </h3>
+          );
+        }
+        if (paragraph.startsWith('- ')) {
+          return (
+            <li key={index} className="ml-6 text-gray-700">
+              {paragraph.replace('- ', '')}
+            </li>
+          );
+        }
+        if (paragraph.trim()) {
+          return (
+            <p key={index} className="mt-4 text-gray-700 leading-relaxed">
+              {paragraph}
+            </p>
+          );
+        }
+        return null;
+      })}
+    </>
+  );
+}
+
 export default async function NewsArticlePage({ params }: PageProps) {
   const { slug } = await params;
   const article = await fetchNewsBySlug(slug);
@@ -49,6 +133,8 @@ export default async function NewsArticlePage({ params }: PageProps) {
     month: 'long',
     year: 'numeric',
   });
+
+  const isPortableText = Array.isArray(article.content);
 
   return (
     <article className="bg-white py-16">
@@ -100,39 +186,15 @@ export default async function NewsArticlePage({ params }: PageProps) {
 
         {/* Article content */}
         <div className="mx-auto max-w-3xl">
-          <div className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-skf-blue">
-            {/* For now, render content as plain text with basic formatting */}
-            {article.content.split('\n').map((paragraph, index) => {
-              if (paragraph.startsWith('# ')) {
-                return (
-                  <h2 key={index} className="mt-8 text-2xl font-bold text-gray-900">
-                    {paragraph.replace('# ', '')}
-                  </h2>
-                );
-              }
-              if (paragraph.startsWith('## ')) {
-                return (
-                  <h3 key={index} className="mt-6 text-xl font-bold text-gray-900">
-                    {paragraph.replace('## ', '')}
-                  </h3>
-                );
-              }
-              if (paragraph.startsWith('- ')) {
-                return (
-                  <li key={index} className="ml-4 text-gray-700">
-                    {paragraph.replace('- ', '')}
-                  </li>
-                );
-              }
-              if (paragraph.trim()) {
-                return (
-                  <p key={index} className="mt-4 text-gray-700">
-                    {paragraph}
-                  </p>
-                );
-              }
-              return null;
-            })}
+          <div className="prose prose-lg max-w-none">
+            {isPortableText ? (
+              <PortableText
+                value={article.content as PortableTextBlock[]}
+                components={portableTextComponents}
+              />
+            ) : (
+              <StringContent content={article.content as string} />
+            )}
           </div>
 
           {/* Tags */}
