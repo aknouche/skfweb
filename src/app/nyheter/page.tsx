@@ -8,6 +8,8 @@ import Link from 'next/link';
 import { fetchLatestNews } from '@/lib/data/news';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Nyheter',
   description: 'Senaste nyheterna från Svenska Kickboxningsförbundet',

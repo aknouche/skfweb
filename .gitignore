@@ -30,6 +30,10 @@ npm-debug.log*
 # Misc
 .cache/
 .astro/
+nul
+
+# Claude Code
+.claude/
 
 # Vercel
 .vercel

@@ -25,7 +25,7 @@ export const client = createClient({
   projectId: projectId || 'placeholder',
   dataset,
   apiVersion,
-  useCdn: process.env.NODE_ENV === 'production',
+  useCdn: false,
 });
 
 /**
@@ -47,7 +47,9 @@ export async function sanityFetch<T>(query: string, params = {}): Promise<T | nu
   }
 
   try {
-    return await client.fetch<T>(query, params);
+    return await client.fetch<T>(query, params, {
+      next: { revalidate: 0 },
+    });
   } catch (error) {
     console.error('Sanity fetch error:', error);
     return null;

@@ -7,8 +7,11 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { PortableText } from '@portabletext/react';
-import { fetchNewsBySlug, fetchLatestNews } from '@/lib/data/news';
+import { fetchNewsBySlug } from '@/lib/data/news';
 import type { PortableTextBlock } from '@/lib/types';
+
+export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -28,13 +31,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: article.title,
     description: article.excerpt,
   };
-}
-
-export async function generateStaticParams() {
-  const news = await fetchLatestNews(50);
-  return news.map((article) => ({
-    slug: article.slug,
-  }));
 }
 
 // Portable Text components for styling

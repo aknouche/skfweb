@@ -6,7 +6,10 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { fetchCompetitionBySlug, fetchAllCompetitions } from '@/lib/data/competitions';
+import { fetchCompetitionBySlug } from '@/lib/data/competitions';
+
+export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -26,13 +29,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: competition.title,
     description: competition.description,
   };
-}
-
-export async function generateStaticParams() {
-  const competitions = await fetchAllCompetitions();
-  return competitions.map((competition) => ({
-    slug: competition.slug,
-  }));
 }
 
 export default async function CompetitionPage({ params }: PageProps) {

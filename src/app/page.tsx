@@ -10,6 +10,8 @@
  * Note: PartnersSection moved to P2 (placeholder content removed)
  */
 
+export const dynamic = 'force-dynamic';
+
 import { Hero } from '@/components/sections/Hero';
 import { UpcomingCompetitions } from '@/components/sections/UpcomingCompetitions';
 import { LatestNews } from '@/components/sections/LatestNews';

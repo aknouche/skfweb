@@ -8,6 +8,8 @@ import Link from 'next/link';
 import { fetchAllCompetitions } from '@/lib/data/competitions';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Tävlingar',
   description: 'Tävlingskalender för Svenska Kickboxningsförbundet',
