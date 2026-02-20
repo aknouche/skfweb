@@ -86,7 +86,7 @@ export const NAVIGATION: { main: NavItem[] } = {
   main: [
     { label: 'Start', href: '/' },
     { label: 'Om kickboxning', href: '/om-kickboxning' },
-    { label: 'Tävlingar', href: '/tavlingar' },
+    { label: 'Kalender', href: '/kalender' },
     { label: 'Landslaget', href: '/landslaget' },
     { label: 'Om förbundet', href: '/om-forbundet' },
     {

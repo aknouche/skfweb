@@ -29,7 +29,7 @@ async function buildCommitteesNav(): Promise<NavItem> {
 /**
  * Fetch complete dynamic navigation structure
  * Only Kommittéer has a dropdown with dynamic content from Sanity.
- * Nyheter and Tävlingar are direct links (no dropdowns).
+ * Nyheter and Kalender are direct links (no dropdowns).
  */
 export async function fetchDynamicNavigation(): Promise<NavItem[]> {
   const committeesNav = await buildCommitteesNav();
@@ -37,7 +37,7 @@ export async function fetchDynamicNavigation(): Promise<NavItem[]> {
   return [
     { label: 'Start', href: '/' },
     { label: 'Om kickboxning', href: '/om-kickboxning' },
-    { label: 'Tävlingar', href: '/tavlingar' },
+    { label: 'Kalender', href: '/kalender' },
     committeesNav,
     { label: 'Om förbundet', href: '/om-forbundet' },
     { label: 'Landslaget', href: '/landslaget' },
@@ -54,7 +54,7 @@ export function getStaticNavigation(): NavItem[] {
   return [
     { label: 'Start', href: '/' },
     { label: 'Om kickboxning', href: '/om-kickboxning' },
-    { label: 'Tävlingar', href: '/tavlingar' },
+    { label: 'Kalender', href: '/kalender' },
     {
       label: 'Kommittéer',
       href: '/kommitteer',

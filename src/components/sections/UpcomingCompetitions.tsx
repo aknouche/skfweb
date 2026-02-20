@@ -72,7 +72,7 @@ export async function UpcomingCompetitions() {
 
                   {/* Link */}
                   <Link
-                    href={`/tavlingar/${competition.slug}`}
+                    href={`/kalender/${competition.slug}`}
                     className="inline-flex items-center text-sm font-medium text-skf-blue hover:underline"
                   >
                     Läs mer →
@@ -85,7 +85,7 @@ export async function UpcomingCompetitions() {
 
         {/* View All Link */}
         <div className="mt-12 text-center">
-          <Button href="/tavlingar">Se alla tävlingar</Button>
+          <Button href="/kalender">Se alla tävlingar</Button>
         </div>
       </div>
     </section>

@@ -11,7 +11,7 @@ import { SectionHeader } from '@/components/ui/SectionHeader';
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'Tävlingar',
+  title: 'Kalender',
   description: 'Tävlingskalender för Svenska Kickboxningsförbundet',
 };
 
@@ -26,7 +26,7 @@ export default async function CompetitionsPage() {
     <div className="bg-white py-16">
       <div className="container-wide">
         <SectionHeader
-          title="Tävlingar"
+          title="Kalender"
           subtitle="Tävlingskalender för Svenska Kickboxningsförbundet"
         />
 
@@ -124,7 +124,7 @@ function CompetitionCard({
         </div>
 
         <Link
-          href={`/tavlingar/${competition.slug}`}
+          href={`/kalender/${competition.slug}`}
           className="inline-flex items-center text-sm font-medium text-skf-blue hover:underline"
         >
           {completed ? 'Visa resultat' : 'Läs mer'}

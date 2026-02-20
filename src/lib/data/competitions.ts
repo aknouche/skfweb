@@ -28,7 +28,7 @@ export const COMPETITIONS: Competition[] = [
     },
     disciplines: ['Point Fighting', 'Light Contact', 'Full Contact'],
     organizer: 'Svenska Kickboxningsförbundet',
-    registrationUrl: '/tavlingar/sm-2025',
+    registrationUrl: '/kalender/sm-2025',
     registrationDeadline: '2025-03-01T23:59:59Z',
   },
   {

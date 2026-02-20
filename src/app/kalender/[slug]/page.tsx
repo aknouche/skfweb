@@ -67,7 +67,7 @@ export default async function CompetitionPage({ params }: PageProps) {
       <div className="container-wide">
         {/* Back link */}
         <Link
-          href="/tavlingar"
+          href="/kalender"
           className="mb-8 inline-flex items-center text-sm font-medium text-skf-blue hover:underline"
         >
           <svg
@@ -83,7 +83,7 @@ export default async function CompetitionPage({ params }: PageProps) {
               d="M15 19l-7-7 7-7"
             />
           </svg>
-          Tillbaka till tävlingar
+          Tillbaka till kalender
         </Link>
 
         {/* Competition header */}
