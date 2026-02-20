@@ -19,17 +19,14 @@ export const COMMITTEES: Committee[] = [
     name: 'Styrelsen',
     slug: 'styrelsen',
     description:
-      'Förbundsstyrelsen är Svenska Kickboxningsförbundets högsta beslutande organ mellan förbundsmötena.',
-    mandate: `
-Styrelsen har det övergripande ansvaret för förbundets verksamhet och säkerställer att beslut från förbundsmötet verkställs.
-Styrelsen fastställer strategisk inriktning, budget och verksamhetsplan.
-    `.trim(),
+      'Styrelsen fungerar som Svenska Kickboxningsförbundets strategiska och operativa ledning och har det övergripande ansvaret att omsätta visionen, stadgarna och Strategi 2030 i handling.',
+    mandate:
+      'Styrelsen verkar för att samordna kommittéernas arbete, fatta beslut om verksamhetens inriktning, följa upp måluppfyllelse samt representera förbundet externt. Styrelsen består av ordförande, vice ordförande, sekreterare, kassör och ledamöter med särskilda ansvarsområden.',
     responsibilities: [
-      'Verkställa beslut från förbundsmöte',
-      'Fastställa strategisk inriktning',
-      'Godkänna budget och verksamhetsplan',
-      'Representera förbundet externt',
-      'Utse kommittéer och arbetsgrupper',
+      'Samordna och följa upp arbetet i samtliga kommittéer',
+      'Säkerställa att verksamheten ligger i linje med Strategi 2030',
+      'Fatta övergripande beslut om resurser och prioriteringar',
+      'Representera SKF i kontakter med externa parter och överordnade organisationer (SB&K, RF etc.)',
     ],
     members: [
       {
@@ -50,16 +47,15 @@ Styrelsen fastställer strategisk inriktning, budget och verksamhetsplan.
     name: 'Kommunikationskommittén',
     slug: 'kommunikation',
     description:
-      'Ansvarar för förbundets externa och interna kommunikation, webb, sociala medier och PR.',
-    mandate: `
-Kommunikationskommittén ska säkerställa tydlig, konsekvent och professionell kommunikation från förbundet.
-    `.trim(),
+      'Kommunikationskommittén ansvarar för Svenska Kickboxningsförbundets interna och externa kommunikation. Kommitténs uppdrag är att säkerställa att information är tydlig, samordnad och tillgänglig – samt att förbundets verksamhet, värdegrund och utveckling kommuniceras på ett professionellt och förtroendeskapande sätt.',
+    mandate:
+      'Kommunikation ses inte som en stödjande sidofunktion, utan som ett strategiskt verktyg för att skapa förståelse, engagemang och sammanhållning inom svensk kickboxning. Genom strukturerad kommunikation stärks både den interna organisationen och förbundets externa position.',
     responsibilities: [
-      'Webb och digitala plattformar',
-      'Sociala medier',
-      'Presskontakt och PR',
-      'Nyhetsbrev och informationsmaterial',
-      'Grafisk profil och varumärke',
+      'Samordna information från styrelse och kommittéer',
+      'Säkerställa att beslut, riktlinjer och förändringar kommuniceras tydligt',
+      'Förbundets webbplats och sociala medier',
+      'Grafisk profil och mallar',
+      'Extern positionering av svensk kickboxning',
     ],
     members: [
       {
@@ -76,13 +72,14 @@ Kommunikationskommittén ska säkerställa tydlig, konsekvent och professionell 
     name: 'Forsknings- och utvecklingskommittén',
     slug: 'fou',
     description:
-      'Ansvarar för kunskapsutveckling, idrottsutveckling och digitalisering inom förbundet.',
-    mandate: 'FoU-kommittén driver utveckling av idrotten och organisationen.',
+      'FoU-kommittén är Svenska Kickboxningsförbundets kunskaps- och utvecklingsmotor. Kommitténs uppdrag är att långsiktigt stärka kvaliteten, konkurrenskraften och hållbarheten inom svensk kickboxning genom att säkerställa att sportens utveckling vilar på vetenskaplig grund, beprövad erfarenhet och systematiskt lärande.',
+    mandate:
+      'FoU-kommittén arbetar tvärfunktionellt och har en central roll i att knyta samman forskning, praktik och strategisk utveckling. Kommittén bidrar med strukturer, modeller och kunskapsunderlag som genomsyrar hela förbundets verksamhet – från föreningsnivå till landslag.',
     responsibilities: [
-      'Idrottsutveckling',
-      'Kunskapsutveckling',
-      'Digitalisering',
-      'Samverkan med forskning',
+      'Utveckla och förvalta SKF:s Body of Knowledge',
+      'Ta fram grenprofil, kravprofil och utvecklingstrappa',
+      'Initiera och samordna forsknings- och utvecklingsinsatser',
+      'Stödja förbundets verksamhet med evidensbaserade underlag',
     ],
     members: [
       {
@@ -99,13 +96,14 @@ Kommunikationskommittén ska säkerställa tydlig, konsekvent och professionell 
     name: 'Utbildningskommittén',
     slug: 'utbildning',
     description:
-      'Ansvarar för utbildning av instruktörer, domare, tränare och andra funktionärer.',
-    mandate: 'Utbildningskommittén säkerställer kvalitet i all utbildning inom förbundet.',
+      'Utbildningskommittén är Svenska Kickboxningsförbundets centrala funktion för kompetensutveckling och kunskapsspridning. Kommitténs uppdrag är att långsiktigt stärka kvaliteten i svensk kickboxning genom att säkerställa att tränare, ledare, domare och föreningar har tillgång till relevant, aktuell och tillämpbar kunskap.',
+    mandate:
+      'Utbildningskommittén utgår från förbundets Strategi 2030 och verkar för att skapa en sammanhållen utbildningsstruktur som stödjer hela idrottens utveckling – från breddverksamhet till elit. Kommittén fungerar som länken mellan forskning och praktik.',
     responsibilities: [
-      'Instruktörsutbildning',
-      'Domarutbildning',
-      'Tränarutbildning',
-      'Certifieringssystem',
+      'Utveckla och genomföra nationella utbildningar',
+      'Driva och utveckla digital utbildningsplattform',
+      'Etablera certifierings- och utbildningsstrukturer',
+      'Säkerställa kvalitet och långsiktighet i kompetensutvecklingen',
     ],
     members: [
       {
@@ -121,13 +119,15 @@ Kommunikationskommittén ska säkerställa tydlig, konsekvent och professionell 
     id: 'landslag',
     name: 'Landslagskommittén',
     slug: 'landslag',
-    description: 'Ansvarar för landslagsverksamhet, uttag och internationella mästerskap.',
-    mandate: 'Landslagskommittén leder arbetet med landslag senior och junior.',
+    description:
+      'Landslagskommittén ansvarar för Svenska Kickboxningsförbundets elit- och landslagsverksamhet samt förbundets internationella representation. Kommitténs uppdrag är att skapa långsiktigt hållbara förutsättningar för prestationsutveckling på högsta nivå.',
+    mandate:
+      'Landslagsverksamheten bygger på principen att internationell framgång inte uppstår isolerat, utan är ett resultat av systematik, kvalitet och långsiktig utveckling – från föreningsmiljö till mästerskap. Kommittén leds av förbundskaptenen.',
     responsibilities: [
-      'Uttag landslag',
-      'EM/VM-deltagande',
-      'Landslagsläger',
-      'Scouting och talangutveckling',
+      'Uttagning och utveckling av senior- och juniorlandslag',
+      'Planering av tränings- och tävlingsverksamhet',
+      'Deltagande i internationella mästerskap',
+      'Samordning av tränare och stödresurser',
     ],
     members: [
       {
@@ -143,14 +143,15 @@ Kommunikationskommittén ska säkerställa tydlig, konsekvent och professionell 
     id: 'tavling',
     name: 'Tävlingskommittén',
     slug: 'tavling',
-    description: 'Ansvarar för tävlingsverksamhet, regelverk och tävlingskalender.',
-    mandate: 'Tävlingskommittén säkerställer kvalitet och struktur i all tävlingsverksamhet.',
+    description:
+      'Tävlingskommittén är Svenska Kickboxningsförbundets expertorgan för tävlingsverksamheten och ansvarar för att all nationell tävlingsverksamhet bedrivs på ett säkert, rättssäkert och kvalitativt sätt.',
+    mandate:
+      'Tävlingskommittén verkar i gränslandet mellan sportens praktiska genomförande och dess formella regelverk. Arbetet omfattar både strategiska och operativa frågor, med målet att tävlingssystemet ska vara långsiktigt hållbart, internationellt kompatibelt och anpassat till svensk idrotts kontext.',
     responsibilities: [
-      'Tävlingskalender',
-      'Regelverk och discipliner',
-      'Domarutveckling',
-      'SM och nationella tävlingar',
-      'Ranking',
+      'Förvaltning och utveckling av tävlingsregelverk',
+      'Sanktionering av tävlingar och mästerskap',
+      'Domarutbildning och licensiering',
+      'Ranking, PRO-verksamhet och medicinska riktlinjer',
     ],
     members: [
       {
@@ -166,13 +167,15 @@ Kommunikationskommittén ska säkerställa tydlig, konsekvent och professionell 
     id: 'gradering',
     name: 'Graderingskommittén',
     slug: 'gradering',
-    description: 'Ansvarar för graderingssystem, bältesgradering och kvalitetssäkring.',
-    mandate: 'Graderingskommittén säkerställer enhetligt och kvalitetssäkrat graderingssystem.',
+    description:
+      'Graderingskommittén ansvarar för Svenska Kickboxningsförbundets nationella graderingssystem och för tilldelning av högre mästargrader. Kommitténs uppdrag är att säkerställa att graderingar inom svensk kickboxning präglas av likvärdighet, kvalitet och långsiktighet.',
+    mandate:
+      'Graderingssystemet är en viktig del av sportens struktur och identitet. Det fungerar både som ett verktyg för individuell utveckling och som ett sätt att upprätthålla gemensamma standarder för kunskap, färdighet och ledarskap.',
     responsibilities: [
-      'Graderingssystem',
-      'Bältesexamination',
-      'Mästargrad',
-      'Kvalitetssäkring',
+      'Genomföra nationell mästargradering',
+      'Tilldela högre mästargrader',
+      'Utveckla och förvalta nationellt graderingssystem',
+      'Säkerställa nationell likvärdighet i graderingar',
     ],
     members: [
       {
@@ -188,13 +191,15 @@ Kommunikationskommittén ska säkerställa tydlig, konsekvent och professionell 
     id: 'marknad',
     name: 'Marknadskommittén',
     slug: 'marknad',
-    description: 'Ansvarar för sponsorer, partners, marknadsföring och försäljning.',
-    mandate: 'Marknadskommittén driver förbundets kommersiella utveckling.',
+    description:
+      'Marknadskommittén ansvarar för Svenska Kickboxningsförbundets arbete inom marknad, hållbarhet, etik och affärsutveckling. Kommitténs uppdrag är att skapa långsiktigt hållbara ekonomiska och organisatoriska förutsättningar för förbundets verksamhet.',
+    mandate:
+      'Marknadsarbetet utgår från insikten att en stabil och professionell ekonomi är en förutsättning för utveckling inom samtliga delar av verksamheten. Marknadskommittén har en strategisk, stödjande och utvecklingsinriktad roll snarare än ett operativt genomförandeansvar.',
     responsibilities: [
-      'Sponsorer och partners',
-      'Marknadsföring',
-      'Försäljning och shop',
-      'Evenemang och arrangemang',
+      'Fungera som referens i etiska frågor',
+      'Utveckla och följa upp förbundets hållbarhetsarbete',
+      'Skapa förbättrade ekonomiska förutsättningar genom sponsring',
+      'Utveckla affärsmöjligheter som gynnar förbundet och medlemsföreningarna',
     ],
     members: [
       {

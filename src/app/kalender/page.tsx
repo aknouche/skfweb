@@ -1,6 +1,6 @@
 /**
- * Competitions Listing Page
- * Shows all competitions from Sanity CMS
+ * Calendar Listing Page
+ * Shows all events (competitions, camps, seminars, etc.) from Sanity CMS
  */
 
 import type { Metadata } from 'next';
@@ -12,7 +12,7 @@ export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Kalender',
-  description: 'Tävlingskalender för Svenska Kickboxningsförbundet',
+  description: 'Kalender för Svenska Kickboxningsförbundet – tävlingar, läger, utbildningar och andra evenemang.',
 };
 
 export default async function CompetitionsPage() {
@@ -27,14 +27,14 @@ export default async function CompetitionsPage() {
       <div className="container-wide">
         <SectionHeader
           title="Kalender"
-          subtitle="Tävlingskalender för Svenska Kickboxningsförbundet"
+          subtitle="Tävlingar, läger, utbildningar och andra evenemang"
         />
 
-        {/* Upcoming Competitions */}
+        {/* Upcoming Events */}
         {upcoming.length > 0 && (
           <section className="mb-16">
             <h2 className="mb-8 text-center text-2xl font-bold text-skf-blue">
-              Kommande tävlingar
+              Kommande evenemang
             </h2>
             <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2 lg:grid-cols-3">
               {upcoming.map((competition) => (
@@ -44,11 +44,11 @@ export default async function CompetitionsPage() {
           </section>
         )}
 
-        {/* Completed Competitions */}
+        {/* Completed Events */}
         {completed.length > 0 && (
           <section>
             <h2 className="mb-8 text-center text-2xl font-bold text-gray-600">
-              Genomförda tävlingar
+              Genomförda evenemang
             </h2>
             <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2 lg:grid-cols-3">
               {completed.map((competition) => (
@@ -60,7 +60,7 @@ export default async function CompetitionsPage() {
 
         {competitions.length === 0 && (
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-gray-600">Inga tävlingar att visa just nu.</p>
+            <p className="text-gray-600">Inga evenemang att visa just nu.</p>
           </div>
         )}
       </div>

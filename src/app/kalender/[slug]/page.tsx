@@ -1,6 +1,6 @@
 /**
- * Competition Detail Page
- * Shows a single competition from Sanity CMS or static data
+ * Calendar Event Detail Page
+ * Shows a single event from Sanity CMS or static data
  */
 
 import type { Metadata } from 'next';
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!competition) {
     return {
-      title: 'Tävling hittades inte',
+      title: 'Evenemang hittades inte',
     };
   }
 
@@ -241,7 +241,7 @@ export default async function CompetitionPage({ params }: PageProps) {
           {isCompleted && (
             <div className="mt-8 rounded-lg border border-gray-200 bg-gray-50 p-6 text-center">
               <p className="text-gray-600">
-                Denna tävling är genomförd. Resultat kommer att publiceras här.
+                Detta evenemang är genomfört.
               </p>
             </div>
           )}

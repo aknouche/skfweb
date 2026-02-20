@@ -20,7 +20,7 @@ export async function UpcomingCompetitions() {
   return (
     <section className="bg-white py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader title="Kommande Tävlingar" />
+        <SectionHeader title="Kommande Evenemang" />
 
         {/* Competitions Grid - 2 items for cleaner homepage */}
         <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
@@ -85,7 +85,7 @@ export async function UpcomingCompetitions() {
 
         {/* View All Link */}
         <div className="mt-12 text-center">
-          <Button href="/kalender">Se alla tävlingar</Button>
+          <Button href="/kalender">Se hela kalendern</Button>
         </div>
       </div>
     </section>
