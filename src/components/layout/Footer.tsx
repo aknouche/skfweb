@@ -30,7 +30,7 @@ export function Footer() {
               Snabblänkar
             </h3>
             <ul className="space-y-2">
-              {NAVIGATION.main.map((item) => (
+              {NAVIGATION.main.filter((item) => !item.external).map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
