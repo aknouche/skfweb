@@ -99,74 +99,48 @@ export const newsQueries = {
 };
 
 // =============================================================================
-// COMPETITION QUERIES
+// EVENT (KALENDER) QUERIES
 // =============================================================================
 
-export const competitionQueries = {
-  all: `*[_type == "competition"] | order(date asc) {
-    _id,
-    title,
-    "slug": slug.current,
-    description,
-    status,
-    date,
-    endDate,
-    location,
-    disciplines,
-    organizer,
-    registrationUrl,
-    registrationDeadline,
-    image {
-      asset->{
-        _id,
-        url
-      },
-      alt
-    }
-  }`,
+const eventFields = `
+  _id,
+  eventType,
+  title,
+  "slug": slug.current,
+  description,
+  status,
+  date,
+  endDate,
+  location,
+  disciplines,
+  organizer,
+  registrationUrl,
+  registrationDeadline,
+  price,
+  maxParticipants,
+  targetLevel,
+  instructor,
+  targetAudience,
+  meetingType,
+  agendaUrl,
+  minutesUrl,
+  externalUrl,
+  image {
+    asset->{ _id, url },
+    alt
+  }
+`;
 
-  upcoming: `*[_type == "competition" && status == "upcoming"] | order(date asc) {
-    _id,
-    title,
-    "slug": slug.current,
-    description,
-    status,
-    date,
-    endDate,
-    location,
-    disciplines,
-    organizer,
-    registrationUrl,
-    registrationDeadline,
-    image {
-      asset->{
-        _id,
-        url
-      },
-      alt
-    }
-  }`,
+export const eventQueries = {
+  all: `*[_type == "event"] | order(date asc) { ${eventFields} }`,
 
-  bySlug: (slug: string) => `*[_type == "competition" && slug.current == "${slug}"][0] {
-    _id,
-    title,
-    "slug": slug.current,
-    description,
-    status,
-    date,
-    endDate,
-    location,
-    disciplines,
-    organizer,
-    registrationUrl,
-    registrationDeadline,
-    image {
-      asset->{
-        _id,
-        url
-      },
-      alt
-    },
+  upcoming: `*[_type == "event" && status == "upcoming"] | order(date asc) { ${eventFields} }`,
+
+  byType: (type: string) =>
+    `*[_type == "event" && eventType == "${type}"] | order(date asc) { ${eventFields} }`,
+
+  bySlug: (slug: string) => `*[_type == "event" && slug.current == "${slug}"][0] {
+    ${eventFields},
     documents[] {
       name,
       "url": file.asset->url,
@@ -174,6 +148,9 @@ export const competitionQueries = {
     }
   }`,
 };
+
+// Backward-compat alias
+export const competitionQueries = eventQueries;
 
 // =============================================================================
 // COMMITTEE QUERIES

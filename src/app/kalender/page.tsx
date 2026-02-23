@@ -1,26 +1,59 @@
 /**
  * Calendar Listing Page
- * Shows all events (competitions, camps, seminars, etc.) from Sanity CMS
+ * Shows all events filtered by type, with URL-based filter (no JS needed).
  */
 
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { fetchAllCompetitions } from '@/lib/data/competitions';
 import { SectionHeader } from '@/components/ui/SectionHeader';
+import type { CalendarEvent, CalendarEventType } from '@/lib/types';
 
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Kalender',
-  description: 'Kalender för Svenska Kickboxningsförbundet – tävlingar, läger, utbildningar och andra evenemang.',
+  description:
+    'Kalender för Svenska Kickboxningsförbundet – tävlingar, läger, utbildningar och andra evenemang.',
 };
 
-export default async function CompetitionsPage() {
-  const competitions = await fetchAllCompetitions();
+// ── Constants ────────────────────────────────────────────────────────────────
 
-  // Separate upcoming and completed competitions
-  const upcoming = competitions.filter((c) => c.status === 'upcoming' || c.status === 'ongoing');
-  const completed = competitions.filter((c) => c.status === 'completed');
+export const EVENT_TYPE_LABELS: Record<CalendarEventType, string> = {
+  tavling: 'Tävling',
+  lager: 'Läger',
+  utbildning: 'Utbildning',
+  forbundsmote: 'Förbundsmöte',
+  ovrig: 'Övrigt',
+};
+
+const FILTER_OPTIONS: { value: string; label: string }[] = [
+  { value: 'alla', label: 'Alla' },
+  { value: 'tavling', label: 'Tävlingar' },
+  { value: 'lager', label: 'Läger' },
+  { value: 'utbildning', label: 'Utbildning' },
+  { value: 'forbundsmote', label: 'Möten' },
+  { value: 'ovrig', label: 'Övrigt' },
+];
+
+// ── Page ─────────────────────────────────────────────────────────────────────
+
+interface PageProps {
+  searchParams: Promise<{ type?: string }>;
+}
+
+export default async function KalenderPage({ searchParams }: PageProps) {
+  const { type } = await searchParams;
+  const activeFilter = type && type !== 'alla' ? (type as CalendarEventType) : null;
+
+  const allEvents = await fetchAllCompetitions();
+
+  const filtered = activeFilter
+    ? allEvents.filter((e) => e.eventType === activeFilter)
+    : allEvents;
+
+  const upcoming = filtered.filter((e) => e.status === 'upcoming' || e.status === 'ongoing');
+  const completed = filtered.filter((e) => e.status === 'completed');
 
   return (
     <div className="bg-white py-16">
@@ -30,35 +63,55 @@ export default async function CompetitionsPage() {
           subtitle="Tävlingar, läger, utbildningar och andra evenemang"
         />
 
-        {/* Upcoming Events */}
+        {/* Filter bar */}
+        <div className="mb-12 flex flex-wrap justify-center gap-2">
+          {FILTER_OPTIONS.map(({ value, label }) => {
+            const isActive = value === 'alla' ? !activeFilter : activeFilter === value;
+            return (
+              <Link
+                key={value}
+                href={value === 'alla' ? '/kalender' : `/kalender?type=${value}`}
+                className={`rounded-full px-5 py-2 text-sm font-medium transition-colors ${
+                  isActive
+                    ? 'bg-skf-blue text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                {label}
+              </Link>
+            );
+          })}
+        </div>
+
+        {/* Upcoming events */}
         {upcoming.length > 0 && (
           <section className="mb-16">
             <h2 className="mb-8 text-center text-2xl font-bold text-skf-blue">
               Kommande evenemang
             </h2>
             <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {upcoming.map((competition) => (
-                <CompetitionCard key={competition.id} competition={competition} />
+              {upcoming.map((event) => (
+                <EventCard key={event.id} event={event} />
               ))}
             </div>
           </section>
         )}
 
-        {/* Completed Events */}
+        {/* Completed events */}
         {completed.length > 0 && (
           <section>
             <h2 className="mb-8 text-center text-2xl font-bold text-gray-600">
               Genomförda evenemang
             </h2>
             <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {completed.map((competition) => (
-                <CompetitionCard key={competition.id} competition={competition} completed />
+              {completed.map((event) => (
+                <EventCard key={event.id} event={event} completed />
               ))}
             </div>
           </section>
         )}
 
-        {competitions.length === 0 && (
+        {filtered.length === 0 && (
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-gray-600">Inga evenemang att visa just nu.</p>
           </div>
@@ -68,19 +121,16 @@ export default async function CompetitionsPage() {
   );
 }
 
-function CompetitionCard({
-  competition,
-  completed = false,
-}: {
-  competition: Awaited<ReturnType<typeof fetchAllCompetitions>>[0];
-  completed?: boolean;
-}) {
-  const date = new Date(competition.date);
-  const dateStr = date.toLocaleDateString('sv-SE', {
+// ── Card ─────────────────────────────────────────────────────────────────────
+
+function EventCard({ event, completed = false }: { event: CalendarEvent; completed?: boolean }) {
+  const dateStr = new Date(event.date).toLocaleDateString('sv-SE', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
   });
+
+  const typeLabel = EVENT_TYPE_LABELS[event.eventType] ?? 'Övrigt';
 
   return (
     <article
@@ -89,42 +139,53 @@ function CompetitionCard({
       }`}
     >
       <div className="p-6">
-        <div
-          className={`mb-4 inline-block rounded-md px-3 py-1 text-sm font-medium ${
-            completed ? 'bg-gray-200 text-gray-600' : 'bg-skf-blue text-white'
-          }`}
-        >
-          {dateStr}
+        {/* Type badge + date */}
+        <div className="mb-4 flex items-center gap-2">
+          <span className="rounded-full bg-skf-yellow px-3 py-0.5 text-xs font-semibold text-skf-blue">
+            {typeLabel}
+          </span>
+          <span
+            className={`rounded-md px-3 py-1 text-sm font-medium ${
+              completed ? 'bg-gray-200 text-gray-600' : 'bg-skf-blue text-white'
+            }`}
+          >
+            {dateStr}
+          </span>
         </div>
 
         <h3 className="mb-2 text-xl font-bold text-gray-900 group-hover:text-skf-blue">
-          {competition.title}
+          {event.title}
         </h3>
 
-        <p className="mb-4 text-sm text-gray-600">
-          {competition.location.venue}, {competition.location.city}
-        </p>
+        {event.location && (
+          <p className="mb-4 text-sm text-gray-600">
+            {event.location.venue}, {event.location.city}
+          </p>
+        )}
 
-        <p className="mb-4 line-clamp-2 text-gray-700">{competition.description}</p>
+        <p className="mb-4 line-clamp-2 text-gray-700">{event.description}</p>
 
-        <div className="mb-4 flex flex-wrap gap-2">
-          {competition.disciplines.slice(0, 3).map((discipline) => (
-            <span
-              key={discipline}
-              className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700"
-            >
-              {discipline}
-            </span>
-          ))}
-          {competition.disciplines.length > 3 && (
-            <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-500">
-              +{competition.disciplines.length - 3}
-            </span>
-          )}
-        </div>
+        {/* Disciplines (tävling/läger only) */}
+        {event.disciplines && event.disciplines.length > 0 && (
+          <div className="mb-4 flex flex-wrap gap-2">
+            {event.disciplines.slice(0, 3).map((d) => (
+              <span
+                key={d}
+                className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700"
+              >
+                {d}
+              </span>
+            ))}
+            {event.disciplines.length > 3 && (
+              <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-500">
+                +{event.disciplines.length - 3}
+              </span>
+            )}
+          </div>
+        )}
 
         <Link
-          href={`/kalender/${competition.slug}`}
+          href={`/kalender/${event.slug}`}
           className="inline-flex items-center text-sm font-medium text-skf-blue hover:underline"
         >
           {completed ? 'Visa resultat' : 'Läs mer'}

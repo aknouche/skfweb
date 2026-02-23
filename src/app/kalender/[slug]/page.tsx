@@ -1,12 +1,14 @@
 /**
  * Calendar Event Detail Page
- * Shows a single event from Sanity CMS or static data
+ * Renders type-specific content based on eventType.
  */
 
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { fetchCompetitionBySlug } from '@/lib/data/competitions';
+import { EVENT_TYPE_LABELS } from '../page';
+import type { CalendarEvent } from '@/lib/types';
 
 export const dynamic = 'force-dynamic';
 export const dynamicParams = true;
@@ -17,38 +19,26 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const competition = await fetchCompetitionBySlug(slug);
-
-  if (!competition) {
-    return {
-      title: 'Evenemang hittades inte',
-    };
-  }
-
-  return {
-    title: competition.title,
-    description: competition.description,
-  };
+  const event = await fetchCompetitionBySlug(slug);
+  if (!event) return { title: 'Evenemang hittades inte' };
+  return { title: event.title, description: event.description };
 }
 
-export default async function CompetitionPage({ params }: PageProps) {
+export default async function EventDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const competition = await fetchCompetitionBySlug(slug);
+  const event = await fetchCompetitionBySlug(slug);
 
-  if (!competition) {
-    notFound();
-  }
+  if (!event) notFound();
 
-  const date = new Date(competition.date);
-  const dateStr = date.toLocaleDateString('sv-SE', {
+  const dateStr = new Date(event.date).toLocaleDateString('sv-SE', {
     weekday: 'long',
     day: 'numeric',
     month: 'long',
     year: 'numeric',
   });
 
-  const endDateStr = competition.endDate
-    ? new Date(competition.endDate).toLocaleDateString('sv-SE', {
+  const endDateStr = event.endDate
+    ? new Date(event.endDate).toLocaleDateString('sv-SE', {
         weekday: 'long',
         day: 'numeric',
         month: 'long',
@@ -56,11 +46,12 @@ export default async function CompetitionPage({ params }: PageProps) {
       })
     : null;
 
-  const isCompleted = competition.status === 'completed';
-  const isUpcoming = competition.status === 'upcoming';
+  const isCompleted = event.status === 'completed';
+  const isUpcoming = event.status === 'upcoming';
   const registrationOpen =
-    competition.registrationDeadline &&
-    new Date(competition.registrationDeadline) > new Date();
+    event.registrationDeadline && new Date(event.registrationDeadline) > new Date();
+
+  const typeLabel = EVENT_TYPE_LABELS[event.eventType] ?? 'Evenemang';
 
   return (
     <div className="bg-white py-16">
@@ -70,25 +61,18 @@ export default async function CompetitionPage({ params }: PageProps) {
           href="/kalender"
           className="mb-8 inline-flex items-center text-sm font-medium text-skf-blue hover:underline"
         >
-          <svg
-            className="mr-2 h-4 w-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
+          <svg className="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
           Tillbaka till kalender
         </Link>
 
-        {/* Competition header */}
+        {/* Header */}
         <header className="mx-auto max-w-3xl">
-          <div className="mb-4 flex items-center gap-4">
+          <div className="mb-4 flex flex-wrap items-center gap-3">
+            <span className="rounded-full bg-skf-yellow px-3 py-1 text-sm font-semibold text-skf-blue">
+              {typeLabel}
+            </span>
             <span
               className={`rounded-full px-3 py-1 text-sm font-medium ${
                 isCompleted
@@ -103,107 +87,153 @@ export default async function CompetitionPage({ params }: PageProps) {
           </div>
 
           <h1 className="mb-6 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl">
-            {competition.title}
+            {event.title}
           </h1>
 
-          <p className="mb-8 text-xl leading-relaxed text-gray-700">
-            {competition.description}
-          </p>
+          <p className="mb-8 text-xl leading-relaxed text-gray-700">{event.description}</p>
         </header>
 
-        {/* Competition details */}
-        <div className="mx-auto max-w-3xl">
-          <div className="grid gap-8 md:grid-cols-2">
-            {/* Date & Time */}
-            <div className="rounded-lg border border-gray-200 p-6">
-              <h2 className="mb-4 flex items-center text-lg font-bold text-gray-900">
-                <svg
-                  className="mr-3 h-5 w-5 text-skf-blue"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-                Datum
-              </h2>
-              <p className="text-gray-700 capitalize">{dateStr}</p>
+        {/* Details grid */}
+        <div className="mx-auto max-w-3xl space-y-6">
+          {/* Date */}
+          <div className="grid gap-6 md:grid-cols-2">
+            <InfoBox icon="calendar" title="Datum">
+              <p className="capitalize text-gray-700">{dateStr}</p>
               {endDateStr && (
                 <p className="mt-1 text-gray-600">
                   till <span className="capitalize">{endDateStr}</span>
                 </p>
               )}
-            </div>
+            </InfoBox>
 
             {/* Location */}
+            {event.location && (
+              <InfoBox icon="location" title="Plats">
+                <p className="font-medium text-gray-900">{event.location.venue}</p>
+                <p className="text-gray-700">{event.location.city}</p>
+                {event.location.address && (
+                  <p className="mt-1 text-sm text-gray-600">{event.location.address}</p>
+                )}
+              </InfoBox>
+            )}
+          </div>
+
+          {/* ── Tävling + Läger: Disciplines ─────────────────────────────── */}
+          {event.disciplines && event.disciplines.length > 0 && (
             <div className="rounded-lg border border-gray-200 p-6">
-              <h2 className="mb-4 flex items-center text-lg font-bold text-gray-900">
-                <svg
-                  className="mr-3 h-5 w-5 text-skf-blue"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-                Plats
-              </h2>
-              <p className="font-medium text-gray-900">{competition.location.venue}</p>
-              <p className="text-gray-700">{competition.location.city}</p>
-              {competition.location.address && (
-                <p className="mt-1 text-sm text-gray-600">{competition.location.address}</p>
-              )}
-            </div>
-          </div>
-
-          {/* Disciplines */}
-          <div className="mt-8 rounded-lg border border-gray-200 p-6">
-            <h2 className="mb-4 text-lg font-bold text-gray-900">Discipliner</h2>
-            <div className="flex flex-wrap gap-2">
-              {competition.disciplines.map((discipline) => (
-                <span
-                  key={discipline}
-                  className="rounded-full bg-skf-blue/10 px-4 py-2 text-sm font-medium text-skf-blue"
-                >
-                  {discipline}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Organizer */}
-          {competition.organizer && (
-            <div className="mt-8 rounded-lg border border-gray-200 p-6">
-              <h2 className="mb-4 text-lg font-bold text-gray-900">Arrangör</h2>
-              <p className="text-gray-700">{competition.organizer}</p>
+              <h2 className="mb-4 text-lg font-bold text-gray-900">Discipliner</h2>
+              <div className="flex flex-wrap gap-2">
+                {event.disciplines.map((d) => (
+                  <span
+                    key={d}
+                    className="rounded-full bg-skf-blue/10 px-4 py-2 text-sm font-medium text-skf-blue"
+                  >
+                    {d}
+                  </span>
+                ))}
+              </div>
             </div>
           )}
 
-          {/* Registration */}
-          {isUpcoming && competition.registrationUrl && (
-            <div className="mt-8 rounded-lg border border-skf-blue bg-skf-blue/5 p-6">
+          {/* ── Läger: Level ─────────────────────────────────────────────── */}
+          {event.targetLevel && (
+            <InfoBox icon="level" title="Nivå">
+              <p className="text-gray-700">{levelLabel(event.targetLevel)}</p>
+            </InfoBox>
+          )}
+
+          {/* ── Utbildning: Instructor + Audience ────────────────────────── */}
+          {event.instructor && (
+            <InfoBox icon="person" title="Instruktör / Kursledare">
+              <p className="text-gray-700">{event.instructor}</p>
+            </InfoBox>
+          )}
+          {event.targetAudience && (
+            <InfoBox icon="group" title="Målgrupp">
+              <p className="text-gray-700">{event.targetAudience}</p>
+            </InfoBox>
+          )}
+
+          {/* ── Förbundsmöte: Meeting type + links ───────────────────────── */}
+          {event.meetingType && (
+            <InfoBox icon="meeting" title="Mötestyp">
+              <p className="text-gray-700">{meetingTypeLabel(event.meetingType)}</p>
+            </InfoBox>
+          )}
+          {(event.agendaUrl || event.minutesUrl) && (
+            <div className="rounded-lg border border-gray-200 p-6">
+              <h2 className="mb-4 text-lg font-bold text-gray-900">Dokument</h2>
+              <div className="flex flex-wrap gap-4">
+                {event.agendaUrl && (
+                  <a
+                    href={event.agendaUrl}
+                    className="inline-flex items-center text-sm font-medium text-skf-blue hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Dagordning →
+                  </a>
+                )}
+                {event.minutesUrl && (
+                  <a
+                    href={event.minutesUrl}
+                    className="inline-flex items-center text-sm font-medium text-skf-blue hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Protokoll →
+                  </a>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* ── Övrigt: External link ─────────────────────────────────────── */}
+          {event.externalUrl && (
+            <div className="rounded-lg border border-gray-200 p-6">
+              <a
+                href={event.externalUrl}
+                className="inline-flex items-center font-medium text-skf-blue hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Mer information →
+              </a>
+            </div>
+          )}
+
+          {/* ── Shared: Price + capacity ──────────────────────────────────── */}
+          {(event.price !== undefined || event.maxParticipants !== undefined) && (
+            <div className="grid gap-6 md:grid-cols-2">
+              {event.price !== undefined && (
+                <InfoBox icon="price" title="Pris">
+                  <p className="text-gray-700">{event.price} kr</p>
+                </InfoBox>
+              )}
+              {event.maxParticipants !== undefined && (
+                <InfoBox icon="group" title="Max deltagare">
+                  <p className="text-gray-700">{event.maxParticipants} platser</p>
+                </InfoBox>
+              )}
+            </div>
+          )}
+
+          {/* ── Shared: Organizer ─────────────────────────────────────────── */}
+          {event.organizer && (
+            <InfoBox icon="org" title="Arrangör">
+              <p className="text-gray-700">{event.organizer}</p>
+            </InfoBox>
+          )}
+
+          {/* ── Shared: Registration ─────────────────────────────────────── */}
+          {isUpcoming && event.registrationUrl && (
+            <div className="rounded-lg border border-skf-blue bg-skf-blue/5 p-6">
               <h2 className="mb-4 text-lg font-bold text-skf-blue">Anmälan</h2>
-              {competition.registrationDeadline && (
+              {event.registrationDeadline && (
                 <p className="mb-4 text-gray-700">
                   Sista anmälningsdag:{' '}
                   <span className="font-medium">
-                    {new Date(competition.registrationDeadline).toLocaleDateString('sv-SE', {
+                    {new Date(event.registrationDeadline).toLocaleDateString('sv-SE', {
                       day: 'numeric',
                       month: 'long',
                       year: 'numeric',
@@ -213,22 +243,12 @@ export default async function CompetitionPage({ params }: PageProps) {
               )}
               {registrationOpen ? (
                 <a
-                  href={competition.registrationUrl}
+                  href={event.registrationUrl}
                   className="inline-flex items-center rounded-lg bg-skf-blue px-6 py-3 font-medium text-white transition-colors hover:bg-skf-blue/90"
                 >
                   Anmäl dig nu
-                  <svg
-                    className="ml-2 h-4 w-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"
-                    />
+                  <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
                 </a>
               ) : (
@@ -237,16 +257,73 @@ export default async function CompetitionPage({ params }: PageProps) {
             </div>
           )}
 
-          {/* Completed competition notice */}
+          {/* ── Tävling: Documents ───────────────────────────────────────── */}
+          {event.documents && event.documents.length > 0 && (
+            <div className="rounded-lg border border-gray-200 p-6">
+              <h2 className="mb-4 text-lg font-bold text-gray-900">Dokument</h2>
+              <ul className="space-y-2">
+                {event.documents.map((doc, i) => (
+                  <li key={i}>
+                    <a
+                      href={doc.url}
+                      className="inline-flex items-center text-sm font-medium text-skf-blue hover:underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {doc.name} →
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Completed notice */}
           {isCompleted && (
-            <div className="mt-8 rounded-lg border border-gray-200 bg-gray-50 p-6 text-center">
-              <p className="text-gray-600">
-                Detta evenemang är genomfört.
-              </p>
+            <div className="rounded-lg border border-gray-200 bg-gray-50 p-6 text-center">
+              <p className="text-gray-600">Detta evenemang är genomfört.</p>
             </div>
           )}
         </div>
       </div>
     </div>
   );
+}
+
+// ── Helpers ──────────────────────────────────────────────────────────────────
+
+function InfoBox({
+  title,
+  children,
+}: {
+  icon: string;
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="rounded-lg border border-gray-200 p-6">
+      <h2 className="mb-3 text-lg font-bold text-gray-900">{title}</h2>
+      {children}
+    </div>
+  );
+}
+
+function levelLabel(level: CalendarEvent['targetLevel']): string {
+  const map: Record<string, string> = {
+    beginner: 'Nybörjare',
+    intermediate: 'Medelnivå',
+    advanced: 'Avancerad',
+    elite: 'Elitnivå',
+    all: 'Alla nivåer',
+  };
+  return map[level ?? ''] ?? level ?? '';
+}
+
+function meetingTypeLabel(type: CalendarEvent['meetingType']): string {
+  const map: Record<string, string> = {
+    arsmote: 'Årsmöte',
+    styrelsemote: 'Styrelsemöte',
+    ovrig: 'Övrigt möte',
+  };
+  return map[type ?? ''] ?? type ?? '';
 }

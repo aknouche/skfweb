@@ -1,9 +1,9 @@
-import type { Competition } from '../types';
+import type { CalendarEvent } from '../types';
 import { sanityFetch, isSanityConfigured } from '../sanity';
-import { competitionQueries } from '../sanity/queries';
+import { eventQueries } from '../sanity/queries';
 
 /**
- * Competitions - Static Data with Sanity Integration
+ * Calendar Events - Static Data with Sanity Integration
  *
  * Uses Sanity CMS if configured, otherwise falls back to static data.
  */
@@ -12,9 +12,10 @@ import { competitionQueries } from '../sanity/queries';
 // STATIC FALLBACK DATA
 // =============================================================================
 
-export const COMPETITIONS: Competition[] = [
+export const COMPETITIONS: CalendarEvent[] = [
   {
     id: '1',
+    eventType: 'tavling',
     title: 'SM i Kickboxning 2025',
     slug: 'sm-kickboxning-2025',
     description: 'Sveriges mästerskap i kickboxning samlar landets bästa utövare.',
@@ -33,6 +34,7 @@ export const COMPETITIONS: Competition[] = [
   },
   {
     id: '2',
+    eventType: 'tavling',
     title: 'Nationellt Öppet Göteborg',
     slug: 'nationellt-oppet-goteborg',
     description: 'Öppen tävling för alla åldrar och nivåer.',
@@ -47,6 +49,7 @@ export const COMPETITIONS: Competition[] = [
   },
   {
     id: '3',
+    eventType: 'tavling',
     title: 'Stockholm Open 2024',
     slug: 'stockholm-open-2024',
     description: 'Årets största tävling i huvudstaden.',
@@ -65,81 +68,78 @@ export const COMPETITIONS: Competition[] = [
 // HELPER FUNCTIONS (Sync - use static data)
 // =============================================================================
 
-export function getUpcomingCompetitions(): Competition[] {
-  return COMPETITIONS.filter((comp) => comp.status === 'upcoming').sort(
+export function getUpcomingCompetitions(): CalendarEvent[] {
+  return COMPETITIONS.filter((e) => e.status === 'upcoming').sort(
     (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
   );
 }
 
-export function getCompetitionBySlug(slug: string): Competition | undefined {
-  return COMPETITIONS.find((comp) => comp.slug === slug);
+export function getCompetitionBySlug(slug: string): CalendarEvent | undefined {
+  return COMPETITIONS.find((e) => e.slug === slug);
 }
 
 // =============================================================================
-// ASYNC FUNCTIONS (Try Sanity first, fallback to static)
+// TRANSFORM HELPERS
 // =============================================================================
 
-/**
- * Transform Sanity response to match Competition interface
- */
-function transformSanityCompetition(item: Record<string, unknown>): Competition {
+function transformSanityEvent(item: Record<string, unknown>): CalendarEvent {
   return {
     id: (item._id as string) || '',
+    eventType: (item.eventType as CalendarEvent['eventType']) || 'tavling',
     title: (item.title as string) || '',
     slug: (item.slug as string) || '',
     description: (item.description as string) || '',
-    status: (item.status as Competition['status']) || 'upcoming',
+    status: (item.status as CalendarEvent['status']) || 'upcoming',
     date: (item.date as string) || '',
     endDate: item.endDate as string | undefined,
-    location: (item.location as Competition['location']) || { venue: '', city: '' },
-    disciplines: (item.disciplines as Competition['disciplines']) || [],
-    organizer: (item.organizer as string) || '',
+    location: item.location as CalendarEvent['location'] | undefined,
+    disciplines: item.disciplines as CalendarEvent['disciplines'] | undefined,
+    organizer: item.organizer as string | undefined,
     registrationUrl: item.registrationUrl as string | undefined,
     registrationDeadline: item.registrationDeadline as string | undefined,
+    price: item.price as number | undefined,
+    maxParticipants: item.maxParticipants as number | undefined,
+    targetLevel: item.targetLevel as CalendarEvent['targetLevel'] | undefined,
+    instructor: item.instructor as string | undefined,
+    targetAudience: item.targetAudience as string | undefined,
+    meetingType: item.meetingType as CalendarEvent['meetingType'] | undefined,
+    agendaUrl: item.agendaUrl as string | undefined,
+    minutesUrl: item.minutesUrl as string | undefined,
+    externalUrl: item.externalUrl as string | undefined,
     image: item.image
       ? {
           url: ((item.image as Record<string, unknown>).asset as Record<string, string>)?.url || '',
           alt: ((item.image as Record<string, unknown>).alt as string) || '',
         }
       : undefined,
+    documents: item.documents as CalendarEvent['documents'] | undefined,
   };
 }
 
-/**
- * Fetch upcoming competitions - tries Sanity first, falls back to static
- */
-export async function fetchUpcomingCompetitions(): Promise<Competition[]> {
+// =============================================================================
+// ASYNC FUNCTIONS (Try Sanity first, fallback to static)
+// =============================================================================
+
+export async function fetchUpcomingCompetitions(): Promise<CalendarEvent[]> {
   if (isSanityConfigured) {
-    const sanityData = await sanityFetch<Record<string, unknown>[]>(competitionQueries.upcoming);
-    if (sanityData && sanityData.length > 0) {
-      return sanityData.map(transformSanityCompetition);
-    }
+    const data = await sanityFetch<Record<string, unknown>[]>(eventQueries.upcoming);
+    if (data && data.length > 0) return data.map(transformSanityEvent);
   }
   return getUpcomingCompetitions();
 }
 
-/**
- * Fetch competition by slug - tries Sanity first, falls back to static
- */
-export async function fetchCompetitionBySlug(slug: string): Promise<Competition | undefined> {
+export async function fetchCompetitionBySlug(slug: string): Promise<CalendarEvent | undefined> {
   if (isSanityConfigured) {
-    const sanityData = await sanityFetch<Record<string, unknown>>(competitionQueries.bySlug(slug));
-    if (sanityData) {
-      return transformSanityCompetition(sanityData);
-    }
+    const data = await sanityFetch<Record<string, unknown>>(eventQueries.bySlug(slug));
+    if (data) return transformSanityEvent(data);
   }
   return getCompetitionBySlug(slug);
 }
 
-/**
- * Fetch all competitions - tries Sanity first, falls back to static
- */
-export async function fetchAllCompetitions(): Promise<Competition[]> {
+export async function fetchAllCompetitions(): Promise<CalendarEvent[]> {
   if (isSanityConfigured) {
-    const sanityData = await sanityFetch<Record<string, unknown>[]>(competitionQueries.all);
-    if (sanityData && sanityData.length > 0) {
-      return sanityData.map(transformSanityCompetition);
-    }
+    const data = await sanityFetch<Record<string, unknown>[]>(eventQueries.all);
+    if (data && data.length > 0) return data.map(transformSanityEvent);
   }
   return COMPETITIONS;
 }

@@ -42,10 +42,18 @@ export interface NewsArticle {
 }
 
 // =============================================================================
-// COMPETITIONS
+// CALENDAR EVENTS
 // =============================================================================
 
-export type CompetitionStatus = 'upcoming' | 'ongoing' | 'completed';
+export type CalendarEventType =
+  | 'tavling'
+  | 'lager'
+  | 'utbildning'
+  | 'forbundsmote'
+  | 'ovrig';
+
+export type EventStatus = 'upcoming' | 'ongoing' | 'completed';
+
 export type CompetitionDiscipline =
   | 'Point Fighting'
   | 'Light Contact'
@@ -54,33 +62,55 @@ export type CompetitionDiscipline =
   | 'Low Kick'
   | 'K1';
 
-export interface Competition {
+export interface CalendarEvent {
   id: string;
+  eventType: CalendarEventType;
   title: string;
   slug: string;
   description: string;
-  status: CompetitionStatus;
+  status: EventStatus;
   date: string; // ISO date
   endDate?: string;
-  location: {
+  location?: {
     venue: string;
     city: string;
     address?: string;
   };
-  disciplines: CompetitionDiscipline[];
-  organizer: string;
-  registrationUrl?: string;
+  image?: {
+    url: string;
+    alt: string;
+  };
+  // Tävling + Läger
+  disciplines?: CompetitionDiscipline[];
+  // Tävling + Läger + Utbildning
+  organizer?: string;
   registrationDeadline?: string;
+  registrationUrl?: string;
+  // Läger + Utbildning
+  price?: number;
+  maxParticipants?: number;
+  // Läger only
+  targetLevel?: 'beginner' | 'intermediate' | 'advanced' | 'elite' | 'all';
+  // Utbildning only
+  instructor?: string;
+  targetAudience?: string;
+  // Förbundsmöte only
+  meetingType?: 'arsmote' | 'styrelsemote' | 'ovrig';
+  agendaUrl?: string;
+  minutesUrl?: string;
+  // Övrigt only
+  externalUrl?: string;
+  // Tävling only
   documents?: {
     name: string;
     url: string;
     type: 'rules' | 'program' | 'results' | 'other';
   }[];
-  image?: {
-    url: string;
-    alt: string;
-  };
 }
+
+// Backward-compat aliases
+export type Competition = CalendarEvent;
+export type CompetitionStatus = EventStatus;
 
 // =============================================================================
 // COMMITTEES

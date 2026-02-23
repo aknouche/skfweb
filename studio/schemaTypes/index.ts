@@ -1,5 +1,5 @@
 import { newsSchema } from './news';
-import { competitionSchema } from './competition';
+import { eventSchema } from './competition';
 import { committeeSchema } from './committee';
 
-export const schemaTypes = [newsSchema, competitionSchema, committeeSchema];
+export const schemaTypes = [newsSchema, eventSchema, committeeSchema];

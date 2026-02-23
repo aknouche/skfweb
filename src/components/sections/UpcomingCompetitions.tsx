@@ -49,26 +49,30 @@ export async function UpcomingCompetitions() {
                   </h3>
 
                   {/* Location */}
-                  <p className="mb-4 text-sm text-gray-600">
-                    📍 {competition.location.venue}, {competition.location.city}
-                  </p>
+                  {competition.location && (
+                    <p className="mb-4 text-sm text-gray-600">
+                      📍 {competition.location.venue}, {competition.location.city}
+                    </p>
+                  )}
 
                   {/* Description */}
                   <p className="mb-4 line-clamp-2 text-gray-700">
                     {competition.description}
                   </p>
 
-                  {/* Disciplines */}
-                  <div className="mb-4 flex flex-wrap gap-2">
-                    {competition.disciplines.slice(0, 3).map((discipline) => (
-                      <span
-                        key={discipline}
-                        className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700"
-                      >
-                        {discipline}
-                      </span>
-                    ))}
-                  </div>
+                  {/* Disciplines (tävling/läger only) */}
+                  {competition.disciplines && competition.disciplines.length > 0 && (
+                    <div className="mb-4 flex flex-wrap gap-2">
+                      {competition.disciplines.slice(0, 3).map((discipline) => (
+                        <span
+                          key={discipline}
+                          className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700"
+                        >
+                          {discipline}
+                        </span>
+                      ))}
+                    </div>
+                  )}
 
                   {/* Link */}
                   <Link
