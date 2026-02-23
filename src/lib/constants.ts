@@ -131,3 +131,26 @@ export const CONTACT = {
     city: 'Stockholm',
   },
 } as const;
+
+// =============================================================================
+// CALENDAR EVENT TYPES
+// =============================================================================
+
+import type { CalendarEventType } from './types';
+
+export const EVENT_TYPE_LABELS: Record<CalendarEventType, string> = {
+  tavling: 'Tävling',
+  lager: 'Läger',
+  utbildning: 'Utbildning',
+  forbundsmote: 'Förbundsmöte',
+  ovrig: 'Övrigt',
+} as const;
+
+export const CALENDAR_FILTER_OPTIONS: { value: string; label: string }[] = [
+  { value: 'alla', label: 'Alla' },
+  { value: 'tavling', label: 'Tävlingar' },
+  { value: 'lager', label: 'Läger' },
+  { value: 'utbildning', label: 'Utbildning' },
+  { value: 'forbundsmote', label: 'Möten' },
+  { value: 'ovrig', label: 'Övrigt' },
+];

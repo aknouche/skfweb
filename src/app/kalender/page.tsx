@@ -7,6 +7,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { fetchAllCompetitions } from '@/lib/data/competitions';
 import { SectionHeader } from '@/components/ui/SectionHeader';
+import { EVENT_TYPE_LABELS, CALENDAR_FILTER_OPTIONS } from '@/lib/constants';
 import type { CalendarEvent, CalendarEventType } from '@/lib/types';
 
 export const dynamic = 'force-dynamic';
@@ -16,25 +17,6 @@ export const metadata: Metadata = {
   description:
     'Kalender för Svenska Kickboxningsförbundet – tävlingar, läger, utbildningar och andra evenemang.',
 };
-
-// ── Constants ────────────────────────────────────────────────────────────────
-
-export const EVENT_TYPE_LABELS: Record<CalendarEventType, string> = {
-  tavling: 'Tävling',
-  lager: 'Läger',
-  utbildning: 'Utbildning',
-  forbundsmote: 'Förbundsmöte',
-  ovrig: 'Övrigt',
-};
-
-const FILTER_OPTIONS: { value: string; label: string }[] = [
-  { value: 'alla', label: 'Alla' },
-  { value: 'tavling', label: 'Tävlingar' },
-  { value: 'lager', label: 'Läger' },
-  { value: 'utbildning', label: 'Utbildning' },
-  { value: 'forbundsmote', label: 'Möten' },
-  { value: 'ovrig', label: 'Övrigt' },
-];
 
 // ── Page ─────────────────────────────────────────────────────────────────────
 
@@ -65,7 +47,7 @@ export default async function KalenderPage({ searchParams }: PageProps) {
 
         {/* Filter bar */}
         <div className="mb-12 flex flex-wrap justify-center gap-2">
-          {FILTER_OPTIONS.map(({ value, label }) => {
+          {CALENDAR_FILTER_OPTIONS.map(({ value, label }) => {
             const isActive = value === 'alla' ? !activeFilter : activeFilter === value;
             return (
               <Link

@@ -7,7 +7,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { fetchCompetitionBySlug } from '@/lib/data/competitions';
-import { EVENT_TYPE_LABELS } from '../page';
+import { EVENT_TYPE_LABELS } from '@/lib/constants';
 import type { CalendarEvent } from '@/lib/types';
 
 export const dynamic = 'force-dynamic';
