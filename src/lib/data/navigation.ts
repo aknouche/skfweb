@@ -14,15 +14,20 @@ import { fetchAllCommittees } from './committees';
 async function buildCommitteesNav(): Promise<NavItem> {
   const committees = await fetchAllCommittees();
 
-  const children: NavItem[] = committees.map((committee) => ({
+  const committeeItems: NavItem[] = committees.map((committee) => ({
     label: committee.name,
     href: `/kommitteer/${committee.slug}`,
   }));
 
+  const children: NavItem[] = [
+    { label: 'Organisation', href: '/kommitteer/organisation' },
+    ...committeeItems,
+  ];
+
   return {
     label: 'Kommittéer',
     href: '/kommitteer',
-    children: children.length > 0 ? children : undefined,
+    children: children.length > 1 ? children : undefined,
   };
 }
 
@@ -59,9 +64,9 @@ export function getStaticNavigation(): NavItem[] {
       label: 'Kommittéer',
       href: '/kommitteer',
       children: [
-        { label: 'Styrelsen', href: '/kommitteer/styrelsen' },
+        { label: 'Organisation', href: '/kommitteer/organisation' },
         { label: 'Kommunikationskommittén', href: '/kommitteer/kommunikation' },
-        { label: 'Forsknings- och utvecklingskommittén', href: '/kommitteer/fou' },
+        { label: 'Forsknings- och utvecklingskommittén', href: '/kommitteer/forskning-utveckling' },
         { label: 'Utbildningskommittén', href: '/kommitteer/utbildning' },
         { label: 'Landslagskommittén', href: '/kommitteer/landslag' },
         { label: 'Tävlingskommittén', href: '/kommitteer/tavling' },

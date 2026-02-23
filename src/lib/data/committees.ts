@@ -70,7 +70,7 @@ export const COMMITTEES: Committee[] = [
   {
     id: 'fou',
     name: 'Forsknings- och utvecklingskommittén',
-    slug: 'fou',
+    slug: 'forskning-utveckling',
     description:
       'FoU-kommittén är Svenska Kickboxningsförbundets kunskaps- och utvecklingsmotor. Kommitténs uppdrag är att långsiktigt stärka kvaliteten, konkurrenskraften och hållbarheten inom svensk kickboxning genom att säkerställa att sportens utveckling vilar på vetenskaplig grund, beprövad erfarenhet och systematiskt lärande.',
     mandate:
