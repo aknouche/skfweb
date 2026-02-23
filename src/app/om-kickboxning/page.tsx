@@ -6,9 +6,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Om kickboxning | Svenska Kickboxningsf\u00f6rbundet',
+  title: 'Om kickboxning | Svenska Kickboxningsförbundet',
   description:
-    'Kickboxningens historia, discipliner och utveckling i Sverige \u2013 fr\u00e5n internationell framv\u00e4xt till etablerad idrott.',
+    'Kickboxningens historia, discipliner och utveckling i Sverige – från internationell framväxt till etablerad idrott.',
 };
 
 export default function OmKickboxningPage() {
@@ -22,11 +22,11 @@ export default function OmKickboxningPage() {
 
         {/* Intro paragraph */}
         <p className="mt-6 text-lg text-gray-700">
-          Kickboxning \u00e4r en modern kampsport med r\u00f6tter i flera stridstraditioner.
-          Fr\u00e5n sin framv\u00e4xt i USA under efterkrigstiden har sporten utvecklats
-          till en internationellt erk\u00e4nd idrott med olympisk status, organiserad
-          i 149 l\u00e4nder. I Sverige \u00e4r kickboxningen en del av Riksidrottsf\u00f6rbundet
-          genom Svenska Kickboxningsf\u00f6rbundet.
+          Kickboxning är en modern kampsport med rötter i flera stridstraditioner.
+          Från sin framväxt i USA under efterkrigstiden har sporten utvecklats
+          till en internationellt erkänd idrott med olympisk status, organiserad
+          i 149 länder. I Sverige är kickboxningen en del av Riksidrottsförbundet
+          genom Svenska Kickboxningsförbundet.
         </p>
 
         {/* Yellow accent divider */}
@@ -37,29 +37,29 @@ export default function OmKickboxningPage() {
           {/* Section 1 */}
           <section>
             <h2 className="mb-4 text-2xl font-bold text-skf-blue lg:text-3xl">
-              En modern idrott v\u00e4xer fram
+              En modern idrott växer fram
             </h2>
             <div className="space-y-4 text-gray-700">
               <p>
-                Kickboxning v\u00e4xte fram i USA under efterkrigstiden som ett svar p\u00e5
-                behovet av ett gemensamt t\u00e4vlingsformat f\u00f6r olika st\u00e5ende
-                kampsporter. Ut\u00f6vare fr\u00e5n bland annat karate, taekwondo och boxning
-                ville m\u00f6tas under ett och samma regelverk, med fullkontakt, tydliga
-                t\u00e4vlingsformer och idrottsliga principer snarare \u00e4n traditionella
+                Kickboxning växte fram i USA under efterkrigstiden som ett svar på
+                behovet av ett gemensamt tävlingsformat för olika stående
+                kampsporter. Utövare från bland annat karate, taekwondo och boxning
+                ville mötas under ett och samma regelverk, med fullkontakt, tydliga
+                tävlingsformer och idrottsliga principer snarare än traditionella
                 ritualer.
               </p>
               <p>
                 Tidigt blev det tydligt att olika stilar bidrog med olika styrkor:
-                karateut\u00f6vare med utvecklade bentekniker och boxare med avancerade
-                handtekniker. Kombinationen lade grunden f\u00f6r en ny idrott. Under de
-                tidiga \u00e5ren anv\u00e4ndes ben\u00e4mningar som Full Contact Karate och Sport
+                karateutövare med utvecklade bentekniker och boxare med avancerade
+                handtekniker. Kombinationen lade grunden för en ny idrott. Under de
+                tidiga åren användes benämningar som Full Contact Karate och Sport
                 Karate, innan begreppet kickboxning etablerades internationellt.
               </p>
               <p>
-                Avsaknaden av krav p\u00e5 att f\u00f6lja historiska traditioner gjorde
-                kickboxning s\u00e4rskilt anpassningsbar. Sporten kunde tidigt ta till sig
-                modern kunskap inom fysisk tr\u00e4ning, pedagogik, idrottspsykologi och
-                t\u00e4vlingsorganisation \u2013 en egenskap som kom att pr\u00e4gla dess fortsatta
+                Avsaknaden av krav på att följa historiska traditioner gjorde
+                kickboxning särskilt anpassningsbar. Sporten kunde tidigt ta till sig
+                modern kunskap inom fysisk träning, pedagogik, idrottspsykologi och
+                tävlingsorganisation – en egenskap som kom att prägla dess fortsatta
                 internationella utveckling.
               </p>
             </div>
@@ -75,25 +75,25 @@ export default function OmKickboxningPage() {
                 Under 1970-talet organiserades kickboxningen allt tydligare
                 internationellt. I Europa bildades World Association of Kickboxing
                 Organizations (WAKO), som kom att bli det internationella styrande
-                f\u00f6rbundet f\u00f6r sporten. WAKO etablerade gemensamma regelverk,
-                t\u00e4vlingsformer, domarutbildningar och m\u00e4sterskap, vilket skapade
-                f\u00f6ruts\u00e4ttningar f\u00f6r en global idrott med j\u00e4mf\u00f6rbara villkor mellan
-                l\u00e4nder.
+                förbundet för sporten. WAKO etablerade gemensamma regelverk,
+                tävlingsformer, domarutbildningar och mästerskap, vilket skapade
+                förutsättningar för en global idrott med jämförbara villkor mellan
+                länder.
               </p>
               <p>
-                Denna internationella struktur blev avg\u00f6rande f\u00f6r kickboxningens
-                fortsatta utveckling. I dag organiserar WAKO sporten i 149 l\u00e4nder
-                p\u00e5 fem kontinenter, med nationella f\u00f6rbund som i stor utstr\u00e4ckning
-                \u00e4r erk\u00e4nda av respektive nationella olympiska kommitt\u00e9er eller
+                Denna internationella struktur blev avgörande för kickboxningens
+                fortsatta utveckling. I dag organiserar WAKO sporten i 149 länder
+                på fem kontinenter, med nationella förbund som i stor utsträckning
+                är erkända av respektive nationella olympiska kommittéer eller
                 idrottsmyndigheter.
               </p>
               <p>
-                Sporten \u00e4r fullt erk\u00e4nd av International Olympic Committee (IOC),
-                \u00e4r signat\u00e4r till World Anti-Doping Agency (WADA) och erk\u00e4nd av
-                SportAccord/GAISF. Kickboxning ing\u00e5r i flera internationella
-                multisportevenemang s\u00e5som The World Games, kontinentala spel och
-                milit\u00e4r- och universitetsidrott. Disciplinen K-1 kickboxning har
-                dessutom varit fullt utv\u00e4rderad och shortlistad inf\u00f6r OS i Los
+                Sporten är fullt erkänd av International Olympic Committee (IOC),
+                är signatär till World Anti-Doping Agency (WADA) och erkänd av
+                SportAccord/GAISF. Kickboxning ingår i flera internationella
+                multisportevenemang såsom The World Games, kontinentala spel och
+                militär- och universitetsidrott. Disciplinen K-1 kickboxning har
+                dessutom varit fullt utvärderad och shortlistad inför OS i Los
                 Angeles 2028.
               </p>
             </div>
@@ -107,18 +107,18 @@ export default function OmKickboxningPage() {
             <div className="space-y-4 text-gray-700">
               <p>
                 Kickboxningen etablerades i Sverige under slutet av 1970-talet och
-                b\u00f6rjan av 1980-talet. Precis som i USA och Europa var det
+                början av 1980-talet. Precis som i USA och Europa var det
                 inledningsvis en renodlad fullkontaktsport.
               </p>
               <p>
-                En central pionj\u00e4r var Bert &ldquo;Viking&rdquo; Johansson, som efter
-                flera \u00e5rs tr\u00e4ning i Japan introducerade sporten i Sverige under
+                En central pionjär var Bert "Viking" Johansson, som efter
+                flera års träning i Japan introducerade sporten i Sverige under
                 namnet Full Kontakt Karate. Han grundade organisationen Viking, den
-                f\u00f6rsta svenska organisationen f\u00f6r sporten. Under mitten av 1980-talet
+                första svenska organisationen för sporten. Under mitten av 1980-talet
                 tog utvecklingen ny fart genom bildandet av Swedish All Style
-                Fighting Association (SAFA), med akt\u00f6rer som Benny Hedlund (FOX
-                Malm\u00f6) och P-O Lindvall (Slagskeppet, Stockholm). SAFA kom senare
-                att utvecklas till Svenska Kickboxningsf\u00f6rbundet i dess tidigare
+                Fighting Association (SAFA), med aktörer som Benny Hedlund (FOX
+                Malmö) och P-O Lindvall (Slagskeppet, Stockholm). SAFA kom senare
+                att utvecklas till Svenska Kickboxningsförbundet i dess tidigare
                 form (SKIF).
               </p>
             </div>
@@ -131,20 +131,20 @@ export default function OmKickboxningPage() {
             </h2>
             <div className="space-y-4 text-gray-700">
               <p>
-                I b\u00f6rjan av 1990-talet tog svensk kickboxning viktiga steg mot \u00f6kad
-                professionalisering. Nya ledande akt\u00f6rer, d\u00e4ribland Lars
-                &ldquo;Blomman&rdquo; Blomgren, Jonny Andreasson, Thomas
-                &ldquo;Totto&rdquo; Heiderup och Johan \u00d6jeheim, bidrog till att
+                I början av 1990-talet tog svensk kickboxning viktiga steg mot ökad
+                professionalisering. Nya ledande aktörer, däribland Lars
+                "Blomman" Blomgren, Jonny Andreasson, Thomas
+                "Totto" Heiderup och Johan Öjeheim, bidrog till att
                 strukturera verksamheten. Domarutbildningar organiserades, ett
-                gemensamt graderingssystem inf\u00f6rdes och t\u00e4vlingsformerna
+                gemensamt graderingssystem infördes och tävlingsformerna
                 tydliggjordes.
               </p>
               <p>
                 Samtidigt anpassades svensk kickboxning successivt till den
-                internationella utvecklingen inom WAKO. T\u00e4vlingsformen Light Contact
-                erk\u00e4ndes och etablerades, f\u00f6rst som ett insteg till fullkontakt men
-                senare som en egen disciplin. D\u00e4refter tillkom Kick Light, som i dag
-                \u00e4r en av de centrala disciplinerna internationellt och nationellt.
+                internationella utvecklingen inom WAKO. Tävlingsformen Light Contact
+                erkändes och etablerades, först som ett insteg till fullkontakt men
+                senare som en egen disciplin. Därefter tillkom Kick Light, som i dag
+                är en av de centrala disciplinerna internationellt och nationellt.
               </p>
             </div>
           </section>
@@ -152,20 +152,20 @@ export default function OmKickboxningPage() {
           {/* Section 5 */}
           <section>
             <h2 className="mb-4 text-2xl font-bold text-skf-blue lg:text-3xl">
-              RF-anslutning och plats i idrottsr\u00f6relsen
+              RF-anslutning och plats i idrottsrörelsen
             </h2>
             <div className="space-y-4 text-gray-700">
               <p>
-                Parallellt med den sportsliga utvecklingen p\u00e5gick ett l\u00e5ngsiktigt
-                arbete f\u00f6r att integrera kickboxningen i den svenska
-                idrottsr\u00f6relsen. Detta arbete kulminerade n\u00e4r Svenska
-                Kickboxningsf\u00f6rbundet blev medlem i Svenska Budo- och
-                Kampsportsf\u00f6rbundet och d\u00e4rigenom \u00e4ven i Riksidrottsf\u00f6rbundet.
+                Parallellt med den sportsliga utvecklingen pågick ett långsiktigt
+                arbete för att integrera kickboxningen i den svenska
+                idrottsrörelsen. Detta arbete kulminerade när Svenska
+                Kickboxningsförbundet blev medlem i Svenska Budo- och
+                Kampsportsförbundet och därigenom även i Riksidrottsförbundet.
               </p>
               <p>
                 RF-anslutningen innebar att svensk kickboxning fullt ut omfattas av
-                idrottsr\u00f6relsens regelverk, v\u00e4rdegrund och strukturer f\u00f6r barn- och
-                ungdomsidrott, utbildning, antidoping och f\u00f6reningsdemokrati.
+                idrottsrörelsens regelverk, värdegrund och strukturer för barn- och
+                ungdomsidrott, utbildning, antidoping och föreningsdemokrati.
               </p>
             </div>
           </section>
@@ -178,7 +178,7 @@ export default function OmKickboxningPage() {
             <div className="space-y-4 text-gray-700">
               <p>
                 I dag bedrivs svensk kickboxning som en fullt integrerad del av en
-                global idrott. F\u00f6rbundet organiserar disciplinerna:
+                global idrott. Förbundet organiserar disciplinerna:
               </p>
               <ul className="ml-6 list-disc space-y-2">
                 <li>Junior Kickboxning (JK)</li>
@@ -188,10 +188,10 @@ export default function OmKickboxningPage() {
               </ul>
               <p>
                 Genom den internationella strukturen inom WAKO deltar svenska
-                ut\u00f6vare, domare och ledare i ett system som omfattar hundratals
-                internationella t\u00e4vlingar varje \u00e5r. Svenska landslag t\u00e4vlar i
-                m\u00e4sterskap med olympisk status och verkar inom samma antidoping- och
-                governance-ramar som andra internationellt erk\u00e4nda idrotter.
+                utövare, domare och ledare i ett system som omfattar hundratals
+                internationella tävlingar varje år. Svenska landslag tävlar i
+                mästerskap med olympisk status och verkar inom samma antidoping- och
+                governance-ramar som andra internationellt erkända idrotter.
               </p>
             </div>
           </section>
