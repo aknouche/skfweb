@@ -1,11 +1,9 @@
 import type { Committee, CommitteeType } from '../types';
-import { sanityFetch, isSanityConfigured } from '../sanity';
-import { committeeQueries } from '../sanity/queries';
 
 /**
- * Committees - Static Data with Sanity Integration
+ * Committees - Static Data
  *
- * Uses Sanity CMS if configured, otherwise falls back to static data.
+ * Committee info is stable organisational data — managed as static content.
  * Extracted from Word documents in docs/content/committees/
  */
 
@@ -229,65 +227,3 @@ export function getAllCommittees(): Committee[] {
   return COMMITTEES;
 }
 
-// =============================================================================
-// ASYNC FUNCTIONS (Try Sanity first, fallback to static)
-// =============================================================================
-
-/**
- * Transform Sanity response to match Committee interface
- */
-function transformSanityCommittee(item: Record<string, unknown>): Committee {
-  const contact = item.contact as Record<string, string> | undefined;
-  return {
-    id: (item.id as CommitteeType) || 'styrelsen',
-    name: (item.name as string) || '',
-    slug: (item.slug as string) || '',
-    description: (item.description as string) || '',
-    mandate: (item.mandate as string) || '',
-    responsibilities: (item.responsibilities as string[]) || [],
-    members: (item.members as Committee['members']) || [],
-    contact: {
-      email: contact?.email,
-      phone: contact?.phone,
-    },
-  };
-}
-
-/**
- * Fetch all committees - tries Sanity first, falls back to static
- */
-export async function fetchAllCommittees(): Promise<Committee[]> {
-  if (isSanityConfigured) {
-    const sanityData = await sanityFetch<Record<string, unknown>[]>(committeeQueries.all);
-    if (sanityData && sanityData.length > 0) {
-      return sanityData.map(transformSanityCommittee);
-    }
-  }
-  return getAllCommittees();
-}
-
-/**
- * Fetch committee by slug - tries Sanity first, falls back to static
- */
-export async function fetchCommitteeBySlug(slug: string): Promise<Committee | undefined> {
-  if (isSanityConfigured) {
-    const sanityData = await sanityFetch<Record<string, unknown>>(committeeQueries.bySlug(slug));
-    if (sanityData) {
-      return transformSanityCommittee(sanityData);
-    }
-  }
-  return getCommitteeBySlug(slug);
-}
-
-/**
- * Fetch committee by ID - tries Sanity first, falls back to static
- */
-export async function fetchCommitteeById(id: CommitteeType): Promise<Committee | undefined> {
-  if (isSanityConfigured) {
-    const sanityData = await sanityFetch<Record<string, unknown>>(committeeQueries.byId(id));
-    if (sanityData) {
-      return transformSanityCommittee(sanityData);
-    }
-  }
-  return getCommitteeById(id);
-}

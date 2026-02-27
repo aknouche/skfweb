@@ -6,13 +6,13 @@
  */
 
 import type { NavItem } from '../constants';
-import { fetchAllCommittees } from './committees';
+import { getAllCommittees } from './committees';
 
 /**
- * Build committees navigation item with dynamic children from Sanity
+ * Build committees navigation item from static data
  */
-async function buildCommitteesNav(): Promise<NavItem> {
-  const committees = await fetchAllCommittees();
+function buildCommitteesNav(): NavItem {
+  const committees = getAllCommittees();
 
   const committeeItems: NavItem[] = committees.map((committee) => ({
     label: committee.name,
@@ -33,11 +33,9 @@ async function buildCommitteesNav(): Promise<NavItem> {
 
 /**
  * Fetch complete dynamic navigation structure
- * Only Kommittéer has a dropdown with dynamic content from Sanity.
- * Nyheter and Kalender are direct links (no dropdowns).
  */
 export async function fetchDynamicNavigation(): Promise<NavItem[]> {
-  const committeesNav = await buildCommitteesNav();
+  const committeesNav = buildCommitteesNav();
 
   return [
     { label: 'Start', href: '/' },

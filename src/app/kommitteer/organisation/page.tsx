@@ -5,9 +5,7 @@
 
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { fetchAllCommittees } from '@/lib/data/committees';
-
-export const dynamic = 'force-dynamic';
+import { getAllCommittees } from '@/lib/data/committees';
 
 export const metadata: Metadata = {
   title: 'Organisation | Svenska Kickboxningsförbundet',
@@ -15,8 +13,8 @@ export const metadata: Metadata = {
     'Svenska Kickboxningsförbundets organisationsmodell, kommittéstruktur och ansvarsfördelning.',
 };
 
-export default async function OrganisationPage() {
-  const committees = await fetchAllCommittees();
+export default function OrganisationPage() {
+  const committees = getAllCommittees();
 
   // Styrelsen is shown separately at the top; exclude it from the committee grid
   const styrelsen = committees.find((c) => c.id === 'styrelsen');

@@ -1,21 +1,22 @@
 /**
- * Committee detail page - dynamic route
- * Fetches committee data from Sanity (with static fallback)
+ * Committee detail page - statically generated at build time
  */
 
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { fetchCommitteeBySlug } from '@/lib/data/committees';
-
-export const dynamic = 'force-dynamic';
+import { getCommitteeBySlug, getAllCommittees } from '@/lib/data/committees';
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
+export function generateStaticParams() {
+  return getAllCommittees().map((c) => ({ slug: c.slug }));
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const committee = await fetchCommitteeBySlug(slug);
+  const committee = getCommitteeBySlug(slug);
 
   if (!committee) {
     return { title: 'Kommitté hittades inte | Svenska Kickboxningsförbundet' };
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function CommitteePage({ params }: Props) {
   const { slug } = await params;
-  const committee = await fetchCommitteeBySlug(slug);
+  const committee = getCommitteeBySlug(slug);
 
   if (!committee) {
     notFound();

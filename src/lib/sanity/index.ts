@@ -3,4 +3,4 @@
  */
 
 export { client, sanityFetch, urlForImage, isSanityConfigured } from './client';
-export { newsQueries, competitionQueries, committeeQueries } from './queries';
+export { newsQueries, competitionQueries } from './queries';
