@@ -79,6 +79,20 @@ export const newsSchema = defineType({
       type: 'boolean',
       initialValue: false,
     }),
+    defineField({
+      name: 'documents',
+      title: 'Bilagor / Dokument',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'name', title: 'Namn', type: 'string' },
+            { name: 'file', title: 'Fil', type: 'file' },
+          ],
+        },
+      ],
+    }),
   ],
   preview: {
     select: { title: 'title', category: 'category', media: 'coverImage' },

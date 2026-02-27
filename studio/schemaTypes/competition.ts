@@ -86,7 +86,7 @@ export const eventSchema = defineType({
       fields: [{ name: 'alt', title: 'Alternativ text', type: 'string' }],
     }),
 
-    // ── Tävling + Läger ──────────────────────────────────────────────────────
+    // ── Tävling only: disciplines ─────────────────────────────────────────────
     defineField({
       name: 'disciplines',
       title: 'Discipliner',
@@ -102,8 +102,7 @@ export const eventSchema = defineType({
           { title: 'K1', value: 'K1' },
         ],
       },
-      hidden: ({ document }) =>
-        !['tavling', 'lager'].includes(document?.eventType as string),
+      hidden: ({ document }) => document?.eventType !== 'tavling',
     }),
 
     // ── Tävling + Läger + Utbildning ─────────────────────────────────────────
@@ -163,6 +162,21 @@ export const eventSchema = defineType({
       hidden: ({ document }) => document?.eventType !== 'lager',
     }),
 
+    defineField({
+      name: 'campLeader',
+      title: 'Tränare / Ledare',
+      type: 'string',
+      hidden: ({ document }) => document?.eventType !== 'lager',
+    }),
+    defineField({
+      name: 'accommodation',
+      title: 'Boende',
+      type: 'text',
+      rows: 3,
+      description: 'Beskriv boendearrangemang, t.ex. om boende ingår eller om deltagarna ordnar eget.',
+      hidden: ({ document }) => document?.eventType !== 'lager',
+    }),
+
     // ── Utbildning only ──────────────────────────────────────────────────────
     defineField({
       name: 'instructor',
@@ -213,7 +227,7 @@ export const eventSchema = defineType({
       hidden: ({ document }) => document?.eventType !== 'ovrig',
     }),
 
-    // ── Tävling only: documents ──────────────────────────────────────────────
+    // ── Documents (all event types) ───────────────────────────────────────────
     defineField({
       name: 'documents',
       title: 'Dokument',
@@ -240,7 +254,6 @@ export const eventSchema = defineType({
           ],
         },
       ],
-      hidden: ({ document }) => document?.eventType !== 'tavling',
     }),
   ],
 

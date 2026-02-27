@@ -114,8 +114,8 @@ export const NAVIGATION: { main: NavItem[] } = {
 // =============================================================================
 
 export const SOCIAL = {
-  facebook: 'https://facebook.com/svenskakickboxning',
-  instagram: 'https://instagram.com/svenskakickboxning',
+  facebook: 'https://www.facebook.com/swekickbox',
+  instagram: 'https://www.instagram.com/swedenkickboxing/',
   youtube: 'https://youtube.com/@svenskakickboxning',
 } as const;
 
