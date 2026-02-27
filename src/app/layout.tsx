@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { HeaderWrapper } from '@/components/layout/HeaderWrapper';
 import { Footer } from '@/components/layout/Footer';
+import { CookieBanner } from '@/components/ui/CookieBanner';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -48,6 +49,7 @@ export default function RootLayout({
         <HeaderWrapper />
         <main id="main-content" className="flex-1">{children}</main>
         <Footer />
+        <CookieBanner />
       </body>
     </html>
   );

@@ -153,6 +153,14 @@ export function Footer() {
                     Policys
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    href="/integritetspolicy"
+                    className="no-underline hover:text-white"
+                  >
+                    Integritetspolicy
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
