@@ -46,6 +46,7 @@ export async function fetchDynamicNavigation(): Promise<NavItem[]> {
     { label: 'Landslaget', href: '/landslaget' },
     { label: 'Nyheter', href: '/nyheter' },
     { label: 'Strategi 2030', href: '/strategi-2030' },
+    { label: 'Kontakt', href: '/kontakt' },
     { label: 'Webshop', href: '#', external: true, badge: 'Inom kort' },
   ];
 }
@@ -76,6 +77,7 @@ export function getStaticNavigation(): NavItem[] {
     { label: 'Landslaget', href: '/landslaget' },
     { label: 'Nyheter', href: '/nyheter' },
     { label: 'Strategi 2030', href: '/strategi-2030' },
+    { label: 'Kontakt', href: '/kontakt' },
     { label: 'Webshop', href: '#', external: true, badge: 'Inom kort' },
   ];
 }

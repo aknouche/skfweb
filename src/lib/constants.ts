@@ -105,6 +105,7 @@ export const NAVIGATION: { main: NavItem[] } = {
     },
     { label: 'Strategi 2030', href: '/strategi-2030' },
     { label: 'Nyheter', href: '/nyheter' },
+    { label: 'Kontakt', href: '/kontakt' },
     { label: 'Webshop', href: '#', external: true, badge: 'Inom kort' },
   ],
 };
