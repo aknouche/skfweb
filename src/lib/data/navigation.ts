@@ -35,17 +35,20 @@ function buildCommitteesNav(): NavItem {
  * Fetch complete dynamic navigation structure
  */
 export async function fetchDynamicNavigation(): Promise<NavItem[]> {
-  const committeesNav = buildCommitteesNav();
-
   return [
     { label: 'Start', href: '/' },
     { label: 'Om kickboxning', href: '/om-kickboxning' },
     { label: 'Kalender', href: '/kalender' },
-    committeesNav,
-    { label: 'Om förbundet', href: '/om-forbundet' },
-    { label: 'Landslaget', href: '/landslaget' },
+    {
+      label: 'Förbundet',
+      href: '/om-forbundet',
+      children: [
+        { label: 'Kommittéer', href: '/kommitteer' },
+        { label: 'Landslaget', href: '/landslaget' },
+        { label: 'Strategi 2030', href: '/strategi-2030' },
+      ],
+    },
     { label: 'Nyheter', href: '/nyheter' },
-    { label: 'Strategi 2030', href: '/strategi-2030' },
     { label: 'Kontakt', href: '/kontakt' },
     { label: 'Webshop', href: '#', external: true, badge: 'Inom kort' },
   ];
@@ -60,23 +63,15 @@ export function getStaticNavigation(): NavItem[] {
     { label: 'Om kickboxning', href: '/om-kickboxning' },
     { label: 'Kalender', href: '/kalender' },
     {
-      label: 'Kommittéer',
-      href: '/kommitteer',
+      label: 'Förbundet',
+      href: '/om-forbundet',
       children: [
-        { label: 'Organisation', href: '/kommitteer/organisation' },
-        { label: 'Kommunikationskommittén', href: '/kommitteer/kommunikation' },
-        { label: 'Forsknings- och utvecklingskommittén', href: '/kommitteer/forskning-utveckling' },
-        { label: 'Utbildningskommittén', href: '/kommitteer/utbildning' },
-        { label: 'Landslagskommittén', href: '/kommitteer/landslag' },
-        { label: 'Tävlingskommittén', href: '/kommitteer/tavling' },
-        { label: 'Graderingskommittén', href: '/kommitteer/gradering' },
-        { label: 'Marknadskommittén', href: '/kommitteer/marknad' },
+        { label: 'Kommittéer', href: '/kommitteer' },
+        { label: 'Landslaget', href: '/landslaget' },
+        { label: 'Strategi 2030', href: '/strategi-2030' },
       ],
     },
-    { label: 'Om förbundet', href: '/om-forbundet' },
-    { label: 'Landslaget', href: '/landslaget' },
     { label: 'Nyheter', href: '/nyheter' },
-    { label: 'Strategi 2030', href: '/strategi-2030' },
     { label: 'Kontakt', href: '/kontakt' },
     { label: 'Webshop', href: '#', external: true, badge: 'Inom kort' },
   ];
