@@ -91,9 +91,7 @@ export default function OrganisationPage() {
                   className="rounded-lg border border-gray-200 p-6 transition-shadow hover:shadow-md"
                 >
                   <h3 className="mb-2 text-lg font-bold text-gray-900">
-                    <Link href={`/kommitteer/${committee.slug}`} className="hover:text-skf-blue">
-                      {committee.name}
-                    </Link>
+                    {committee.name}
                   </h3>
                   <p className="mb-4 text-gray-700">{committee.description}</p>
                   {committee.responsibilities.length > 0 && (
@@ -103,6 +101,15 @@ export default function OrganisationPage() {
                       ))}
                     </ul>
                   )}
+                  <Link
+                    href={`/kommitteer/${committee.slug}`}
+                    className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-skf-blue hover:underline"
+                  >
+                    Läs mer
+                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
                 </div>
               ))}
             </div>
