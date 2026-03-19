@@ -20,9 +20,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <div className="section-divider" aria-hidden="true" />
       <UpcomingCompetitions />
-      <div className="section-divider" aria-hidden="true" />
       <LatestNews />
     </>
   );
