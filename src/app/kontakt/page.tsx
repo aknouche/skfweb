@@ -63,6 +63,8 @@ export default function KontaktPage() {
                 <dt className="font-semibold text-skf-blue">Adress</dt>
                 <dd className="mt-0.5">
                   <address className="not-italic leading-relaxed">
+                    {CONTACT.address.co}
+                    <br />
                     {CONTACT.address.street}
                     <br />
                     {CONTACT.address.postal} {CONTACT.address.city}
@@ -91,15 +93,6 @@ export default function KontaktPage() {
                       aria-label="SKF på Instagram"
                     >
                       <InstagramIcon />
-                    </a>
-                    <a
-                      href={SOCIAL.youtube}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-skf-blue transition-colors hover:text-skf-blue/70"
-                      aria-label="SKF på YouTube"
-                    >
-                      <YoutubeIcon />
                     </a>
                   </div>
                 </dd>
@@ -136,14 +129,3 @@ function InstagramIcon() {
   );
 }
 
-function YoutubeIcon() {
-  return (
-    <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path
-        fillRule="evenodd"
-        d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z"
-        clipRule="evenodd"
-      />
-    </svg>
-  );
-}

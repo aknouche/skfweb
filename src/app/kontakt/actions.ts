@@ -24,6 +24,12 @@ export async function submitContactForm(
   prevState: ContactFormState,
   formData: FormData,
 ): Promise<ContactFormState> {
+  // Honeypot check: bots fill hidden fields, humans don't
+  const honey = formData.get('_honey');
+  if (honey) {
+    return { status: 'success' }; // Silently discard
+  }
+
   const name = (formData.get('name') as string | null)?.trim();
   const email = (formData.get('email') as string | null)?.trim();
   const subject = (formData.get('subject') as string | null)?.trim();
@@ -55,9 +61,15 @@ export async function submitContactForm(
   try {
     const resend = new Resend(apiKey);
 
+    const toEmail = process.env.RESEND_TO_EMAIL;
+    if (!toEmail) {
+      console.error('[Contact form] RESEND_TO_EMAIL is not configured');
+      return { status: 'error', message: 'Något gick fel. Försök igen eller skicka ett e-postmeddelande direkt.' };
+    }
+
     const { error } = await resend.emails.send({
       from: `SKF Kontaktformulär <${fromEmail}>`,
-      to: 'ml.aknouche@gmail.com',
+      to: toEmail,
       replyTo: email,
       subject: `Kontaktformulär: ${subject}`,
       text: [

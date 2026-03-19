@@ -109,7 +109,6 @@ export const NAVIGATION: { main: NavItem[] } = {
 export const SOCIAL = {
   facebook: 'https://www.facebook.com/swekickbox',
   instagram: 'https://www.instagram.com/swedenkickboxing/',
-  youtube: 'https://youtube.com/@svenskakickboxning',
 } as const;
 
 // =============================================================================
@@ -117,10 +116,11 @@ export const SOCIAL = {
 // =============================================================================
 
 export const CONTACT = {
-  email: 'info@svenskakickboxning.se',
+  email: 'info@swekickboxing.se',
   address: {
-    street: 'Adress här',
-    postal: '000 00',
+    co: 'C/O Svenska Budo- och Kamportsförbundet',
+    street: 'Ölandsgatan 42',
+    postal: '116 63',
     city: 'Stockholm',
   },
 } as const;

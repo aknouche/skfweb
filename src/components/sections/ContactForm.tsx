@@ -39,6 +39,16 @@ export function ContactForm() {
 
   return (
     <form action={formAction} noValidate className="space-y-5">
+      {/* Honeypot: hidden from real users, bots will fill it in */}
+      <input
+        type="text"
+        name="_honey"
+        tabIndex={-1}
+        aria-hidden="true"
+        autoComplete="off"
+        className="hidden"
+      />
+
       {state.status === 'error' && state.message && (
         <div role="alert" className="rounded-md border border-red-200 bg-red-50 px-4 py-3">
           <p className="text-sm text-red-700">{state.message}</p>
