@@ -7,7 +7,7 @@ import { BRAND } from '@/lib/constants';
 
 export function Hero() {
   return (
-    <section className="relative bg-skf-blue text-white">
+    <section className="hero-animated-bg relative text-white">
       <div className="container-wide py-24 lg:py-32">
         <div className="mx-auto max-w-4xl text-center">
           {/* Main Heading */}

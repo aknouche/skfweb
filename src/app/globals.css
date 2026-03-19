@@ -64,6 +64,37 @@
   }
 }
 
+/* Hero animated gradient */
+@keyframes hero-gradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hero-animated-bg {
+  background: linear-gradient(
+    135deg,
+    #0F2454 0%,
+    #1a3570 35%,
+    #0a1a3e 60%,
+    #0F2454 100%
+  );
+  background-size: 300% 300%;
+  animation: hero-gradient 14s ease infinite;
+}
+
+/* Section divider: diagonal yellow slash stripes */
+.section-divider {
+  height: 3px;
+  background: repeating-linear-gradient(
+    -60deg,
+    #F5DC32,
+    #F5DC32 6px,
+    transparent 6px,
+    transparent 16px
+  );
+}
+
 /* Accessibility: Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
   *,

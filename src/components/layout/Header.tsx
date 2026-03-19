@@ -7,7 +7,7 @@
  * Accepts dynamic navigation data from Sanity CMS.
  */
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { BRAND, type NavItem } from '@/lib/constants';
@@ -262,10 +262,26 @@ function MobileNavItem({
 
 export function Header({ navigation = [] }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
+  const handleScroll = useCallback(() => {
+    setScrolled(window.scrollY > 10);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
+
   return (
-    <header className="border-b border-gray-100 bg-white">
+    <header
+      className={`sticky top-0 z-40 border-b transition-all duration-300 ${
+        scrolled
+          ? 'border-gray-200 bg-white/80 shadow-sm backdrop-blur-md'
+          : 'border-gray-100 bg-white'
+      }`}
+    >
       <div className="container-wide">
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
