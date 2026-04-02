@@ -123,7 +123,7 @@ function transformSanityEvent(item: Record<string, unknown>): CalendarEvent {
 export async function fetchUpcomingCompetitions(): Promise<CalendarEvent[]> {
   if (isSanityConfigured) {
     const data = await sanityFetch<Record<string, unknown>[]>(eventQueries.upcoming);
-    if (data && data.length > 0) return data.map(transformSanityEvent);
+    if (data) return data.map(transformSanityEvent);
   }
   return getUpcomingCompetitions();
 }
@@ -139,7 +139,7 @@ export async function fetchCompetitionBySlug(slug: string): Promise<CalendarEven
 export async function fetchAllCompetitions(): Promise<CalendarEvent[]> {
   if (isSanityConfigured) {
     const data = await sanityFetch<Record<string, unknown>[]>(eventQueries.all);
-    if (data && data.length > 0) return data.map(transformSanityEvent);
+    if (data) return data.map(transformSanityEvent);
   }
   return COMPETITIONS;
 }
