@@ -46,10 +46,12 @@ export async function fetchDynamicNavigation(): Promise<NavItem[]> {
         { label: 'Kommittéer', href: '/kommitteer' },
         { label: 'Landslaget', href: '/landslaget' },
         { label: 'Strategi 2030', href: '/strategi-2030' },
+        { label: 'Domare', href: '/domare' },
+        { label: 'Kontakt', href: '/kontakt' },
       ],
     },
     { label: 'Nyheter', href: '/nyheter' },
-    { label: 'Kontakt', href: '/kontakt' },
+    { label: 'Sponsorer', href: '/sponsorer' },
     { label: 'Webshop', href: '#', external: true, badge: 'Inom kort' },
   ];
 }
@@ -69,10 +71,12 @@ export function getStaticNavigation(): NavItem[] {
         { label: 'Kommittéer', href: '/kommitteer' },
         { label: 'Landslaget', href: '/landslaget' },
         { label: 'Strategi 2030', href: '/strategi-2030' },
+        { label: 'Domare', href: '/domare' },
+        { label: 'Kontakt', href: '/kontakt' },
       ],
     },
     { label: 'Nyheter', href: '/nyheter' },
-    { label: 'Kontakt', href: '/kontakt' },
+    { label: 'Sponsorer', href: '/sponsorer' },
     { label: 'Webshop', href: '#', external: true, badge: 'Inom kort' },
   ];
 }

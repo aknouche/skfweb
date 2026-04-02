@@ -4,6 +4,7 @@
  */
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { fetchLatestNews } from '@/lib/data/news';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { Button } from '@/components/ui/Button';
@@ -40,6 +41,19 @@ export async function LatestNews() {
                 key={article.id}
                 className="group overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-lg"
               >
+                {article.coverImage?.url && (
+                  <Link href={`/nyheter/${article.slug}`} tabIndex={-1}>
+                    <div className="relative h-48 w-full overflow-hidden">
+                      <Image
+                        src={article.coverImage.url}
+                        alt={article.coverImage.alt || article.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    </div>
+                  </Link>
+                )}
                 <div className="p-6">
                   {/* Category Badge */}
                   <div className="mb-3 flex items-center justify-between">

@@ -5,6 +5,7 @@
 
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { fetchLatestNews } from '@/lib/data/news';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 
@@ -45,6 +46,19 @@ export default async function NewsPage() {
                   key={article.id}
                   className="group overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-lg"
                 >
+                  {article.coverImage?.url && (
+                    <Link href={`/nyheter/${article.slug}`} tabIndex={-1}>
+                      <div className="relative h-48 w-full overflow-hidden">
+                        <Image
+                          src={article.coverImage.url}
+                          alt={article.coverImage.alt || article.title}
+                          fill
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                      </div>
+                    </Link>
+                  )}
                   <div className="p-6">
                     <div className="mb-3 flex items-center justify-between">
                       <span className="rounded-full bg-skf-blue/10 px-3 py-1 text-xs font-medium text-skf-blue">

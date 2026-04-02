@@ -5,6 +5,7 @@
 
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { PortableText } from '@portabletext/react';
 import { fetchNewsBySlug } from '@/lib/data/news';
@@ -30,6 +31,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: article.title,
     description: article.excerpt,
+    openGraph: article.coverImage?.url
+      ? {
+          images: [{ url: article.coverImage.url, width: 1200, height: 630 }],
+        }
+      : undefined,
   };
 }
 
@@ -179,6 +185,20 @@ export default async function NewsArticlePage({ params }: PageProps) {
             </p>
           )}
         </header>
+
+        {/* Cover image */}
+        {article.coverImage?.url && (
+          <div className="mx-auto mb-10 max-w-3xl overflow-hidden rounded-lg">
+            <Image
+              src={article.coverImage.url}
+              alt={article.coverImage.alt || article.title}
+              width={1200}
+              height={630}
+              className="w-full object-cover"
+              priority
+            />
+          </div>
+        )}
 
         {/* Article content */}
         <div className="mx-auto max-w-3xl">
