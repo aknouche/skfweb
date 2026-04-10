@@ -4,6 +4,7 @@
  */
 
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { fetchCompetitionBySlug } from '@/lib/data/competitions';
@@ -91,6 +92,19 @@ export default async function EventDetailPage({ params }: PageProps) {
           </h1>
 
           <p className="mb-8 text-xl leading-relaxed text-gray-700">{event.description}</p>
+
+          {event.image?.url && (
+            <div className="relative mb-10 h-72 w-full overflow-hidden rounded-xl md:h-96">
+              <Image
+                src={event.image.url}
+                alt={event.image.alt || event.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 768px"
+                priority
+              />
+            </div>
+          )}
         </header>
 
         {/* Details grid */}

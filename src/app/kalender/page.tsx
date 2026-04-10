@@ -4,6 +4,7 @@
  */
 
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { fetchAllCompetitions } from '@/lib/data/competitions';
 import { SectionHeader } from '@/components/ui/SectionHeader';
@@ -120,6 +121,17 @@ function EventCard({ event, completed = false }: { event: CalendarEvent; complet
         completed ? 'border-gray-200 opacity-75' : 'border-gray-200'
       }`}
     >
+      {event.image?.url && (
+        <div className="relative h-48 w-full overflow-hidden">
+          <Image
+            src={event.image.url}
+            alt={event.image.alt || event.title}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+        </div>
+      )}
       <div className="p-6">
         {/* Type badge + date */}
         <div className="mb-4 flex items-center gap-2">
