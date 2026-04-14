@@ -49,7 +49,7 @@ const portableTextComponents = {
       <h3 className="mt-6 mb-3 text-xl font-bold text-gray-900">{children}</h3>
     ),
     normal: ({ children }: { children?: React.ReactNode }) => (
-      <p className="mt-4 text-gray-700 leading-relaxed">{children}</p>
+      <p className="mt-4 text-gray-700 leading-relaxed whitespace-pre-line">{children}</p>
     ),
   },
   list: {
