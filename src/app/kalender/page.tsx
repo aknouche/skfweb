@@ -104,6 +104,20 @@ export default async function KalenderPage({ searchParams }: PageProps) {
   );
 }
 
+// ── Helpers ──────────────────────────────────────────────────────────────────
+
+function stripMarkdown(text: string): string {
+  return text
+    .replace(/#{1,6}\s+/g, '')           // headings
+    .replace(/\*{1,2}([^*]+)\*{1,2}/g, '$1') // bold / italic
+    .replace(/^[*\-+]\s+/gm, '')         // list bullets
+    .replace(/^>\s+/gm, '')              // blockquotes
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // links → label only
+    .replace(/---+/g, '')                // horizontal rules
+    .replace(/\n+/g, ' ')               // collapse newlines
+    .trim();
+}
+
 // ── Card ─────────────────────────────────────────────────────────────────────
 
 function EventCard({ event, completed = false }: { event: CalendarEvent; completed?: boolean }) {
@@ -157,7 +171,7 @@ function EventCard({ event, completed = false }: { event: CalendarEvent; complet
           </p>
         )}
 
-        <p className="mb-4 line-clamp-2 text-gray-700">{event.description}</p>
+        <p className="mb-4 line-clamp-2 text-gray-700">{stripMarkdown(event.description)}</p>
 
         {/* Disciplines (tävling/läger only) */}
         {event.disciplines && event.disciplines.length > 0 && (

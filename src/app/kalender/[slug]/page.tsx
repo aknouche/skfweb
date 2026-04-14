@@ -7,6 +7,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import ReactMarkdown from 'react-markdown';
 import { fetchCompetitionBySlug } from '@/lib/data/competitions';
 import { EVENT_TYPE_LABELS } from '@/lib/constants';
 import type { CalendarEvent } from '@/lib/types';
@@ -91,7 +92,9 @@ export default async function EventDetailPage({ params }: PageProps) {
             {event.title}
           </h1>
 
-          <p className="mb-8 text-xl leading-relaxed text-gray-700">{event.description}</p>
+          <div className="prose prose-gray mb-8 max-w-none leading-relaxed">
+            <ReactMarkdown>{event.description}</ReactMarkdown>
+          </div>
 
           {event.image?.url && (
             <div className="relative mb-10 h-72 w-full overflow-hidden rounded-xl md:h-96">
