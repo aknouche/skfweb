@@ -45,6 +45,7 @@ export async function fetchDynamicNavigation(): Promise<NavItem[]> {
       children: [
         { label: 'Kommittéer', href: '/kommitteer' },
         { label: 'Landslaget', href: '/landslaget' },
+        { label: 'Mästargrad', href: '/forbundet/mastargrad' },
         { label: 'Strategi 2030', href: '/strategi-2030' },
         { label: 'Domare', href: '/domare' },
         { label: 'Kontakt', href: '/kontakt' },
@@ -70,6 +71,7 @@ export function getStaticNavigation(): NavItem[] {
       children: [
         { label: 'Kommittéer', href: '/kommitteer' },
         { label: 'Landslaget', href: '/landslaget' },
+        { label: 'Mästargrad', href: '/forbundet/mastargrad' },
         { label: 'Strategi 2030', href: '/strategi-2030' },
         { label: 'Domare', href: '/domare' },
         { label: 'Kontakt', href: '/kontakt' },
