@@ -3,6 +3,7 @@
  * Shows next 3 upcoming competitions on homepage
  */
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { fetchUpcomingCompetitions } from '@/lib/data/competitions';
 import { SectionHeader } from '@/components/ui/SectionHeader';
@@ -37,6 +38,17 @@ export async function UpcomingCompetitions() {
                 key={competition.id}
                 className="group overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-lg"
               >
+                {competition.image?.url && (
+                  <div className="relative h-48 w-full overflow-hidden">
+                    <Image
+                      src={competition.image.url}
+                      alt={competition.image.alt || competition.title}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                )}
                 <div className="p-6">
                   {/* Date Badge */}
                   <div className="mb-4 inline-block rounded-md bg-skf-blue px-3 py-1 text-sm font-medium text-white">
