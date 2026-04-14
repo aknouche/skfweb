@@ -93,6 +93,7 @@ export const NAVIGATION: { main: NavItem[] } = {
       children: [
         { label: 'Kommittéer', href: '/kommitteer' },
         { label: 'Landslaget', href: '/landslaget' },
+        { label: 'Mästargrad', href: '/forbundet/mastargrad' },
         { label: 'Strategi 2030', href: '/strategi-2030' },
       ],
     },
