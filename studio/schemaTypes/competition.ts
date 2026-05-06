@@ -131,10 +131,9 @@ export const eventSchema = defineType({
     // ── Läger + Utbildning ───────────────────────────────────────────────────
     defineField({
       name: 'price',
-      title: 'Pris (SEK)',
+      title: 'Pris (sek)',
       type: 'number',
-      hidden: ({ document }) =>
-        !['lager', 'utbildning'].includes(document?.eventType as string),
+      validation: (Rule) => Rule.min(1).integer(),
     }),
     defineField({
       name: 'maxParticipants',
