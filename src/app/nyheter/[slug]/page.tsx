@@ -213,6 +213,48 @@ export default async function NewsArticlePage({ params }: PageProps) {
             )}
           </div>
 
+          {/* Documents & Videos */}
+          {article.documents && article.documents.length > 0 && (
+            <div className="mt-12 border-t border-gray-200 pt-8">
+              <h4 className="mb-4 text-sm font-medium text-gray-500">Bilagor</h4>
+              <div className="space-y-4">
+                {article.documents.map((doc, i) => {
+                  const isVideo = doc.mimeType === 'video/mp4' || doc.url?.endsWith('.mp4');
+                  if (isVideo) {
+                    return (
+                      <div key={i}>
+                        {doc.name && (
+                          <p className="mb-2 text-sm font-medium text-gray-700">{doc.name}</p>
+                        )}
+                        <video
+                          controls
+                          className="w-full rounded-lg"
+                          src={doc.url}
+                        >
+                          Din webbläsare stödjer inte videouppspelning.
+                        </video>
+                      </div>
+                    );
+                  }
+                  return (
+                    <a
+                      key={i}
+                      href={doc.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-skf-blue underline hover:no-underline"
+                    >
+                      <svg className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                      </svg>
+                      {doc.name || 'Ladda ned bilaga'}
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
           {/* Tags */}
           {article.tags && article.tags.length > 0 && (
             <div className="mt-12 border-t border-gray-200 pt-8">

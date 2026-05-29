@@ -5,6 +5,7 @@ import { CookieBanner } from '@/components/ui/CookieBanner';
 import './globals.css';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://swekickboxing.se'),
   title: {
     default: 'Svenska Kickboxningsförbundet',
     template: '%s | Svenska Kickboxningsförbundet',

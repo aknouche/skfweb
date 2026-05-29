@@ -77,6 +77,11 @@ export const newsQueries = {
       },
       alt
     },
+    documents[] {
+      name,
+      "url": file.asset->url,
+      "mimeType": file.asset->mimeType
+    },
     tags,
     featured
   }`,

@@ -39,6 +39,11 @@ export interface NewsArticle {
   };
   tags?: string[];
   featured?: boolean;
+  documents?: {
+    name: string;
+    url: string;
+    mimeType?: string;
+  }[];
 }
 
 // =============================================================================
