@@ -239,7 +239,7 @@ export default async function NewsArticlePage({ params }: PageProps) {
                   return (
                     <a
                       key={i}
-                      href={doc.url}
+                      href={doc.url ? `${doc.url}?dl=${encodeURIComponent(doc.name || '')}` : '#'}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 text-skf-blue underline hover:no-underline"

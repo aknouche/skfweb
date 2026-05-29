@@ -282,7 +282,7 @@ export default async function EventDetailPage({ params }: PageProps) {
                 {event.documents.map((doc, i) => (
                   <li key={i}>
                     <a
-                      href={doc.url}
+                      href={doc.url ? `${doc.url}?dl=${encodeURIComponent(doc.name || '')}` : '#'}
                       className="inline-flex items-center text-sm font-medium text-skf-blue hover:underline"
                       target="_blank"
                       rel="noopener noreferrer"
