@@ -43,6 +43,7 @@ export interface NewsArticle {
     name: string;
     url: string;
     mimeType?: string;
+    originalFilename?: string;
   }[];
 }
 

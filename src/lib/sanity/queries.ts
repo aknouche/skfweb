@@ -80,7 +80,8 @@ export const newsQueries = {
     documents[] {
       name,
       "url": file.asset->url,
-      "mimeType": file.asset->mimeType
+      "mimeType": file.asset->mimeType,
+      "originalFilename": file.asset->originalFilename
     },
     tags,
     featured
