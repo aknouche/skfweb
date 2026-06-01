@@ -237,8 +237,16 @@ export default async function NewsArticlePage({ params }: PageProps) {
                     );
                   }
                   const displayName = doc.name || doc.originalFilename || 'Ladda ned bilaga';
+                  // Ensure the download filename has the correct extension from originalFilename.
+                  // doc.name is human-readable (e.g. "Stämmoprotokoll") but often lacks the
+                  // extension; originalFilename (e.g. "protokoll.pdf") always has it.
+                  const ext = doc.originalFilename?.split('.').pop();
+                  const downloadName =
+                    ext && !displayName.toLowerCase().endsWith(`.${ext.toLowerCase()}`)
+                      ? `${displayName}.${ext}`
+                      : displayName;
                   const downloadHref = doc.url
-                    ? `/api/download?url=${encodeURIComponent(doc.url)}&filename=${encodeURIComponent(displayName)}`
+                    ? `/api/download?url=${encodeURIComponent(doc.url)}&filename=${encodeURIComponent(downloadName)}`
                     : '#';
                   return (
                     <a
