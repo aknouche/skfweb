@@ -34,51 +34,41 @@ function buildCommitteesNav(): NavItem {
 /**
  * Fetch complete dynamic navigation structure
  */
+const BASE_NAV: NavItem[] = [
+  { label: 'Start', href: '/' },
+  { label: 'Om kickboxning', href: '/om-kickboxning' },
+  { label: 'Kalender', href: '/kalender' },
+  {
+    label: 'Förbundet',
+    href: '/om-forbundet',
+    children: [
+      { label: 'Kommittéer', href: '/kommitteer' },
+      { label: 'Landslaget', href: '/landslaget' },
+      { label: 'Mästargrad', href: '/forbundet/mastargrad' },
+      { label: 'Strategi 2030', href: '/strategi-2030' },
+      { label: 'Domare', href: '/domare' },
+      { label: 'Kontakt', href: '/kontakt' },
+    ],
+  },
+  {
+    label: 'För klubbar',
+    href: '/forbundsrabatter',
+    children: [
+      { label: 'Förbundsrabatter', href: '/forbundsrabatter' },
+    ],
+  },
+  { label: 'Nyheter', href: '/nyheter' },
+  { label: 'Partners', href: '/partners' },
+  { label: 'Webshop', href: '#', external: true, badge: 'Inom kort' },
+];
+
 export async function fetchDynamicNavigation(): Promise<NavItem[]> {
-  return [
-    { label: 'Start', href: '/' },
-    { label: 'Om kickboxning', href: '/om-kickboxning' },
-    { label: 'Kalender', href: '/kalender' },
-    {
-      label: 'Förbundet',
-      href: '/om-forbundet',
-      children: [
-        { label: 'Kommittéer', href: '/kommitteer' },
-        { label: 'Landslaget', href: '/landslaget' },
-        { label: 'Mästargrad', href: '/forbundet/mastargrad' },
-        { label: 'Strategi 2030', href: '/strategi-2030' },
-        { label: 'Domare', href: '/domare' },
-        { label: 'Kontakt', href: '/kontakt' },
-      ],
-    },
-    { label: 'Nyheter', href: '/nyheter' },
-    { label: 'Sponsorer', href: '/sponsorer' },
-    { label: 'Webshop', href: '#', external: true, badge: 'Inom kort' },
-  ];
+  return BASE_NAV;
 }
 
 /**
  * Get static navigation (for fallback or client-side)
  */
 export function getStaticNavigation(): NavItem[] {
-  return [
-    { label: 'Start', href: '/' },
-    { label: 'Om kickboxning', href: '/om-kickboxning' },
-    { label: 'Kalender', href: '/kalender' },
-    {
-      label: 'Förbundet',
-      href: '/om-forbundet',
-      children: [
-        { label: 'Kommittéer', href: '/kommitteer' },
-        { label: 'Landslaget', href: '/landslaget' },
-        { label: 'Mästargrad', href: '/forbundet/mastargrad' },
-        { label: 'Strategi 2030', href: '/strategi-2030' },
-        { label: 'Domare', href: '/domare' },
-        { label: 'Kontakt', href: '/kontakt' },
-      ],
-    },
-    { label: 'Nyheter', href: '/nyheter' },
-    { label: 'Sponsorer', href: '/sponsorer' },
-    { label: 'Webshop', href: '#', external: true, badge: 'Inom kort' },
-  ];
+  return BASE_NAV;
 }

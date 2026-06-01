@@ -4,6 +4,7 @@
  */
 
 import type { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Landslaget | Svenska Kickboxningsförbundet',
@@ -155,6 +156,37 @@ export default function LandslagetPage() {
             med Svenska Kickboxningsförbundets övergripande mål
             och Strategi 2030.
           </p>
+        </section>
+        {/* TOP TEN equipment block */}
+        <section className="mt-12 border-t border-gray-100 pt-10">
+          <Link
+            href="/partners"
+            className="group flex items-center gap-5 rounded-xl border border-gray-100 bg-gray-50 p-6 no-underline transition-colors hover:border-skf-blue/20 hover:bg-skf-blue/5"
+            aria-label="Landslaget utrustas av TOP TEN — läs mer om våra partners"
+          >
+            {/* Logo placeholder */}
+            <div
+              className="flex h-12 w-28 shrink-0 items-center justify-center rounded border border-dashed border-gray-300 bg-white"
+              aria-hidden="true"
+            >
+              <span className="text-sm font-bold tracking-widest text-gray-400">TOP TEN</span>
+            </div>
+            <div>
+              <p className="font-semibold text-skf-blue">Landslaget utrustas av TOP TEN</p>
+              <p className="mt-0.5 text-sm text-gray-500 group-hover:text-gray-700">
+                Officiell utrustningspartner och WAKO:s officiella leverantör.
+              </p>
+            </div>
+            <svg
+              className="ml-auto h-5 w-5 shrink-0 text-gray-400 transition-colors group-hover:text-skf-blue"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
         </section>
       </div>
     </main>

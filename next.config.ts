@@ -34,6 +34,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/sponsorer',
+        destination: '/partners',
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

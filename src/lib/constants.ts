@@ -95,13 +95,34 @@ export const NAVIGATION: { main: NavItem[] } = {
         { label: 'Landslaget', href: '/landslaget' },
         { label: 'Mästargrad', href: '/forbundet/mastargrad' },
         { label: 'Strategi 2030', href: '/strategi-2030' },
+        { label: 'Domare', href: '/domare' },
+        { label: 'Kontakt', href: '/kontakt' },
+      ],
+    },
+    {
+      label: 'För klubbar',
+      href: '/forbundsrabatter',
+      children: [
+        { label: 'Förbundsrabatter', href: '/forbundsrabatter' },
       ],
     },
     { label: 'Nyheter', href: '/nyheter' },
-    { label: 'Kontakt', href: '/kontakt' },
+    { label: 'Partners', href: '/partners' },
     { label: 'Webshop', href: '#', external: true, badge: 'Inom kort' },
   ],
 };
+
+// =============================================================================
+// AFFILIATE / PARTNER LINKS
+// =============================================================================
+
+export const AFFILIATE_URLS = {
+  partnerPage: 'https://www.nicopiasport.se/se/?affiliate=13641&utm_source=skf_web&utm_medium=partner_page&utm_campaign=partner_page',
+  clubDiscount: 'https://www.nicopiasport.se/se/?affiliate=13641&utm_source=skf_web&utm_medium=discount_page&utm_campaign=club_discount',
+  memberDiscount: 'https://www.nicopiasport.se/se/?affiliate=13641&utm_source=skf_web&utm_medium=discount_page&utm_campaign=student_discount',
+  toptenCatalog: 'https://www.nicopiasport.se/se/art/ifma-topten/wako-topten/?affiliate=13641&utm_source=skf_web&utm_medium=discount_page&utm_campaign=topten_catalog',
+  footer: 'https://www.nicopiasport.se/se/?affiliate=13641&utm_source=skf_web&utm_medium=footer&utm_campaign=partner_link',
+} as const;
 
 // =============================================================================
 // SOCIAL MEDIA

@@ -13,6 +13,22 @@ export function Footer() {
   return (
     <footer className="bg-skf-blue text-white">
       <div className="container-wide">
+        {/* Partner bar */}
+        <div className="border-b border-white/10 py-4">
+          <div className="flex items-center gap-4">
+            <p className="text-xs font-semibold uppercase tracking-widest text-gray-400">
+              Officiell utrustningspartner:
+            </p>
+            <Link
+              href="/partners"
+              className="flex h-10 w-24 items-center justify-center rounded border border-dashed border-white/20 bg-white/5 no-underline transition-colors hover:bg-white/10"
+              aria-label="TOP TEN — officiell utrustningspartner, läs mer om våra partners"
+            >
+              <span className="text-xs font-bold tracking-widest text-white/60">TOP TEN</span>
+            </Link>
+          </div>
+        </div>
+
         {/* Main Footer Content */}
         <div className="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand Column */}

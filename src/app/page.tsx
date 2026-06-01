@@ -1,20 +1,9 @@
-/**
- * Homepage
- * Startsida för Svenska Kickboxningsförbundet
- *
- * Structure optimized for user experience:
- * - Hero: Brand introduction
- * - UpcomingCompetitions: Featured events (2 items)
- * - LatestNews: Recent updates (2 items)
- *
- * Note: PartnersSection moved to P2 (placeholder content removed)
- */
-
 export const dynamic = 'force-dynamic';
 
 import { Hero } from '@/components/sections/Hero';
 import { UpcomingCompetitions } from '@/components/sections/UpcomingCompetitions';
 import { LatestNews } from '@/components/sections/LatestNews';
+import { PartnersSection } from '@/components/sections/PartnersSection';
 
 export default function HomePage() {
   return (
@@ -22,6 +11,7 @@ export default function HomePage() {
       <Hero />
       <LatestNews />
       <UpcomingCompetitions />
+      <PartnersSection />
     </>
   );
 }
