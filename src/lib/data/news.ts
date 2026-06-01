@@ -111,6 +111,7 @@ function transformSanityNews(item: Record<string, unknown>): NewsArticle {
     tags: item.tags as string[] | undefined,
     featured: (item.featured as boolean) || false,
     documents: item.documents as NewsArticle['documents'] | undefined,
+    videoEmbeds: item.videoEmbeds as NewsArticle['videoEmbeds'] | undefined,
   };
 }
 

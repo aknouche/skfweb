@@ -83,6 +83,10 @@ export const newsQueries = {
       "mimeType": file.asset->mimeType,
       "originalFilename": file.asset->originalFilename
     },
+    videoEmbeds[] {
+      url,
+      caption
+    },
     tags,
     featured
   }`,

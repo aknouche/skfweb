@@ -93,6 +93,33 @@ export const newsSchema = defineType({
         },
       ],
     }),
+    defineField({
+      name: 'videoEmbeds',
+      title: 'Videolänkar',
+      description: 'Klistra in YouTube- eller Vimeo-länkar (t.ex. https://www.youtube.com/watch?v=...)',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'url',
+              title: 'Videolänk',
+              type: 'url',
+              validation: (Rule) => Rule.required().uri({ scheme: ['http', 'https'] }),
+            },
+            {
+              name: 'caption',
+              title: 'Bildtext (valfri)',
+              type: 'string',
+            },
+          ],
+          preview: {
+            select: { title: 'url', subtitle: 'caption' },
+          },
+        },
+      ],
+    }),
   ],
   preview: {
     select: { title: 'title', category: 'category', media: 'coverImage' },

@@ -14,6 +14,29 @@ import type { PortableTextBlock } from '@/lib/types';
 export const dynamic = 'force-dynamic';
 export const dynamicParams = true;
 
+function getEmbedUrl(url: string): string | null {
+  try {
+    const u = new URL(url);
+    // YouTube: youtube.com/watch?v=ID or youtu.be/ID
+    if (u.hostname === 'www.youtube.com' || u.hostname === 'youtube.com') {
+      const id = u.searchParams.get('v');
+      return id ? `https://www.youtube-nocookie.com/embed/${id}` : null;
+    }
+    if (u.hostname === 'youtu.be') {
+      const id = u.pathname.slice(1);
+      return id ? `https://www.youtube-nocookie.com/embed/${id}` : null;
+    }
+    // Vimeo: vimeo.com/ID
+    if (u.hostname === 'vimeo.com' || u.hostname === 'www.vimeo.com') {
+      const id = u.pathname.split('/').filter(Boolean)[0];
+      return id ? `https://player.vimeo.com/video/${id}` : null;
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
@@ -213,33 +236,41 @@ export default async function NewsArticlePage({ params }: PageProps) {
             )}
           </div>
 
-          {/* Documents & Videos */}
+          {/* Video embeds */}
+          {article.videoEmbeds && article.videoEmbeds.length > 0 && (
+            <div className="mt-12 space-y-8 border-t border-gray-200 pt-8">
+              {article.videoEmbeds.map((embed, i) => {
+                const src = getEmbedUrl(embed.url);
+                if (!src) return null;
+                return (
+                  <figure key={i}>
+                    <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-black">
+                      <iframe
+                        src={src}
+                        title={embed.caption ?? `Video ${i + 1}`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="absolute inset-0 h-full w-full border-0"
+                      />
+                    </div>
+                    {embed.caption && (
+                      <figcaption className="mt-2 text-center text-sm text-gray-500">
+                        {embed.caption}
+                      </figcaption>
+                    )}
+                  </figure>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Documents */}
           {article.documents && article.documents.length > 0 && (
             <div className="mt-12 border-t border-gray-200 pt-8">
               <h4 className="mb-4 text-sm font-medium text-gray-500">Bilagor</h4>
               <div className="space-y-4">
                 {article.documents.map((doc, i) => {
-                  const isVideo = doc.mimeType === 'video/mp4' || doc.url?.endsWith('.mp4');
-                  if (isVideo) {
-                    return (
-                      <div key={i}>
-                        {doc.name && (
-                          <p className="mb-2 text-sm font-medium text-gray-700">{doc.name}</p>
-                        )}
-                        <video
-                          controls
-                          className="w-full rounded-lg"
-                          src={doc.url}
-                        >
-                          Din webbläsare stödjer inte videouppspelning.
-                        </video>
-                      </div>
-                    );
-                  }
                   const displayName = doc.name || doc.originalFilename || 'Ladda ned bilaga';
-                  // Ensure the download filename has the correct extension from originalFilename.
-                  // doc.name is human-readable (e.g. "Stämmoprotokoll") but often lacks the
-                  // extension; originalFilename (e.g. "protokoll.pdf") always has it.
                   const ext = doc.originalFilename?.split('.').pop();
                   const downloadName =
                     ext && !displayName.toLowerCase().endsWith(`.${ext.toLowerCase()}`)
