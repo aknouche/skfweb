@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { AFFILIATE_URLS } from '@/lib/constants';
 
@@ -33,18 +34,6 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* Tier: Huvudpartner */}
-      <section className="border-t border-gray-100 py-12">
-        <div className="container-narrow">
-          <h2 className="text-xl font-bold text-skf-blue uppercase tracking-wide mb-6">
-            Huvudpartner
-          </h2>
-          <div className="rounded-lg border border-dashed border-gray-200 bg-gray-50 px-8 py-10 text-center">
-            <p className="text-gray-400 italic">Plats för kommande huvudpartner.</p>
-          </div>
-        </div>
-      </section>
-
       {/* Tier: Officiell utrustningspartner */}
       <section className="border-t border-gray-100 py-12">
         <div className="container-narrow">
@@ -55,13 +44,13 @@ export default function PartnersPage() {
           <div className="rounded-xl border border-gray-100 bg-white p-8 shadow-sm">
             {/* Logo block */}
             <div className="mb-6">
-              {/* Placeholder until official logo file is provided */}
-              <div
-                className="inline-flex h-20 w-48 items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50"
-                aria-label="TOP TEN logotyp (placeholder)"
-              >
-                <span className="text-lg font-bold tracking-widest text-gray-400">TOP TEN</span>
-              </div>
+              <Image
+                src="/images/partners/toptenlogo.png"
+                alt="TOP TEN logotyp"
+                width={180}
+                height={80}
+                className="object-contain"
+              />
               <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-gray-500">
                 Officiell och föredragen partner
               </p>
@@ -123,34 +112,6 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* Tier: Leverantörer och medlemsförmåner */}
-      <section className="border-t border-gray-100 py-12 bg-gray-50">
-        <div className="container-narrow">
-          <h2 className="text-xl font-bold text-skf-blue uppercase tracking-wide mb-6">
-            Leverantörer och medlemsförmåner
-          </h2>
-          <p className="text-gray-700 mb-6">
-            SKF-anslutna klubbar och aktiva utövare har tillgång till exklusiva rabatter hos
-            förbundets officiella leverantörer. Rabatten gäller TOP TEN-sortimentet hos Nicopia
-            Sport.
-          </p>
-          <Link
-            href="/forbundsrabatter"
-            className="inline-flex items-center gap-1 rounded-md bg-skf-yellow px-6 py-3 text-sm font-semibold text-skf-blue no-underline transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-skf-blue"
-          >
-            Se medlemsförmåner
-            <svg
-              className="h-4 w-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </Link>
-        </div>
-      </section>
     </main>
   );
 }

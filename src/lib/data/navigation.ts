@@ -50,13 +50,6 @@ const BASE_NAV: NavItem[] = [
       { label: 'Kontakt', href: '/kontakt' },
     ],
   },
-  {
-    label: 'För klubbar',
-    href: '/forbundsrabatter',
-    children: [
-      { label: 'Förbundsrabatter', href: '/forbundsrabatter' },
-    ],
-  },
   { label: 'Nyheter', href: '/nyheter' },
   { label: 'Partners', href: '/partners' },
   { label: 'Webshop', href: '#', external: true, badge: 'Inom kort' },
