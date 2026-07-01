@@ -86,7 +86,7 @@ export const COMMITTEES: Committee[] = [
       },
     ],
     contact: {
-      email: 'fou@svenskakickboxning.se',
+      email: 'fou@swekickboxing.se',
     },
   },
   {
@@ -110,7 +110,7 @@ export const COMMITTEES: Committee[] = [
       },
     ],
     contact: {
-      email: 'utbildning@svenskakickboxning.se',
+      email: 'utbildning@swekickboxing.se',
     },
   },
   {
@@ -134,7 +134,7 @@ export const COMMITTEES: Committee[] = [
       },
     ],
     contact: {
-      email: 'landslag@svenskakickboxning.se',
+      email: 'coach@swekickboxing.se',
     },
   },
   {
@@ -158,7 +158,7 @@ export const COMMITTEES: Committee[] = [
       },
     ],
     contact: {
-      email: 'tavling@svenskakickboxning.se',
+      email: 'tavling@swekickboxing.se',
     },
   },
   {
@@ -182,7 +182,7 @@ export const COMMITTEES: Committee[] = [
       },
     ],
     contact: {
-      email: 'gradering@svenskakickboxning.se',
+      email: 'gradering@swekickboxing.se',
     },
   },
   {
