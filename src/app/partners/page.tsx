@@ -112,6 +112,112 @@ export default function PartnersPage() {
         </div>
       </section>
 
+      {/* Tier: Samarbetspartners */}
+      <section className="border-t border-gray-100 py-12">
+        <div className="container-narrow">
+          <h2 className="text-xl font-bold text-skf-blue uppercase tracking-wide mb-8">
+            Samarbetspartners
+          </h2>
+
+          <ul className="divide-y divide-gray-100 rounded-xl border border-gray-100 bg-white shadow-sm">
+            {PARTNERS.map((partner) => {
+              const logoTile = (
+                <div
+                  className={`flex h-14 w-36 shrink-0 items-center justify-center rounded-md px-3 ${
+                    partner.logoBg ?? 'bg-gray-50'
+                  }`}
+                >
+                  {partner.logo ? (
+                    <Image
+                      src={partner.logo}
+                      alt={`${partner.name} logotyp`}
+                      width={144}
+                      height={56}
+                      className="max-h-10 w-auto object-contain"
+                    />
+                  ) : (
+                    <span className="text-lg font-bold tracking-wide text-gray-400">
+                      {partner.name
+                        .split(' ')
+                        .filter((word) => word !== 'AB')
+                        .slice(0, 2)
+                        .map((word) => word[0])
+                        .join('')}
+                    </span>
+                  )}
+                </div>
+              );
+
+              return (
+                <li key={partner.name}>
+                  {partner.url ? (
+                    <a
+                      href={partner.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center gap-6 px-6 py-5 no-underline transition-colors hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-skf-blue"
+                    >
+                      {logoTile}
+                      <span className="text-base font-semibold text-skf-blue">{partner.name}</span>
+                      <svg
+                        className="ml-auto h-4 w-4 shrink-0 text-gray-400 transition-colors group-hover:text-skf-blue"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        />
+                      </svg>
+                    </a>
+                  ) : (
+                    <div className="flex items-center gap-6 px-6 py-5">
+                      {logoTile}
+                      <span className="text-base font-semibold text-skf-blue">{partner.name}</span>
+                    </div>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </section>
+
     </main>
   );
 }
+
+type Partner = {
+  name: string;
+  logo?: string;
+  logoBg?: string;
+  url?: string;
+};
+
+const PARTNERS: Partner[] = [
+  {
+    name: 'RJ Consulting AB',
+    logo: '/images/partners/rj-consulting.png',
+    logoBg: 'bg-gray-900',
+  },
+  {
+    name: 'Novelty Quest AB',
+    logo: '/images/partners/novelty-quest.png',
+    logoBg: 'bg-white',
+    url: 'https://www.noveltyquest.com/',
+  },
+  {
+    name: 'Rudman Consulting AB',
+    url: 'https://www.bjornrudman.se/',
+  },
+  {
+    name: 'BL Bygg & Konsult AB',
+    logo: '/images/partners/bl-bygg-konsult.png',
+    logoBg: 'bg-skf-blue',
+    url: 'https://blbyggkonsult.se/',
+  },
+];
