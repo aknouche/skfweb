@@ -36,7 +36,14 @@ function buildCommitteesNav(): NavItem {
  */
 const BASE_NAV: NavItem[] = [
   { label: 'Start', href: '/' },
-  { label: 'Om kickboxning', href: '/om-kickboxning' },
+  {
+    label: 'Om kickboxning',
+    href: '/om-kickboxning',
+    children: [
+      { label: 'Om kickboxning', href: '/om-kickboxning' },
+      { label: 'Tävlingsregler', href: '/tavlingsregler' },
+    ],
+  },
   { label: 'Kalender', href: '/kalender' },
   {
     label: 'Förbundet',
