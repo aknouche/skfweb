@@ -3,6 +3,7 @@
  * Site footer with contact info, quick links, and social media.
  */
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { BRAND, CONTACT, SOCIAL, NAVIGATION } from '@/lib/constants';
 import { Logo } from '@/components/ui/Logo';
@@ -15,16 +16,35 @@ export function Footer() {
       <div className="container-wide">
         {/* Partner bar */}
         <div className="border-b border-white/10 py-4">
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
             <p className="text-xs font-semibold uppercase tracking-widest text-gray-400">
-              Officiell utrustningspartner:
+              Officiella partners:
             </p>
             <Link
               href="/partners"
-              className="flex h-10 w-24 items-center justify-center rounded border border-dashed border-white/20 bg-white/5 no-underline transition-colors hover:bg-white/10"
+              className="flex h-10 w-24 items-center justify-center rounded bg-white px-2 no-underline transition-opacity hover:opacity-90"
               aria-label="TOP TEN — officiell utrustningspartner, läs mer om våra partners"
             >
-              <span className="text-xs font-bold tracking-widest text-white/60">TOP TEN</span>
+              <Image
+                src="/images/partners/toptenlogo.png"
+                alt="TOP TEN logotyp"
+                width={96}
+                height={40}
+                className="max-h-8 w-auto object-contain"
+              />
+            </Link>
+            <Link
+              href="/partners"
+              className="flex h-10 w-24 items-center justify-center rounded bg-white px-2 no-underline transition-opacity hover:opacity-90"
+              aria-label="Nicopia Sport — officiell distributionspartner, läs mer om våra partners"
+            >
+              <Image
+                src="/images/partners/nicopiasports.jpeg"
+                alt="Nicopia Sport logotyp"
+                width={96}
+                height={40}
+                className="max-h-8 w-auto object-contain"
+              />
             </Link>
           </div>
         </div>
