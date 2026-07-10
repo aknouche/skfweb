@@ -42,12 +42,6 @@ export function PartnerBar() {
               className="max-h-6 w-auto object-contain"
             />
           </Link>
-          <Link
-            href="/partners"
-            className="ml-auto text-xs font-semibold text-skf-yellow no-underline transition-opacity hover:opacity-80"
-          >
-            Se alla partners →
-          </Link>
         </div>
       </div>
     </div>
