@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 export function PartnersSection() {
@@ -8,21 +9,39 @@ export function PartnersSection() {
     >
       <div className="container-wide">
         <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-between">
-          <div className="flex items-center gap-5">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
             <p
               id="partners-heading"
               className="text-xs font-semibold uppercase tracking-widest text-gray-400"
             >
-              Våra partners
+              Våra officiella partners
             </p>
-            {/* TOP TEN logo placeholder — replace with <Image> when logo file is provided */}
-            <div
-              className="flex h-10 w-24 items-center justify-center rounded border border-dashed border-gray-300 bg-white"
-              aria-label="TOP TEN logotyp"
-            >
-              <span className="text-xs font-bold tracking-widest text-gray-400">TOP TEN</span>
+            {/* TOP TEN — utrustningspartner */}
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-24 items-center justify-center rounded bg-white px-2">
+                <Image
+                  src="/images/partners/toptenlogo.png"
+                  alt="TOP TEN logotyp"
+                  width={96}
+                  height={40}
+                  className="max-h-8 w-auto object-contain"
+                />
+              </div>
+              <p className="text-xs font-medium text-gray-500">Officiell utrustningspartner</p>
             </div>
-            <p className="text-xs font-medium text-gray-500">Officiell och föredragen partner</p>
+            {/* Nicopia Sport — distributionspartner */}
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-24 items-center justify-center rounded bg-white px-2">
+                <Image
+                  src="/images/partners/nicopiasports.jpeg"
+                  alt="Nicopia Sport logotyp"
+                  width={96}
+                  height={40}
+                  className="max-h-8 w-auto object-contain"
+                />
+              </div>
+              <p className="text-xs font-medium text-gray-500">Officiell distributionspartner</p>
+            </div>
           </div>
           <Link
             href="/partners"
