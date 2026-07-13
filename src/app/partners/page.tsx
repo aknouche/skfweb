@@ -167,7 +167,7 @@ export default function PartnersPage() {
             {PARTNERS.map((partner) => {
               const logoTile = (
                 <div
-                  className={`flex h-14 w-36 shrink-0 items-center justify-center rounded-md px-3 ${
+                  className={`flex h-12 w-28 shrink-0 items-center justify-center rounded-md px-2 sm:h-14 sm:w-36 sm:px-3 ${
                     partner.logoBg ?? 'bg-gray-50'
                   }`}
                 >
@@ -199,10 +199,10 @@ export default function PartnersPage() {
                       href={partner.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex items-center gap-6 px-6 py-5 no-underline transition-colors hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-skf-blue"
+                      className="group flex items-center gap-4 px-4 py-5 no-underline transition-colors hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-skf-blue sm:gap-6 sm:px-6"
                     >
                       {logoTile}
-                      <span className="text-base font-semibold text-skf-blue">{partner.name}</span>
+                      <span className="min-w-0 break-words text-base font-semibold text-skf-blue">{partner.name}</span>
                       <svg
                         className="ml-auto h-4 w-4 shrink-0 text-gray-400 transition-colors group-hover:text-skf-blue"
                         fill="none"
@@ -219,9 +219,9 @@ export default function PartnersPage() {
                       </svg>
                     </a>
                   ) : (
-                    <div className="flex items-center gap-6 px-6 py-5">
+                    <div className="flex items-center gap-4 px-4 py-5 sm:gap-6 sm:px-6">
                       {logoTile}
-                      <span className="text-base font-semibold text-skf-blue">{partner.name}</span>
+                      <span className="min-w-0 break-words text-base font-semibold text-skf-blue">{partner.name}</span>
                     </div>
                   )}
                 </li>
