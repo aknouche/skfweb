@@ -269,4 +269,7 @@ const PARTNERS: Partner[] = [
     logo: '/images/partners/Skurups.jpeg',
     logoBg: 'bg-white',
   },
+  {
+    name: 'Corpus Entitas AB',
+  },
 ];
