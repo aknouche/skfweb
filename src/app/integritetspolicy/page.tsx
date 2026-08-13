@@ -33,9 +33,13 @@ export default function IntegritetspolicyPage() {
               Vi samlar inte in personuppgifter om dig när du besöker webbplatsen, förutom i de fall du
               aktivt skickar in ett formulär eller kontaktar oss via e-post.
             </p>
-            <p>
+            <p className="mb-3">
               Vid kontakt via e-post sparas de uppgifter du anger (t.ex. namn och e-postadress) enbart
               för att kunna besvara din förfrågan.
+            </p>
+            <p>
+              Om du använder chattfunktionen loggas frågor som chattboten inte kan besvara, för att vi
+              ska kunna förbättra dess svar. Skriv inte in känsliga personuppgifter i chatten.
             </p>
           </section>
 

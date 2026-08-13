@@ -18,6 +18,15 @@ interface ChatMessage {
 
 const STORAGE_KEY = 'skf-chat-dismissed';
 
+function logChatQuery(query: string, matchedTopicId?: string) {
+  fetch('/api/chat-log', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query, matchedTopicId }),
+    keepalive: true,
+  }).catch(() => {});
+}
+
 function createMessage(
   from: ChatMessage['from'],
   text: string,
@@ -77,6 +86,7 @@ export function ChatWidget() {
         : createMessage('bot', CHAT_FALLBACK),
     ]);
     setInput('');
+    logChatQuery(trimmed, topic?.id);
   }
 
   function handleSubmit(event: React.FormEvent) {
