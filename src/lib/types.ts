@@ -45,6 +45,10 @@ export interface NewsArticle {
     mimeType?: string;
     originalFilename?: string;
   }[];
+  videoEmbeds?: {
+    url: string;
+    caption?: string;
+  }[];
 }
 
 // =============================================================================

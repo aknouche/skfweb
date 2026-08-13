@@ -111,7 +111,7 @@ export default function OmKickboxningPage() {
                 inledningsvis en renodlad fullkontaktsport.
               </p>
               <p>
-                En central pionjär var Bert "Viking" Johansson, som efter
+                En central pionjär var Bert &quot;Viking&quot; Johansson, som efter
                 flera års träning i Japan introducerade sporten i Sverige under
                 namnet Full Kontakt Karate. Han grundade organisationen Viking, den
                 första svenska organisationen för sporten. Under mitten av 1980-talet
@@ -133,8 +133,8 @@ export default function OmKickboxningPage() {
               <p>
                 I början av 1990-talet tog svensk kickboxning viktiga steg mot ökad
                 professionalisering. Nya ledande aktörer, däribland Lars
-                "Blomman" Blomgren, Jonny Andreasson, Thomas
-                "Totto" Heiderup och Johan Öjeheim, bidrog till att
+                &quot;Blomman&quot; Blomgren, Jonny Andreasson, Thomas
+                &quot;Totto&quot; Heiderup och Johan Öjeheim, bidrog till att
                 strukturera verksamheten. Domarutbildningar organiserades, ett
                 gemensamt graderingssystem infördes och tävlingsformerna
                 tydliggjordes.

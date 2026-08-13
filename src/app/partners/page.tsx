@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { AFFILIATE_URLS } from '@/lib/constants';
 
@@ -33,124 +34,242 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* Tier: Huvudpartner */}
-      <section className="border-t border-gray-100 py-12">
-        <div className="container-narrow">
-          <h2 className="text-xl font-bold text-skf-blue uppercase tracking-wide mb-6">
-            Huvudpartner
-          </h2>
-          <div className="rounded-lg border border-dashed border-gray-200 bg-gray-50 px-8 py-10 text-center">
-            <p className="text-gray-400 italic">Plats för kommande huvudpartner.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Tier: Officiell utrustningspartner */}
+      {/* Tier: Officiella partners */}
       <section className="border-t border-gray-100 py-12">
         <div className="container-narrow">
           <h2 className="text-xl font-bold text-skf-blue uppercase tracking-wide mb-8">
-            Officiell utrustningspartner
+            Officiella partners
           </h2>
 
-          <div className="rounded-xl border border-gray-100 bg-white p-8 shadow-sm">
-            {/* Logo block */}
-            <div className="mb-6">
-              {/* Placeholder until official logo file is provided */}
-              <div
-                className="inline-flex h-20 w-48 items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50"
-                aria-label="TOP TEN logotyp (placeholder)"
-              >
-                <span className="text-lg font-bold tracking-widest text-gray-400">TOP TEN</span>
-              </div>
-              <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-gray-500">
-                Officiell och föredragen partner
-              </p>
-            </div>
-
-            {/* Body text */}
-            <p className="text-gray-700 leading-relaxed mb-8">
-              TOP TEN är förbundets officiella utrustningspartner och WAKO:s officiella leverantör.
-              Genom samarbetet utrustas det svenska landslaget med tränings- och tävlingsutrustning,
-              och klubbar och medlemmar får tillgång till TOP TEN:s sortiment till förmånliga priser
-              via den svenska distributören Nicopia Sport.
-            </p>
-
-            {/* CTA buttons */}
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/forbundsrabatter"
-                className="inline-flex items-center rounded-md bg-skf-blue px-6 py-3 text-sm font-semibold text-white no-underline transition-colors hover:bg-skf-blue/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-skf-blue"
-              >
-                Se medlemsförmåner
-              </Link>
-              <a
-                href={AFFILIATE_URLS.partnerPage}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center rounded-md border border-skf-blue px-6 py-3 text-sm font-semibold text-skf-blue no-underline transition-colors hover:bg-skf-blue/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-skf-blue"
-              >
-                Besök TOP TEN
-                <svg
-                  className="ml-2 h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+          <div className="grid gap-6 md:grid-cols-2">
+            {/* TOP TEN — utrustningspartner */}
+            <div className="flex flex-col rounded-xl border border-gray-100 bg-white p-8 shadow-sm">
+              {/* Logo block */}
+              <div className="mb-6">
+                <div className="flex h-20 items-center">
+                  <Image
+                    src="/images/partners/toptenlogo.png"
+                    alt="TOP TEN logotyp"
+                    width={180}
+                    height={80}
+                    className="object-contain"
                   />
-                </svg>
-              </a>
+                </div>
+                <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-gray-500">
+                  Officiell utrustningspartner
+                </p>
+              </div>
+
+              {/* Body text */}
+              <p className="mb-8 leading-relaxed text-gray-700">
+                TOP TEN är förbundets officiella utrustningspartner och WAKO:s officiella
+                leverantör. Genom samarbetet utrustas det svenska landslaget med tränings- och
+                tävlingsutrustning, och klubbar och medlemmar får tillgång till TOP TEN:s sortiment
+                till förmånliga priser.
+              </p>
+
+              {/* CTA */}
+              <div className="mt-auto">
+                <a
+                  href={AFFILIATE_URLS.toptenCatalog}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center rounded-md border border-skf-blue px-6 py-3 text-sm font-semibold text-skf-blue no-underline transition-colors hover:bg-skf-blue/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-skf-blue"
+                >
+                  Se TOP TEN-sortimentet
+                  <svg
+                    className="ml-2 h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                </a>
+              </div>
             </div>
 
-            {/* Distributor link */}
-            <p className="mt-4 text-sm text-gray-500">
-              Svensk distributör:{' '}
-              <a
-                href={AFFILIATE_URLS.partnerPage}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-skf-blue underline hover:text-skf-blue/80"
-              >
-                Nicopia Sport
-              </a>
-            </p>
+            {/* Nicopia Sport — distributionspartner */}
+            <div className="flex flex-col rounded-xl border border-gray-100 bg-white p-8 shadow-sm">
+              {/* Logo block */}
+              <div className="mb-6">
+                <div className="flex h-20 items-center">
+                  <Image
+                    src="/images/partners/nicopiasports.jpeg"
+                    alt="Nicopia Sport logotyp"
+                    width={180}
+                    height={80}
+                    className="object-contain"
+                  />
+                </div>
+                <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-gray-500">
+                  Officiell distributionspartner
+                </p>
+              </div>
+
+              {/* Body text */}
+              <p className="mb-8 leading-relaxed text-gray-700">
+                Nicopia Sport är förbundets officiella distributionspartner och svensk återförsäljare
+                av TOP TEN. Via Nicopia får klubbar och medlemmar tillgång till hela sortimentet till
+                förmånliga priser — och köp via förbundets länkar bidrar till SKF:s verksamhet.
+              </p>
+
+              {/* CTA buttons */}
+              <div className="mt-auto flex flex-wrap gap-4">
+                <Link
+                  href="/forbundsrabatter"
+                  className="inline-flex items-center rounded-md bg-skf-blue px-6 py-3 text-sm font-semibold text-white no-underline transition-colors hover:bg-skf-blue/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-skf-blue"
+                >
+                  Se medlemsförmåner
+                </Link>
+                <a
+                  href={AFFILIATE_URLS.partnerPage}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center rounded-md border border-skf-blue px-6 py-3 text-sm font-semibold text-skf-blue no-underline transition-colors hover:bg-skf-blue/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-skf-blue"
+                >
+                  Besök webshoppen
+                  <svg
+                    className="ml-2 h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Tier: Leverantörer och medlemsförmåner */}
-      <section className="border-t border-gray-100 py-12 bg-gray-50">
+      {/* Tier: Samarbetspartners */}
+      <section className="border-t border-gray-100 py-12">
         <div className="container-narrow">
-          <h2 className="text-xl font-bold text-skf-blue uppercase tracking-wide mb-6">
-            Leverantörer och medlemsförmåner
+          <h2 className="text-xl font-bold text-skf-blue uppercase tracking-wide mb-8">
+            Samarbetspartners
           </h2>
-          <p className="text-gray-700 mb-6">
-            SKF-anslutna klubbar och aktiva utövare har tillgång till exklusiva rabatter hos
-            förbundets officiella leverantörer. Rabatten gäller TOP TEN-sortimentet hos Nicopia
-            Sport.
-          </p>
-          <Link
-            href="/forbundsrabatter"
-            className="inline-flex items-center gap-1 rounded-md bg-skf-yellow px-6 py-3 text-sm font-semibold text-skf-blue no-underline transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-skf-blue"
-          >
-            Se medlemsförmåner
-            <svg
-              className="h-4 w-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </Link>
+
+          <ul className="divide-y divide-gray-100 rounded-xl border border-gray-100 bg-white shadow-sm">
+            {PARTNERS.map((partner) => {
+              const logoTile = (
+                <div
+                  className={`flex h-12 w-28 shrink-0 items-center justify-center rounded-md px-2 sm:h-14 sm:w-36 sm:px-3 ${
+                    partner.logoBg ?? 'bg-gray-50'
+                  }`}
+                >
+                  {partner.logo ? (
+                    <Image
+                      src={partner.logo}
+                      alt={`${partner.name} logotyp`}
+                      width={144}
+                      height={56}
+                      className="max-h-10 w-auto object-contain"
+                    />
+                  ) : (
+                    <span className="text-lg font-bold tracking-wide text-gray-400">
+                      {partner.name
+                        .split(' ')
+                        .filter((word) => word !== 'AB')
+                        .slice(0, 2)
+                        .map((word) => word[0])
+                        .join('')}
+                    </span>
+                  )}
+                </div>
+              );
+
+              return (
+                <li key={partner.name}>
+                  {partner.url ? (
+                    <a
+                      href={partner.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center gap-4 px-4 py-5 no-underline transition-colors hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-skf-blue sm:gap-6 sm:px-6"
+                    >
+                      {logoTile}
+                      <span className="min-w-0 break-words text-base font-semibold text-skf-blue">{partner.name}</span>
+                      <svg
+                        className="ml-auto h-4 w-4 shrink-0 text-gray-400 transition-colors group-hover:text-skf-blue"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        />
+                      </svg>
+                    </a>
+                  ) : (
+                    <div className="flex items-center gap-4 px-4 py-5 sm:gap-6 sm:px-6">
+                      {logoTile}
+                      <span className="min-w-0 break-words text-base font-semibold text-skf-blue">{partner.name}</span>
+                    </div>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </section>
+
     </main>
   );
 }
+
+type Partner = {
+  name: string;
+  logo?: string;
+  logoBg?: string;
+  url?: string;
+};
+
+const PARTNERS: Partner[] = [
+  {
+    name: 'RJ Consulting AB',
+    logo: '/images/partners/rj-consulting.png',
+    logoBg: 'bg-gray-900',
+  },
+  {
+    name: 'Novelty Quest AB',
+    logo: '/images/partners/novelty-quest.png',
+    logoBg: 'bg-white',
+    url: 'https://www.noveltyquest.com/',
+  },
+  {
+    name: 'Rudman Consulting AB',
+    url: 'https://www.bjornrudman.se/',
+  },
+  {
+    name: 'BL Bygg & Konsult AB',
+    logo: '/images/partners/bl-bygg-konsult.png',
+    logoBg: 'bg-skf-blue',
+    url: 'https://blbyggkonsult.se/',
+  },
+  {
+    name: 'Skurups Åkeri & Schakt AB',
+    logo: '/images/partners/Skurups.jpeg',
+    logoBg: 'bg-white',
+  },
+  {
+    name: 'Corpus Entitas AB',
+  },
+];

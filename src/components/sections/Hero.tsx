@@ -11,7 +11,7 @@ export function Hero() {
       <div className="container-wide py-24 lg:py-32">
         <div className="mx-auto max-w-4xl text-center">
           {/* Main Heading */}
-          <h1 className="mb-6 text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
+          <h1 className="mb-6 text-3xl font-bold leading-tight text-white [hyphens:auto] break-words sm:text-5xl lg:text-6xl">
             {BRAND.name}
           </h1>
 

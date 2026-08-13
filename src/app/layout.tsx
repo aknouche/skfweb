@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { HeaderWrapper } from '@/components/layout/HeaderWrapper';
+import { PartnerBar } from '@/components/layout/PartnerBar';
 import { Footer } from '@/components/layout/Footer';
 import { CookieBanner } from '@/components/ui/CookieBanner';
 import { ChatWidget } from '@/components/ui/ChatWidget';
@@ -48,6 +49,7 @@ export default function RootLayout({
         >
           Hoppa till innehåll
         </a>
+        <PartnerBar />
         <HeaderWrapper />
         <main id="main-content" className="flex-1">{children}</main>
         <Footer />

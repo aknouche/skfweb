@@ -36,7 +36,14 @@ function buildCommitteesNav(): NavItem {
  */
 const BASE_NAV: NavItem[] = [
   { label: 'Start', href: '/' },
-  { label: 'Om kickboxning', href: '/om-kickboxning' },
+  {
+    label: 'Om kickboxning',
+    href: '/om-kickboxning',
+    children: [
+      { label: 'Om kickboxning', href: '/om-kickboxning' },
+      { label: 'Tävlingsregler', href: '/tavlingsregler' },
+    ],
+  },
   { label: 'Kalender', href: '/kalender' },
   {
     label: 'Förbundet',
@@ -48,13 +55,6 @@ const BASE_NAV: NavItem[] = [
       { label: 'Strategi 2030', href: '/strategi-2030' },
       { label: 'Domare', href: '/domare' },
       { label: 'Kontakt', href: '/kontakt' },
-    ],
-  },
-  {
-    label: 'För klubbar',
-    href: '/forbundsrabatter',
-    children: [
-      { label: 'Förbundsrabatter', href: '/forbundsrabatter' },
     ],
   },
   { label: 'Nyheter', href: '/nyheter' },

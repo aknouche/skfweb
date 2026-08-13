@@ -19,6 +19,7 @@ const securityHeaders = [
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: https://cdn.sanity.io",
       "connect-src 'self' https://*.sanity.io",
+      "frame-src https://www.youtube-nocookie.com https://player.vimeo.com",
       "frame-ancestors 'none'",
     ].join('; '),
   },

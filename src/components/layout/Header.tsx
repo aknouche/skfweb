@@ -342,8 +342,8 @@ export function Header({ navigation = [] }: HeaderProps) {
       {/* Mobile Menu */}
       <div
         id="mobile-menu"
-        className={`overflow-hidden border-t border-gray-100 transition-all duration-300 ease-in-out lg:hidden ${
-          mobileMenuOpen ? 'max-h-[80vh] opacity-100' : 'max-h-0 opacity-0 border-t-0'
+        className={`border-t border-gray-100 transition-all duration-300 ease-in-out lg:hidden ${
+          mobileMenuOpen ? 'max-h-[80vh] overflow-y-auto opacity-100' : 'max-h-0 overflow-hidden opacity-0 border-t-0'
         }`}
       >
         <nav className="container-wide py-4" aria-label="Mobilnavigering">
