@@ -17,6 +17,24 @@ export interface ChatTopic {
 
 export const CHAT_TOPICS: ChatTopic[] = [
   {
+    id: 'om-assistenten',
+    keywords: [
+      'vem är du',
+      'vad heter du',
+      'vem pratar jag med',
+      'är du en bot',
+      'är du en robot',
+      'är du en människa',
+      'vad kan du hjälpa',
+      'vad kan du göra',
+      'vad kan man fråga',
+      'hur fungerar chatt',
+    ],
+    label: 'Om assistenten',
+    answer:
+      'Jag är SKF:s digitala hjälpassistent – en enkel FAQ-bot (ingen AI) som svarar på vanliga frågor om tävlingar, medlemskap, klubbar, landslaget, kommittéer, domare, kickboxning, nyheter och kontaktuppgifter. Skriv din fråga eller välj ett ämne nedan.',
+  },
+  {
     id: 'tavlingar',
     keywords: ['tävling', 'tavling', 'match', 'sm ', 'mästerskap', 'anmäl', 'anmälan'],
     label: 'Tävlingar',
