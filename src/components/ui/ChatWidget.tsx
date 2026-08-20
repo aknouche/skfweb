@@ -102,11 +102,15 @@ export function ChatWidget() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: trimmed }),
       });
-      const data: { reply?: string; source?: 'ai' | 'fallback' } = await res.json();
+      const data: {
+        reply?: string;
+        link?: { href: string; text: string };
+        source?: 'ai' | 'faq-guess' | 'fallback';
+      } = await res.json();
       const reply = typeof data.reply === 'string' && data.reply ? data.reply : CHAT_FALLBACK;
       setMessages((prev) => [
         ...prev,
-        createMessage('bot', reply, undefined, data.source === 'ai'),
+        createMessage('bot', reply, data.link, data.source === 'ai'),
       ]);
     } catch {
       setMessages((prev) => [...prev, createMessage('bot', CHAT_FALLBACK)]);

@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server';
-import { CHAT_FALLBACK, CHAT_TOPICS } from '@/lib/data/chatbot';
+import { CHAT_FALLBACK, CHAT_TOPICS, matchChatTopic } from '@/lib/data/chatbot';
 
 /**
  * AI fallback for the chat widget.
@@ -23,8 +23,17 @@ import { CHAT_FALLBACK, CHAT_TOPICS } from '@/lib/data/chatbot';
  *  - The user message is wrapped in clear delimiters and length-capped
  *    before being sent.
  *  - Output is length-capped and scanned for leak indicators as a canary;
- *    on any sign of a leak or an API/network failure, the safe static
- *    fallback is returned instead of the model's text.
+ *    on any sign of a leak or an API/network failure, the response falls
+ *    back to a local best-effort FAQ match (see bestEffortReply) instead
+ *    of the model's text.
+ *
+ * Free-tier exhaustion: Gemini's free tier has daily/per-minute quotas.
+ * Once exhausted, Google's API returns a non-2xx response, which callGemini
+ * already treats the same as any other failure — no special-casing needed.
+ * bestEffortReply then answers from the static FAQ instead of the flat
+ * "I don't know" message, so the widget quietly degrades to its pre-AI
+ * behavior (plus fuzzy matching) rather than going dark for the rest of
+ * the quota window.
  */
 
 export const runtime = 'nodejs';
@@ -34,6 +43,28 @@ const MAX_REPLY_LENGTH = 500;
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX_REQUESTS = 8;
 const REQUEST_TIMEOUT_MS = 10_000;
+// Lower than the client's answer-directly threshold (0.5): once we're
+// already telling the visitor the AI is unavailable, an approximate FAQ
+// pointer beats a flat "I don't know" even at lower confidence.
+const SOFT_MATCH_THRESHOLD = 0.3;
+
+// Used whenever the Gemini call didn't produce a usable reply — no API key
+// configured, network/timeout error, non-2xx response (this is also how a
+// free-tier quota/rate-limit exhaustion from Google surfaces), or the
+// leak-canary tripped. Falls back to the best local FAQ match instead of
+// always showing the same generic message, so a used-up free tier doesn't
+// make the chatbot noticeably worse than it was before this AI existed.
+function bestEffortReply(message: string) {
+  const guess = matchChatTopic(message);
+  if (guess && guess.confidence >= SOFT_MATCH_THRESHOLD) {
+    return {
+      reply: `Jag kunde inte ta fram ett skräddarsytt svar just nu, men det här kanske hjälper: ${guess.topic.answer}`,
+      link: guess.topic.link,
+      source: 'faq-guess' as const,
+    };
+  }
+  return { reply: CHAT_FALLBACK, source: 'fallback' as const };
+}
 
 // Best-effort in-memory rate limit. Resets per server instance/cold start;
 // on serverless this is a soft cap, not a hard guarantee — it's here to
@@ -182,7 +213,7 @@ export async function POST(req: NextRequest) {
 
   const reply = await callGemini(message);
   if (!reply || looksLikeLeak(reply)) {
-    return Response.json({ reply: CHAT_FALLBACK, source: 'fallback' });
+    return Response.json(bestEffortReply(message));
   }
 
   return Response.json({
