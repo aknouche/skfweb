@@ -105,7 +105,7 @@ export function ChatWidget() {
       const data: {
         reply?: string;
         link?: { href: string; text: string };
-        source?: 'ai' | 'faq-guess' | 'fallback';
+        source?: 'ai' | 'faq-guess' | 'fallback' | 'declined';
       } = await res.json();
       const reply = typeof data.reply === 'string' && data.reply ? data.reply : CHAT_FALLBACK;
       setMessages((prev) => [
