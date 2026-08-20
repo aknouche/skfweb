@@ -5,8 +5,9 @@ import Link from 'next/link';
 import {
   CHAT_FALLBACK,
   CHAT_GREETING,
+  CHAT_MATCH_THRESHOLD,
   CHAT_TOPICS,
-  findChatTopic,
+  matchChatTopic,
 } from '@/lib/data/chatbot';
 
 interface ChatMessage {
@@ -14,16 +15,21 @@ interface ChatMessage {
   from: 'bot' | 'user';
   text: string;
   link?: { href: string; text: string };
+  aiGenerated?: boolean;
 }
 
 const STORAGE_KEY = 'skf-chat-dismissed';
+// Soft cap on AI fallback calls per browser session, so a single visitor
+// can't run up the (metered, free-tier) API usage in one sitting.
+const MAX_AI_REQUESTS_PER_SESSION = 15;
 
 function createMessage(
   from: ChatMessage['from'],
   text: string,
-  link?: ChatMessage['link']
+  link?: ChatMessage['link'],
+  aiGenerated?: boolean
 ): ChatMessage {
-  return { id: `${from}-${Date.now()}-${Math.random()}`, from, text, link };
+  return { id: `${from}-${Date.now()}-${Math.random()}`, from, text, link, aiGenerated };
 }
 
 export function ChatWidget() {
@@ -34,7 +40,9 @@ export function ChatWidget() {
   const [messages, setMessages] = useState<ChatMessage[]>([
     createMessage('bot', CHAT_GREETING),
   ]);
+  const [pending, setPending] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
+  const aiRequestCount = useRef(0);
 
   // Widget starts closed and stays quiet — it only opens if the visitor
   // clicks it, and remembers if they've previously closed it.
@@ -64,19 +72,51 @@ export function ChatWidget() {
     setDismissed(true);
   }
 
-  function ask(text: string) {
+  async function ask(text: string) {
     const trimmed = text.trim();
-    if (!trimmed) return;
-
-    const topic = findChatTopic(trimmed);
-    setMessages((prev) => [
-      ...prev,
-      createMessage('user', trimmed),
-      topic
-        ? createMessage('bot', topic.answer, topic.link)
-        : createMessage('bot', CHAT_FALLBACK),
-    ]);
+    if (!trimmed || pending) return;
     setInput('');
+
+    const match = matchChatTopic(trimmed);
+    if (match && match.confidence >= CHAT_MATCH_THRESHOLD) {
+      setMessages((prev) => [
+        ...prev,
+        createMessage('user', trimmed),
+        createMessage('bot', match.topic.answer, match.topic.link),
+      ]);
+      return;
+    }
+
+    setMessages((prev) => [...prev, createMessage('user', trimmed)]);
+
+    if (aiRequestCount.current >= MAX_AI_REQUESTS_PER_SESSION) {
+      setMessages((prev) => [...prev, createMessage('bot', CHAT_FALLBACK)]);
+      return;
+    }
+
+    setPending(true);
+    aiRequestCount.current += 1;
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: trimmed }),
+      });
+      const data: {
+        reply?: string;
+        link?: { href: string; text: string };
+        source?: 'ai' | 'faq-guess' | 'fallback' | 'declined';
+      } = await res.json();
+      const reply = typeof data.reply === 'string' && data.reply ? data.reply : CHAT_FALLBACK;
+      setMessages((prev) => [
+        ...prev,
+        createMessage('bot', reply, data.link, data.source === 'ai'),
+      ]);
+    } catch {
+      setMessages((prev) => [...prev, createMessage('bot', CHAT_FALLBACK)]);
+    } finally {
+      setPending(false);
+    }
   }
 
   function handleSubmit(event: React.FormEvent) {
@@ -120,6 +160,11 @@ export function ChatWidget() {
                 }
               >
                 <p>{message.text}</p>
+                {message.aiGenerated && (
+                  <p className="mt-1 text-[10px] uppercase tracking-wide text-gray-400">
+                    AI-genererat svar
+                  </p>
+                )}
                 {message.link && (
                   <Link
                     href={message.link.href}
@@ -131,13 +176,20 @@ export function ChatWidget() {
               </div>
             ))}
 
+            {pending && (
+              <div className="mr-auto max-w-[85%] rounded-lg rounded-tl-none bg-gray-100 px-3 py-2 text-sm text-gray-500">
+                Skriver…
+              </div>
+            )}
+
             {/* Quick-reply topic chips */}
             <div className="flex flex-wrap gap-2 pt-1">
               {CHAT_TOPICS.map((topic) => (
                 <button
                   key={topic.id}
                   onClick={() => ask(topic.label)}
-                  className="rounded-full border border-skf-blue/30 px-3 py-1 text-xs font-medium text-skf-blue transition-colors hover:bg-skf-blue hover:text-white"
+                  disabled={pending}
+                  className="rounded-full border border-skf-blue/30 px-3 py-1 text-xs font-medium text-skf-blue transition-colors hover:bg-skf-blue hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {topic.label}
                 </button>
@@ -155,11 +207,14 @@ export function ChatWidget() {
               value={input}
               onChange={(event) => setInput(event.target.value)}
               placeholder="Skriv din fråga..."
-              className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-skf-blue focus:outline-none"
+              disabled={pending}
+              maxLength={300}
+              className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-skf-blue focus:outline-none disabled:bg-gray-50"
             />
             <button
               type="submit"
-              className="rounded-md bg-skf-yellow px-3 py-2 text-sm font-semibold text-skf-blue transition-opacity hover:opacity-90"
+              disabled={pending}
+              className="rounded-md bg-skf-yellow px-3 py-2 text-sm font-semibold text-skf-blue transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
             >
               Skicka
             </button>

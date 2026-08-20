@@ -1,8 +1,11 @@
 /**
  * Chatbot FAQ knowledge base
  *
- * Static, rule-based question/answer topics for the site chat widget.
- * No external API, no cost — matches visitor input against keywords.
+ * Static topic list for the site chat widget, matched against visitor
+ * input with a fuzzy, typo-tolerant scorer (see matchChatTopic below).
+ * When nothing scores highly enough, the widget falls back to the AI
+ * endpoint at /api/chat for a general answer — see that route for the
+ * knowledge boundary and prompt-injection defenses.
  */
 
 export interface ChatTopic {
@@ -93,9 +96,109 @@ export const CHAT_FALLBACK =
 export const CHAT_GREETING =
   'Hej! Jag är SKF:s hjälpassistent. Fråga mig om tävlingar, medlemskap, klubbar eller landslaget – eller välj ett ämne nedan.';
 
+/** Confidence (0–1) above which a local FAQ match is considered good enough
+ *  to answer directly, without falling back to the AI endpoint. */
+export const CHAT_MATCH_THRESHOLD = 0.5;
+
+export interface ChatMatch {
+  topic: ChatTopic;
+  confidence: number;
+}
+
+// Common short Swedish function words. Excluded from token-level scoring so
+// that e.g. "vad" or "är" (present in the multi-word keyword phrase "vad är
+// kickboxning") don't by themselves count as a topic match for unrelated
+// questions that happen to share these very frequent words.
+const STOPWORDS = new Set([
+  'vad', 'ar', 'är', 'en', 'ett', 'det', 'den', 'de', 'för', 'och', 'att',
+  'på', 'av', 'med', 'som', 'har', 'kan', 'vill', 'man', 'du', 'jag', 'vi',
+  'ni', 'han', 'hon', 'inte', 'till', 'om', 'så', 'var', 'hur', 'är', 'i',
+  'är', 'sig', 'sin', 'ska', 'skulle', 'blir', 'blev', 'jo',
+]);
+
+function tokenize(text: string): string[] {
+  return text
+    .toLowerCase()
+    .normalize('NFC')
+    .replace(/[^\p{L}\p{N}\s]/gu, ' ')
+    .split(/\s+/)
+    .filter(Boolean);
+}
+
+function meaningfulTokens(text: string): string[] {
+  return tokenize(text).filter((token) => !STOPWORDS.has(token) && token.length > 1);
+}
+
+/** Levenshtein edit distance, used for typo tolerance on short words. */
+function levenshtein(a: string, b: string): number {
+  if (a === b) return 0;
+  const rows = a.length + 1;
+  const cols = b.length + 1;
+  const dist: number[][] = Array.from({ length: rows }, (_, i) => [i, ...Array(cols - 1).fill(0)]);
+  for (let j = 0; j < cols; j++) dist[0][j] = j;
+  for (let i = 1; i < rows; i++) {
+    for (let j = 1; j < cols; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      dist[i][j] = Math.min(
+        dist[i - 1][j] + 1,
+        dist[i][j - 1] + 1,
+        dist[i - 1][j - 1] + cost
+      );
+    }
+  }
+  return dist[rows - 1][cols - 1];
+}
+
+/**
+ * Fuzzy-matches visitor input against the FAQ topics. Unlike a plain
+ * substring check, this tolerates typos and word reordering: it scores
+ * exact phrase hits highest, exact token hits next, and near-miss tokens
+ * (edit distance 1–2, scaled to word length) lowest. Returns the
+ * best-scoring topic with a 0–1 confidence, or undefined if nothing
+ * scored at all.
+ */
+export function matchChatTopic(input: string): ChatMatch | undefined {
+  const normalizedInput = input.toLowerCase();
+  const inputTokens = meaningfulTokens(input);
+  if (inputTokens.length === 0) return undefined;
+
+  let best: { topic: ChatTopic; score: number } | undefined;
+
+  for (const topic of CHAT_TOPICS) {
+    let score = 0;
+    for (const keyword of topic.keywords) {
+      if (normalizedInput.includes(keyword)) {
+        score += 2;
+        continue;
+      }
+      for (const keywordToken of meaningfulTokens(keyword)) {
+        for (const inputToken of inputTokens) {
+          if (inputToken === keywordToken) {
+            score += 1.5;
+            continue;
+          }
+          const maxDist = keywordToken.length <= 4 ? 1 : 2;
+          if (
+            Math.abs(inputToken.length - keywordToken.length) <= maxDist &&
+            levenshtein(inputToken, keywordToken) <= maxDist
+          ) {
+            score += 1;
+          }
+        }
+      }
+    }
+    if (score > 0 && (!best || score > best.score)) {
+      best = { topic, score };
+    }
+  }
+
+  if (!best) return undefined;
+  return { topic: best.topic, confidence: Math.min(best.score / 3, 1) };
+}
+
+/** Back-compat wrapper: only returns a topic when confidence clears the
+ *  answer-directly threshold. */
 export function findChatTopic(input: string): ChatTopic | undefined {
-  const normalized = input.toLowerCase();
-  return CHAT_TOPICS.find((topic) =>
-    topic.keywords.some((keyword) => normalized.includes(keyword))
-  );
+  const match = matchChatTopic(input);
+  return match && match.confidence >= CHAT_MATCH_THRESHOLD ? match.topic : undefined;
 }
