@@ -6,30 +6,6 @@
  */
 
 import type { NavItem } from '../constants';
-import { getAllCommittees } from './committees';
-
-/**
- * Build committees navigation item from static data
- */
-function buildCommitteesNav(): NavItem {
-  const committees = getAllCommittees();
-
-  const committeeItems: NavItem[] = committees.map((committee) => ({
-    label: committee.name,
-    href: `/kommitteer/${committee.slug}`,
-  }));
-
-  const children: NavItem[] = [
-    { label: 'Organisation', href: '/kommitteer/organisation' },
-    ...committeeItems,
-  ];
-
-  return {
-    label: 'Kommittéer',
-    href: '/kommitteer',
-    children: children.length > 1 ? children : undefined,
-  };
-}
 
 /**
  * Fetch complete dynamic navigation structure
