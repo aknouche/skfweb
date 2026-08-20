@@ -145,6 +145,8 @@ export interface CommitteeMember {
     url: string;
     alt: string;
   };
+  /** Idrottsbakgrund / CV — shown on the committee's profile card. Optional until supplied. */
+  bio?: string;
 }
 
 export interface Committee {

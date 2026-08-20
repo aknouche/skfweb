@@ -3,8 +3,10 @@
  */
 
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getCommitteeBySlug, getAllCommittees } from '@/lib/data/committees';
+import MemberAvatar from '@/components/organisation/MemberAvatar';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -36,12 +38,23 @@ export default async function CommitteePage({ params }: Props) {
     notFound();
   }
 
-  const namedMembers = committee.members.filter((m) => m.name && m.name !== m.role);
+  const [chair, ...restMembers] = committee.members;
+  const namedMembers = restMembers.filter((m) => m.name && m.name !== m.role);
 
   return (
     <main className="py-12 lg:py-16">
       <div className="container-narrow">
-        <h1 className="text-3xl font-bold text-skf-blue lg:text-4xl">{committee.name}</h1>
+        <Link
+          href="/kommitteer/organisation"
+          className="inline-flex items-center gap-1 text-sm font-medium text-skf-blue hover:underline"
+        >
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+          Tillbaka till organisationskartan
+        </Link>
+
+        <h1 className="mt-4 text-3xl font-bold text-skf-blue lg:text-4xl">{committee.name}</h1>
 
         <div className="mt-6 space-y-4 text-lg text-gray-700">
           <p>{committee.description}</p>
@@ -68,9 +81,48 @@ export default async function CommitteePage({ params }: Props) {
             </section>
           )}
 
+          {chair && (
+            <section>
+              <h2 className="mb-4 text-2xl font-bold text-skf-blue">Ledning</h2>
+              <div className="flex flex-col items-center gap-6 rounded-xl border border-gray-200 p-6 sm:flex-row sm:items-start">
+                <MemberAvatar member={chair} />
+                <div className="min-w-0 text-center sm:text-left">
+                  <p className="text-lg font-bold text-gray-900">
+                    {chair.name && chair.name !== chair.role ? chair.name : 'Namn meddelas inom kort'}
+                  </p>
+                  <p className="text-sm font-medium text-skf-blue">{chair.role}</p>
+
+                  <div className="mt-4">
+                    <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-400">
+                      Idrottsbakgrund &amp; CV
+                    </h3>
+                    <p className="mt-1 text-gray-600">
+                      {chair.bio ?? 'Profil och idrottsbakgrund publiceras inom kort.'}
+                    </p>
+                  </div>
+
+                  {(chair.email || chair.phone) && (
+                    <div className="mt-4 flex flex-col items-center gap-1 sm:flex-row sm:gap-4">
+                      {chair.email && (
+                        <a href={`mailto:${chair.email}`} className="text-sm text-skf-blue hover:underline">
+                          {chair.email}
+                        </a>
+                      )}
+                      {chair.phone && (
+                        <a href={`tel:${chair.phone}`} className="text-sm text-skf-blue hover:underline">
+                          {chair.phone}
+                        </a>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </section>
+          )}
+
           {namedMembers.length > 0 && (
             <section>
-              <h2 className="mb-4 text-2xl font-bold text-skf-blue">Ledamöter</h2>
+              <h2 className="mb-4 text-2xl font-bold text-skf-blue">Övriga ledamöter</h2>
               <div className="space-y-3">
                 {namedMembers.map((member, i) => (
                   <div key={i} className="rounded-lg border border-gray-200 p-4">
