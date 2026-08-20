@@ -177,6 +177,13 @@ export function matchChatTopic(input: string): ChatMatch | undefined {
             score += 1.5;
             continue;
           }
+          // Typo tolerance only makes sense on words long enough that an
+          // edit distance of 1-2 is a plausible slip, not a coincidence —
+          // e.g. "tavling"/"tävling". On very short tokens (2-3 letters)
+          // almost any other short word is within distance 1, which was
+          // matching unrelated input like "då" against the "gå" in "gå
+          // med" and triggering the membership topic for random questions.
+          if (Math.min(inputToken.length, keywordToken.length) < 4) continue;
           const maxDist = keywordToken.length <= 4 ? 1 : 2;
           if (
             Math.abs(inputToken.length - keywordToken.length) <= maxDist &&
