@@ -203,7 +203,10 @@ type GeminiResult =
 
 async function callGemini(message: string): Promise<GeminiResult> {
   const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) return { status: 'error' };
+  if (!apiKey) {
+    console.error('[chat] GEMINI_API_KEY is not set — falling back to local FAQ match.');
+    return { status: 'error' };
+  }
 
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
@@ -236,7 +239,17 @@ async function callGemini(message: string): Promise<GeminiResult> {
       }
     );
 
-    if (!res.ok) return { status: 'error' };
+    if (!res.ok) {
+      // Never log the request URL/headers here — the API key is a query
+      // param on the request, not something Gemini echoes back in error
+      // bodies, but logging only the parsed error message keeps it that way.
+      const errorBody = await res.json().catch(() => null);
+      console.error(
+        `[chat] Gemini API returned ${res.status} ${res.statusText}:`,
+        errorBody?.error?.message ?? '(no error message in body)'
+      );
+      return { status: 'error' };
+    }
     const data = await res.json();
 
     // Prompt itself was blocked before any candidate was generated.
@@ -246,9 +259,13 @@ async function callGemini(message: string): Promise<GeminiResult> {
     if (candidate?.finishReason === 'SAFETY') return { status: 'blocked' };
 
     const text: unknown = candidate?.content?.parts?.[0]?.text;
-    if (typeof text !== 'string' || !text.trim()) return { status: 'error' };
+    if (typeof text !== 'string' || !text.trim()) {
+      console.error('[chat] Gemini response had no usable text; finishReason:', candidate?.finishReason);
+      return { status: 'error' };
+    }
     return { status: 'ok', text: text.trim() };
-  } catch {
+  } catch (err) {
+    console.error('[chat] Gemini call threw:', err instanceof Error ? err.message : err);
     return { status: 'error' };
   } finally {
     clearTimeout(timeout);
