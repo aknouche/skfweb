@@ -12,6 +12,12 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+/** Swedish numbers are stored in local format (0723-244416) but linked in E.164 */
+function telHref(phone: string) {
+  const digits = phone.replace(/\D/g, '');
+  return digits.startsWith('0') ? `tel:+46${digits.slice(1)}` : `tel:${digits}`;
+}
+
 export function generateStaticParams() {
   return getAllCommittees().map((c) => ({ slug: c.slug }));
 }
@@ -96,10 +102,31 @@ export default async function CommitteePage({ params }: Props) {
                     <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-400">
                       Idrottsbakgrund &amp; CV
                     </h3>
-                    <p className="mt-1 text-gray-600">
-                      {chair.bio ?? 'Profil och idrottsbakgrund publiceras inom kort.'}
-                    </p>
+                    {chair.bio?.length ? (
+                      <div className="mt-1 space-y-3 text-gray-600">
+                        {chair.bio.map((paragraph) => (
+                          <p key={paragraph}>{paragraph}</p>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="mt-1 text-gray-600">
+                        Profil och idrottsbakgrund publiceras inom kort.
+                      </p>
+                    )}
                   </div>
+
+                  {chair.highlights && chair.highlights.length > 0 && (
+                    <div className="mt-4 border-l-4 border-skf-yellow pl-4 text-left">
+                      <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-400">
+                        I korthet
+                      </h3>
+                      <ul className="mt-1 space-y-1 text-sm text-gray-600">
+                        {chair.highlights.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
 
                   {(chair.email || chair.phone) && (
                     <div className="mt-4 flex flex-col items-center gap-1 sm:flex-row sm:gap-4">
@@ -109,7 +136,7 @@ export default async function CommitteePage({ params }: Props) {
                         </a>
                       )}
                       {chair.phone && (
-                        <a href={`tel:${chair.phone}`} className="text-sm text-skf-blue hover:underline">
+                        <a href={telHref(chair.phone)} className="text-sm text-skf-blue hover:underline">
                           {chair.phone}
                         </a>
                       )}

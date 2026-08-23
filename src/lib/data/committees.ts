@@ -81,8 +81,27 @@ export const COMMITTEES: Committee[] = [
     ],
     members: [
       {
-        name: 'FoU-ansvarig',
-        role: 'Ordförande',
+        name: 'Björn Nordberg, fd Rudman',
+        role: 'Ordförande, FoU-ansvarig',
+        email: 'bjorn@westcoastkickboxing.se',
+        phone: '0723-244416',
+        image: {
+          url: '/images/committees/bjorn-nordberg.jpg',
+          alt: 'Porträtt av Björn Nordberg, ordförande i Forsknings- och utvecklingskommittén',
+        },
+        bio: [
+          'Björn innehar mästargrad 4:e dan (2025) och är Sveriges högst graderade aktiva kickboxningsinstruktör. Han har varit aktiv i sporten sedan 1998 – som utövare, instruktör och ledare. 2010 grundade han West Coast Kickboxing, där han fortfarande är ordförande och huvudinstruktör.',
+          'Björn är medgrundare till SKF:s FoU-kommitté och har varit med och byggt upp verksamheten. Han är även ordförande i Utbildningskommittén samt förbundssekreterare. Tidigare har han varit förbundsordförande, vice ordförande, utbildningsansvarig och fysansvarig för landslagen.',
+          'Han är utbildad elitidrottstränare vid Scandinavian Top Athletic Center och har arbetat professionellt i tio år med fysträning och rehabilitering, med särskild inriktning mot stående kampsport.',
+        ],
+        highlights: [
+          'Mästargrad 4:e dan (2025) – Sveriges högst graderade aktiva instruktör',
+          'Aktiv inom kickboxning sedan 1998',
+          'Grundare och huvudinstruktör, West Coast Kickboxing (2010–)',
+          'Medgrundare av SKF:s FoU-kommitté',
+          'Elitidrottstränare, Scandinavian Top Athletic Center',
+          'Tio års yrkeserfarenhet av fysträning och rehabilitering inom stående kampsport',
+        ],
       },
     ],
     contact: {

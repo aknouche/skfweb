@@ -12,9 +12,10 @@ export default function MemberAvatar({ member }: { member: CommitteeMember }) {
       <Image
         src={member.image.url}
         alt={member.image.alt}
-        width={128}
-        height={128}
-        className="h-32 w-32 shrink-0 rounded-full object-cover"
+        width={256}
+        height={256}
+        /* object-top keeps heads inside the circle when the source is a tall portrait */
+        className="h-32 w-32 shrink-0 rounded-full object-cover object-top"
       />
     );
   }
