@@ -83,8 +83,7 @@ export const COMMITTEES: Committee[] = [
       {
         name: 'Björn Nordberg, fd Rudman',
         role: 'Ordförande, FoU-ansvarig',
-        email: 'bjorn@westcoastkickboxing.se',
-        phone: '0723-244416',
+        email: 'fou@swekickboxing.se',
         image: {
           url: '/images/committees/bjorn-nordberg.jpg',
           alt: 'Porträtt av Björn Nordberg, ordförande i Forsknings- och utvecklingskommittén',
