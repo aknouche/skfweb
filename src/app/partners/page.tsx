@@ -40,14 +40,8 @@ export default function PartnersPage() {
           <h2 className="text-xl font-bold text-skf-blue uppercase tracking-wide mb-6">
             Huvudpartner
           </h2>
-          <div className="rounded-xl border border-gray-100 bg-white px-8 py-10 shadow-sm">
-            <Image
-              src="/images/partners/mooshroom.svg"
-              alt="Mooshroom — powered by mushrooms"
-              width={4390}
-              height={759}
-              className="h-auto w-full max-w-sm"
-            />
+          <div className="rounded-lg border border-dashed border-gray-200 bg-gray-50 px-8 py-10 text-center">
+            <p className="text-gray-400 italic">Plats för kommande huvudpartner.</p>
           </div>
         </div>
       </section>
@@ -126,6 +120,24 @@ export default function PartnersPage() {
                 Nicopia Sport
               </a>
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Tier: Partners */}
+      <section className="border-t border-gray-100 py-12">
+        <div className="container-narrow">
+          <h2 className="text-xl font-bold text-skf-blue uppercase tracking-wide mb-6">
+            Partners
+          </h2>
+          <div className="rounded-xl border border-gray-100 bg-white p-8 shadow-sm">
+            <Image
+              src="/images/partners/mooshroom.svg"
+              alt="Mooshroom — powered by mushrooms"
+              width={4390}
+              height={759}
+              className="h-auto w-full max-w-sm"
+            />
           </div>
         </div>
       </section>
