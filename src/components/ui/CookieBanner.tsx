@@ -14,11 +14,13 @@ export function CookieBanner() {
   function accept() {
     localStorage.setItem('cookie-consent', 'accepted');
     setVisible(false);
+    window.dispatchEvent(new Event('skf-cookie-consent-changed'));
   }
 
   function decline() {
     localStorage.setItem('cookie-consent', 'declined');
     setVisible(false);
+    window.dispatchEvent(new Event('skf-cookie-consent-changed'));
   }
 
   if (!visible) return null;

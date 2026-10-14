@@ -130,7 +130,7 @@ export default function MastarGradPage() {
             Riktlinjer för mästargrader
           </h2>
           <p>
-            Mästargrader i svensk kickboxning är inte i första hand "tekniska" grader utan skall
+            Mästargrader i svensk kickboxning är inte i första hand &quot;tekniska&quot; grader utan skall
             snarare ses som förtjänsttecken. När man har blivit mästare står det varje mästare
             fritt att uttolka och utveckla sina tekniker – en mästares tekniker kommer inte att
             återigen utvärderas ur graderingsaspekten.

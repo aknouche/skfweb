@@ -18,10 +18,16 @@ export async function GET(req: NextRequest) {
   const contentType =
     upstream.headers.get('content-type') || 'application/octet-stream';
 
+  // RFC 5987 encoding is required for non-ASCII filenames (e.g. Swedish å/ä/ö).
+  // Provide both a safe ASCII fallback and the UTF-8 encoded name so all
+  // browsers pick one they can handle.
+  const asciiFallback = filename.replace(/[^\x20-\x7E]/g, '_');
+  const encoded = encodeURIComponent(filename).replace(/'/g, '%27');
+
   return new Response(upstream.body, {
     headers: {
       'Content-Type': contentType,
-      'Content-Disposition': `attachment; filename="${filename}"`,
+      'Content-Disposition': `attachment; filename="${asciiFallback}"; filename*=UTF-8''${encoded}`,
       'Cache-Control': 'public, max-age=86400',
     },
   });

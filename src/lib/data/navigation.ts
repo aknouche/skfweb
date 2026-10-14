@@ -6,37 +6,20 @@
  */
 
 import type { NavItem } from '../constants';
-import { getAllCommittees } from './committees';
-
-/**
- * Build committees navigation item from static data
- */
-function buildCommitteesNav(): NavItem {
-  const committees = getAllCommittees();
-
-  const committeeItems: NavItem[] = committees.map((committee) => ({
-    label: committee.name,
-    href: `/kommitteer/${committee.slug}`,
-  }));
-
-  const children: NavItem[] = [
-    { label: 'Organisation', href: '/kommitteer/organisation' },
-    ...committeeItems,
-  ];
-
-  return {
-    label: 'Kommittéer',
-    href: '/kommitteer',
-    children: children.length > 1 ? children : undefined,
-  };
-}
 
 /**
  * Fetch complete dynamic navigation structure
  */
 const BASE_NAV: NavItem[] = [
   { label: 'Start', href: '/' },
-  { label: 'Om kickboxning', href: '/om-kickboxning' },
+  {
+    label: 'Om kickboxning',
+    href: '/om-kickboxning',
+    children: [
+      { label: 'Om kickboxning', href: '/om-kickboxning' },
+      { label: 'Tävlingsregler', href: '/tavlingsregler' },
+    ],
+  },
   { label: 'Kalender', href: '/kalender' },
   {
     label: 'Förbundet',
@@ -48,13 +31,6 @@ const BASE_NAV: NavItem[] = [
       { label: 'Strategi 2030', href: '/strategi-2030' },
       { label: 'Domare', href: '/domare' },
       { label: 'Kontakt', href: '/kontakt' },
-    ],
-  },
-  {
-    label: 'För klubbar',
-    href: '/forbundsrabatter',
-    children: [
-      { label: 'Förbundsrabatter', href: '/forbundsrabatter' },
     ],
   },
   { label: 'Nyheter', href: '/nyheter' },

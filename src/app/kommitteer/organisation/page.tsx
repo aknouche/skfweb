@@ -4,8 +4,8 @@
  */
 
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { getAllCommittees } from '@/lib/data/committees';
+import OrgChart from '@/components/organisation/OrgChart';
 
 export const metadata: Metadata = {
   title: 'Organisation | Svenska Kickboxningsförbundet',
@@ -15,10 +15,7 @@ export const metadata: Metadata = {
 
 export default function OrganisationPage() {
   const committees = getAllCommittees();
-
-  // Styrelsen is shown separately at the top; exclude it from the committee grid
   const styrelsen = committees.find((c) => c.id === 'styrelsen');
-  const otherCommittees = committees.filter((c) => c.id !== 'styrelsen');
 
   return (
     <main className="py-12 lg:py-16">
@@ -42,6 +39,15 @@ export default function OrganisationPage() {
         </div>
 
         <div className="mx-auto my-8 h-1 w-16 bg-skf-yellow"></div>
+
+        {/* Organisationskarta */}
+        <section>
+          <h2 className="mb-2 text-2xl font-bold text-skf-blue">Organisationskarta</h2>
+          <p className="text-gray-700">
+            Klicka på en kommitté för att läsa om ansvarsområden, uppdrag och kommittéordförande.
+          </p>
+          <OrgChart />
+        </section>
 
         <div className="mt-10 space-y-12 text-gray-700">
           {/* Förbundsstämma och styrelse */}
@@ -79,40 +85,6 @@ export default function OrganisationPage() {
               <li>Identifiera avvikelser, risker och resursbehov</li>
               <li>Företräda förbundet i operativa sammanhang</li>
             </ul>
-          </section>
-
-          {/* Kommittéer */}
-          <section>
-            <h2 className="mb-6 text-2xl font-bold text-skf-blue">Kommittéer</h2>
-            <div className="space-y-6">
-              {otherCommittees.map((committee) => (
-                <div
-                  key={committee.id}
-                  className="rounded-lg border border-gray-200 p-6 transition-shadow hover:shadow-md"
-                >
-                  <h3 className="mb-2 text-lg font-bold text-gray-900">
-                    {committee.name}
-                  </h3>
-                  <p className="mb-4 text-gray-700">{committee.description}</p>
-                  {committee.responsibilities.length > 0 && (
-                    <ul className="ml-4 list-disc space-y-1 text-sm text-gray-600">
-                      {committee.responsibilities.map((r) => (
-                        <li key={r}>{r}</li>
-                      ))}
-                    </ul>
-                  )}
-                  <Link
-                    href={`/kommitteer/${committee.slug}`}
-                    className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-skf-blue hover:underline"
-                  >
-                    Läs mer
-                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Link>
-                </div>
-              ))}
-            </div>
           </section>
         </div>
       </div>

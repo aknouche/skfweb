@@ -45,6 +45,10 @@ export interface NewsArticle {
     mimeType?: string;
     originalFilename?: string;
   }[];
+  videoEmbeds?: {
+    url: string;
+    caption?: string;
+  }[];
 }
 
 // =============================================================================
@@ -141,6 +145,13 @@ export interface CommitteeMember {
     url: string;
     alt: string;
   };
+  /**
+   * Idrottsbakgrund / CV — shown on the committee's profile card, one entry per
+   * paragraph. Optional until supplied.
+   */
+  bio?: string[];
+  /** Short "I korthet" facts listed under the bio */
+  highlights?: string[];
 }
 
 export interface Committee {
