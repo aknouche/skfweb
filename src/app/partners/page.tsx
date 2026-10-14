@@ -244,14 +244,18 @@ type Partner = {
 
 const PARTNERS: Partner[] = [
   {
+    name: 'BL Bygg & Konsult AB',
+    logo: '/images/partners/bl-bygg-konsult.png',
+    logoBg: 'bg-skf-blue',
+    url: 'https://blbyggkonsult.se/',
+  },
+  {
+    name: 'Corpus Entitas AB',
+  },
+  {
     name: 'Mooshroom',
     logo: '/images/partners/mooshroom.svg',
     logoBg: 'bg-white',
-  },
-  {
-    name: 'RJ Consulting AB',
-    logo: '/images/partners/rj-consulting.png',
-    logoBg: 'bg-gray-900',
   },
   {
     name: 'Novelty Quest AB',
@@ -260,21 +264,17 @@ const PARTNERS: Partner[] = [
     url: 'https://www.noveltyquest.com/',
   },
   {
-    name: 'Rudman Consulting AB',
-    url: 'https://www.bjornrudman.se/',
+    name: 'RJ Consulting AB',
+    logo: '/images/partners/rj-consulting.png',
+    logoBg: 'bg-gray-900',
   },
   {
-    name: 'BL Bygg & Konsult AB',
-    logo: '/images/partners/bl-bygg-konsult.png',
-    logoBg: 'bg-skf-blue',
-    url: 'https://blbyggkonsult.se/',
+    name: 'Rudman Consulting AB',
+    url: 'https://www.bjornrudman.se/',
   },
   {
     name: 'Skurups Åkeri & Schakt AB',
     logo: '/images/partners/Skurups.jpeg',
     logoBg: 'bg-white',
-  },
-  {
-    name: 'Corpus Entitas AB',
   },
 ];
