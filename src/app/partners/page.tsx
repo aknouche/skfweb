@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { AFFILIATE_URLS } from '@/lib/constants';
 
@@ -39,8 +40,14 @@ export default function PartnersPage() {
           <h2 className="text-xl font-bold text-skf-blue uppercase tracking-wide mb-6">
             Huvudpartner
           </h2>
-          <div className="rounded-lg border border-dashed border-gray-200 bg-gray-50 px-8 py-10 text-center">
-            <p className="text-gray-400 italic">Plats för kommande huvudpartner.</p>
+          <div className="rounded-xl border border-gray-100 bg-white px-8 py-10 shadow-sm">
+            <Image
+              src="/images/partners/mooshroom.svg"
+              alt="Mooshroom — powered by mushrooms"
+              width={4390}
+              height={759}
+              className="h-auto w-full max-w-sm"
+            />
           </div>
         </div>
       </section>

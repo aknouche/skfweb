@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 export function PartnersSection() {
@@ -23,6 +24,13 @@ export function PartnersSection() {
               <span className="text-xs font-bold tracking-widest text-gray-400">TOP TEN</span>
             </div>
             <p className="text-xs font-medium text-gray-500">Officiell och föredragen partner</p>
+            <Image
+              src="/images/partners/mooshroom.svg"
+              alt="Mooshroom — powered by mushrooms"
+              width={4390}
+              height={759}
+              className="h-8 w-auto"
+            />
           </div>
           <Link
             href="/partners"
