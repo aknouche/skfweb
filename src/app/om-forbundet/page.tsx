@@ -96,6 +96,36 @@ export default function OmForbundetPage() {
             antidoping.
           </p>
         </section>
+
+        {/* Stadgar section */}
+        <section className="mt-10 space-y-4 text-gray-700">
+          <h2 className="text-2xl font-bold text-skf-blue">Stadgar</h2>
+          <p>
+            Här kan du ladda ner Svenska Kickboxningsförbundets stadgar.
+          </p>
+          <a
+            href="/documents/SKF_stadgar_250322.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-lg bg-skf-blue px-5 py-3 text-sm font-bold text-white no-underline transition-colors duration-200 hover:bg-skf-blue/90"
+          >
+            <svg
+              className="h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"
+              />
+            </svg>
+            Ladda ner stadgar (PDF)
+          </a>
+        </section>
       </div>
     </main>
   );

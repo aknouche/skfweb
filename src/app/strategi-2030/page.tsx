@@ -61,6 +61,14 @@ export default function Strategi2030Page() {
             </p>
           </div>
 
+          <a
+            href="/documents/SKF_Forbundsstrategi_Svensk_Kickboxning_2030.pdf"
+            download
+            className="mt-8 inline-flex items-center rounded bg-skf-blue px-5 py-3 font-semibold text-white hover:opacity-90"
+          >
+            Ladda ner Strategi 2030 (PDF)
+          </a>
+
           {/* Yellow accent divider */}
           <div
             className="mt-10 h-1 w-20 rounded bg-skf-yellow"
