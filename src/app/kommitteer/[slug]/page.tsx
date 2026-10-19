@@ -150,19 +150,39 @@ export default async function CommitteePage({ params }: Props) {
           {namedMembers.length > 0 && (
             <section>
               <h2 className="mb-4 text-2xl font-bold text-skf-blue">Övriga ledamöter</h2>
-              <div className="space-y-3">
-                {namedMembers.map((member, i) => (
-                  <div key={i} className="rounded-lg border border-gray-200 p-4">
-                    <p className="font-semibold text-gray-900">{member.name}</p>
-                    {member.role && <p className="text-sm text-gray-600">{member.role}</p>}
-                    {member.email && (
-                      <a
-                        href={`mailto:${member.email}`}
-                        className="mt-1 block text-sm text-skf-blue hover:underline"
-                      >
-                        {member.email}
-                      </a>
-                    )}
+              <div className="space-y-6">
+                {namedMembers.map((member) => (
+                  <div
+                    key={member.name}
+                    className="flex flex-col items-center gap-6 rounded-xl border border-gray-200 p-6 sm:flex-row sm:items-start"
+                  >
+                    <MemberAvatar member={member} />
+                    <div className="min-w-0 text-center sm:text-left">
+                      <p className="text-lg font-bold text-gray-900">{member.name}</p>
+                      {member.role && <p className="text-sm font-medium text-skf-blue">{member.role}</p>}
+                      {member.bio && member.bio.length > 0 && (
+                        <div className="mt-3 space-y-3 text-left text-gray-600">
+                          {member.bio.map((paragraph) => (
+                            <p key={paragraph}>{paragraph}</p>
+                          ))}
+                        </div>
+                      )}
+                      {member.highlights && member.highlights.length > 0 && (
+                        <ul className="mt-3 space-y-1 border-l-4 border-skf-yellow pl-4 text-left text-sm text-gray-600">
+                          {member.highlights.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      )}
+                      {member.email && (
+                        <a
+                          href={`mailto:${member.email}`}
+                          className="mt-3 block text-sm text-skf-blue hover:underline"
+                        >
+                          {member.email}
+                        </a>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>
