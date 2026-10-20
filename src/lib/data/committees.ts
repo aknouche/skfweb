@@ -11,6 +11,11 @@ import type { Committee, CommitteeType } from '../types';
 // STATIC FALLBACK DATA
 // =============================================================================
 
+const CAMILLA_BIO = [
+  'Camilla har en bakgrund inom kickboxning som tävlande, coach, internationell tatamidomare och domarutbildare. Som tävlande representerade hon Ängelholms Kickboxningsklubb och tog bland annat SM-silver i både Light Contact och Full Contact samt guld i Light Contact på Danish Open. Hon har dömt vid flera internationella mästerskap, däribland EM och VM, och fick internationell domarlicens på A-nivå 2022. Hon har även medverkat som instruktör för tatamidomare vid Scandinavian Referee Camp tillsammans med internationella utbildare.',
+  'Camilla har erfarenhet av styrelsearbete på både förenings- och förbundsnivå. Sedan 2009 har hon under olika perioder varit aktiv i flera klubbstyrelser, och sedan 2015 ingår hon i Svenska Kickboxningsförbundets styrelse, där hon har haft uppdrag som sekreterare, vice ordförande och ordförande.',
+];
+
 export const COMMITTEES: Committee[] = [
   {
     id: 'styrelsen',
@@ -47,10 +52,7 @@ export const COMMITTEES: Committee[] = [
       {
         name: 'Camilla Jörneheim',
         role: 'Vice ordförande',
-        bio: [
-          'Camilla har en bakgrund inom kickboxning som tävlande, coach, internationell tatamidomare och domarutbildare. Som tävlande representerade hon Ängelholms Kickboxningsklubb och tog bland annat SM-silver i både Light Contact och Full Contact samt guld i Light Contact på Danish Open. Hon har dömt vid flera internationella mästerskap, däribland EM och VM, och fick internationell domarlicens på A-nivå 2022. Hon har även medverkat som instruktör för tatamidomare vid Scandinavian Referee Camp tillsammans med internationella utbildare.',
-          'Camilla har erfarenhet av styrelsearbete på både förenings- och förbundsnivå. Sedan 2009 har hon under olika perioder varit aktiv i flera klubbstyrelser, och sedan 2015 ingår hon i Svenska Kickboxningsförbundets styrelse, där hon har haft uppdrag som sekreterare, vice ordförande och ordförande.',
-        ],
+        bio: CAMILLA_BIO,
       },
       {
         name: 'Viktor Nordh',
@@ -120,8 +122,9 @@ export const COMMITTEES: Committee[] = [
     ],
     members: [
       {
-        name: 'Kommunikationsansvarig',
+        name: 'Camilla Jörneheim',
         role: 'Ordförande',
+        bio: CAMILLA_BIO,
       },
     ],
     contact: {
@@ -226,8 +229,9 @@ export const COMMITTEES: Committee[] = [
     ],
     members: [
       {
-        name: 'Tävlingsansvarig',
+        name: 'Camilla Jörneheim',
         role: 'Ordförande',
+        bio: CAMILLA_BIO,
       },
     ],
     contact: {
