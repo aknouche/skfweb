@@ -85,7 +85,7 @@ export const CHAT_TOPICS: ChatTopic[] = [
     keywords: ['kontakt', 'mejl', 'mail', 'ring', 'telefon', 'adress'],
     label: 'Kontakt',
     answer:
-      'Du når förbundet enklast via kontaktformuläret eller e-post på info@swekickboxning.se.',
+      'Du når förbundet enklast via kontaktformuläret eller e-post på info@swekickboxing.se.',
     link: { href: '/kontakt', text: 'Kontaktuppgifter' },
   },
 ];
