@@ -199,7 +199,7 @@ export default async function CommitteePage({ params }: Props) {
                 {committee.contact.email}
               </a>
               {committee.contact.refereeEmail && (
-                <p className="mt-2 text-skf-dark">
+                <p className="mt-2 text-skf-black">
                   Under sanktion till tävling, frågor kring domare:{' '}
                   <a
                     href={`mailto:${committee.contact.refereeEmail}`}
