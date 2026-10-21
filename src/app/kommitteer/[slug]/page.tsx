@@ -198,6 +198,17 @@ export default async function CommitteePage({ params }: Props) {
               >
                 {committee.contact.email}
               </a>
+              {committee.contact.refereeEmail && (
+                <p className="mt-2 text-skf-dark">
+                  Under sanktion till tävling, frågor kring domare:{' '}
+                  <a
+                    href={`mailto:${committee.contact.refereeEmail}`}
+                    className="text-skf-blue hover:underline"
+                  >
+                    {committee.contact.refereeEmail}
+                  </a>
+                </p>
+              )}
             </section>
           )}
         </div>

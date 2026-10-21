@@ -165,6 +165,7 @@ export interface Committee {
   contact: {
     email?: string;
     phone?: string;
+    refereeEmail?: string;
   };
   documents?: {
     name: string;

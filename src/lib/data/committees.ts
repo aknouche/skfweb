@@ -102,7 +102,7 @@ export const COMMITTEES: Committee[] = [
       },
     ],
     contact: {
-      email: 'styrelsen@swekickboxing.se',
+      email: 'styrelse@swekickboxing.se',
     },
   },
   {
@@ -128,7 +128,7 @@ export const COMMITTEES: Committee[] = [
       },
     ],
     contact: {
-      email: 'kommunikation@swekickboxing.se',
+      email: 'media@swekickboxing.se',
     },
   },
   {
@@ -236,6 +236,7 @@ export const COMMITTEES: Committee[] = [
     ],
     contact: {
       email: 'tavling@swekickboxing.se',
+      refereeEmail: 'domare@swekickboxing.se',
     },
   },
   {
